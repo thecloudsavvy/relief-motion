@@ -1,186 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Our Services | Relief Motion — Home Physiotherapy Lagos</title>
-  <meta name="description" content="Home physiotherapy services in Lagos: stroke rehabilitation, back pain, sciatica, knee and arthritis treatment, post-surgery recovery, and elderly mobility therapy." />
+  <meta name="description"
+    content="Home physiotherapy services in Lagos: stroke rehabilitation, back pain, sciatica, knee and arthritis treatment, post-surgery recovery, and elderly mobility therapy." />
   <link rel="stylesheet" href="styles/main.css" />
   <style>
-    .services-list { display: flex; flex-direction: column; gap: 0; }
+    .services-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
     .service-item {
-      display: grid; grid-template-columns: 80px 1fr;
-      gap: 32px; align-items: start;
-      padding: 44px 0; border-bottom: 1px solid var(--gray-100);
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 32px;
+      align-items: start;
+      padding: 44px 0;
+      border-bottom: 1px solid var(--gray-100);
     }
-    .service-item:last-child { border-bottom: none; }
+
+    .service-item:last-child {
+      border-bottom: none;
+    }
+
     .service-num {
-      font-family: var(--font-heading); font-size: 3.5rem; font-weight: 700;
-      color: var(--teal-100); line-height: 1; padding-top: 4px;
+      font-family: var(--font-heading);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--teal-100);
+      line-height: 1;
+      padding-top: 4px;
     }
-    .service-content h3 { font-size: 1.4rem; margin-bottom: 12px; color: var(--teal-800); }
-    .service-content p { margin-bottom: 20px; }
-    .service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-    .tag { background: var(--teal-50); color: var(--teal-700); font-size: 0.78rem; font-weight: 600; padding: 5px 14px; border-radius: 100px; }
-    .service-benefit { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 500; color: var(--gray-700); margin-bottom: 6px; }
-    .service-benefit::before { content: "✓"; color: var(--teal-700); font-weight: 700; }
-    .pricing-section { background: linear-gradient(135deg, var(--teal-50), var(--white)); border-radius: var(--radius-lg); padding: 48px; border: 1px solid var(--teal-100); }
-    .pricing-section h2 { margin-bottom: 12px; }
-    .pricing-section p { margin-bottom: 24px; }
+
+    .service-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      color: var(--teal-800);
+    }
+
+    .service-content p {
+      margin-bottom: 20px;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      background: var(--teal-50);
+      color: var(--teal-700);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 100px;
+    }
+
+    .service-benefit {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      margin-bottom: 6px;
+    }
+
+    .service-benefit::before {
+      content: "✓";
+      color: var(--teal-700);
+      font-weight: 700;
+    }
+
+    .pricing-section {
+      background: linear-gradient(135deg, var(--teal-50), var(--white));
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      border: 1px solid var(--teal-100);
+    }
+
+    .pricing-section h2 {
+      margin-bottom: 12px;
+    }
+
+    .pricing-section p {
+      margin-bottom: 24px;
+    }
+
     @media (max-width: 600px) {
-      .service-item { grid-template-columns: 1fr; gap: 8px; }
-      .service-num { font-size: 2rem; }
+      .service-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .service-num {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
+
 <body>
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="assets/brand_logo.png" alt="Relief Motion Logo" style="height: 54px; width: auto;" />
-    </a>
-    <div class="nav-links">
-      <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="testimonials.html">Testimonials</a>
-      <a href="booking.html" class="nav-cta">Book a Session</a>
-    </div>
-    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-  </div>
-</nav>
-<div class="nav-mobile" id="mobile-nav">
-  <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="testimonials.html">Testimonials</a>
-  <a href="booking.html" class="mobile-cta">Book a Session</a>
-</div>
-
-<div class="page-hero">
-  <div class="breadcrumb"><a href="index.html">Home</a> › Services</div>
-  <h1>Our Treatments</h1>
-  <p>Comprehensive home physiotherapy services designed to restore your mobility, relieve pain, and rebuild your quality of life.</p>
-</div>
-
-<section class="section">
-  <div class="container">
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:64px;align-items:start;">
-      <div>
-        <div class="section-label fade-in">What We Treat</div>
-        <h2 class="fade-in">Specialised Services</h2>
-        <div class="divider fade-in"></div>
-        <div class="services-list">
-          <!-- STROKE -->
-          <div class="service-item fade-in" id="stroke">
-            <div class="service-num">01</div>
-            <div class="service-content">
-              <h3>Stroke Rehabilitation</h3>
-              <p>A stroke can take away your independence in an instant. Our neurological rehabilitation programmes are designed to help you reclaim it — one session at a time. We use evidence-based techniques to rewire the brain and retrain the body.</p>
-              <div class="service-tags"><span class="tag">Neurological Rehab</span><span class="tag">Balance & Coordination</span><span class="tag">Movement Restoration</span></div>
-              <div class="service-benefit">Regain arm and leg movement</div>
-              <div class="service-benefit">Improve balance and prevent falls</div>
-              <div class="service-benefit">Regain speech support exercises</div>
-              <div class="service-benefit">Personalised weekly progress tracking</div>
-            </div>
-          </div>
-          <!-- BACK PAIN -->
-          <div class="service-item fade-in fade-in-delay-1" id="back">
-            <div class="service-num">02</div>
-            <div class="service-content">
-              <h3>Back Pain & Sciatica</h3>
-              <p>Chronic back pain and sciatica can be debilitating. We use manual therapy, targeted exercises, and postural correction to eliminate pain at the source — not just mask it.</p>
-              <div class="service-tags"><span class="tag">Manual Therapy</span><span class="tag">Spinal Mobilisation</span><span class="tag">Postural Correction</span></div>
-              <div class="service-benefit">Relieve herniated disc pain</div>
-              <div class="service-benefit">Reduce sciatic nerve inflammation</div>
-              <div class="service-benefit">Strengthen core muscles</div>
-              <div class="service-benefit">Return to daily activities faster</div>
-            </div>
-          </div>
-          <!-- KNEE -->
-          <div class="service-item fade-in fade-in-delay-2" id="knee">
-            <div class="service-num">03</div>
-            <div class="service-content">
-              <h3>Knee & Arthritis Treatment</h3>
-              <p>Arthritis and knee conditions limit your ability to walk, climb stairs, and enjoy life. Our treatment reduces joint inflammation, strengthens surrounding muscles, and improves range of motion.</p>
-              <div class="service-tags"><span class="tag">Osteoarthritis</span><span class="tag">Rheumatoid Arthritis</span><span class="tag">Joint Mobilisation</span></div>
-              <div class="service-benefit">Reduce joint swelling and stiffness</div>
-              <div class="service-benefit">Improve walking distance</div>
-              <div class="service-benefit">Strengthen quadriceps and glutes</div>
-              <div class="service-benefit">Delay or avoid surgery</div>
-            </div>
-          </div>
-          <!-- SURGERY -->
-          <div class="service-item fade-in fade-in-delay-3" id="surgery">
-            <div class="service-num">04</div>
-            <div class="service-content">
-              <h3>Post-Surgery Recovery</h3>
-              <p>Surgery is only half the battle — a structured rehabilitation plan is what determines your long-term outcome. We start rehab early to prevent complications, rebuild strength, and ensure a lasting recovery.</p>
-              <div class="service-tags"><span class="tag">Orthopaedic Surgery</span><span class="tag">Hip Replacement</span><span class="tag">Knee Replacement</span></div>
-              <div class="service-benefit">Prevent post-operative stiffness</div>
-              <div class="service-benefit">Reduce healing time</div>
-              <div class="service-benefit">Rebuild muscle strength</div>
-              <div class="service-benefit">Return to full function faster</div>
-            </div>
-          </div>
-          <!-- ELDERLY -->
-          <div class="service-item fade-in fade-in-delay-4" id="elderly">
-            <div class="service-num">05</div>
-            <div class="service-content">
-              <h3>Elderly Mobility Therapy</h3>
-              <p>Ageing doesn't have to mean losing independence. Our gentle, age-appropriate mobility programmes help seniors stay active, reduce fall risk, and maintain the ability to live life on their own terms.</p>
-              <div class="service-tags"><span class="tag">Fall Prevention</span><span class="tag">Balance Training</span><span class="tag">Gentle Exercise</span></div>
-              <div class="service-benefit">Improve daily mobility and independence</div>
-              <div class="service-benefit">Prevent dangerous falls</div>
-              <div class="service-benefit">Maintain strength and flexibility</div>
-              <div class="service-benefit">Home safety assessment included</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SIDEBAR -->
-      <div style="position:sticky;top:100px;">
-        <div class="pricing-section fade-in">
-          <div class="section-label">Pricing</div>
-          <h2 style="font-size:1.6rem;">Transparent &amp; Fair</h2>
-          <div class="divider"></div>
-          <p>Session fees are personalised based on your condition, location, and treatment plan. We believe in fair, value-driven pricing.</p>
-          <p style="font-size:0.9rem;">Starting from <strong style="color:var(--teal-800);font-size:1.2rem;">₦25,000</strong> per session.</p>
-          <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20would%20like%20to%20ask%20about%20pricing%20and%20book%20a%20session." target="_blank" class="btn btn-whatsapp" style="width:100%;justify-content:center;margin-top:16px;">
-            <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            Ask About Pricing
-          </a>
-        </div>
-        <div class="card" style="padding:28px;margin-top:24px;" class="fade-in">
-          <h4 style="margin-bottom:12px;">Not Sure Which Service?</h4>
-          <p style="font-size:0.88rem;margin-bottom:16px;">Message us on WhatsApp and we'll guide you to the right treatment for your condition.</p>
-          <a href="booking.html" class="btn btn-secondary" style="width:100%;justify-content:center;">Book a Consultation</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="cta-section">
-  <div class="container">
-    <h2 class="fade-in">Start Your Treatment Today</h2>
-    <p class="fade-in" style="margin-bottom:36px;">All treatments are delivered to your home. No equipment needed from your side.</p>
-    <div class="cta-btn-group fade-in">
-      <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20would%20like%20to%20book%20a%20home%20physiotherapy%20session." target="_blank" class="btn btn-whatsapp">
-        <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        Book via WhatsApp
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/brand_logo.png" alt="Relief Motion Logo" style="height: 54px; width: auto;" />
       </a>
-      <a href="about.html" class="btn btn-outline-white">Meet the Physiotherapist</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a><a href="services.html">Services</a><a href="online-consultation.html">Online
+          Consultation</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a
+          href="testimonials.html">Testimonials</a>
+        <a href="booking.html" class="nav-cta">Book a Session</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger"
+        aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
+  </nav>
+  <div class="nav-mobile" id="mobile-nav">
+    <a href="index.html">Home</a><a href="services.html">Services</a><a href="online-consultation.html">Online
+      Consultation</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a
+      href="testimonials.html">Testimonials</a>
+    <a href="booking.html" class="mobile-cta">Book a Session</a>
   </div>
-</section>
 
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand"><span class="footer-logo-name">Relief Motion</span><p>Professional home physiotherapy in Lagos. Licensed, experienced, and committed to your recovery.</p></div>
-      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a></li><li><a href="testimonials.html">Testimonials</a></li><li><a href="booking.html">Book a Session</a></li></ul></div>
-      <div class="footer-col"><h4>Services</h4><ul><li><a href="#stroke">Stroke Rehab</a></li><li><a href="#back">Back Pain</a></li><li><a href="#knee">Knee & Arthritis</a></li><li><a href="#surgery">Post-Surgery</a></li><li><a href="#elderly">Elderly Mobility</a></li></ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul><li><a href="https://wa.me/2348000000000" target="_blank">WhatsApp Us</a></li><li><a href="mailto:hello@reliefmotionphysio.com">Email Us</a></li><li><a href="booking.html">Book a Session</a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><span>© 2026 Relief Motion. All rights reserved.</span><span>Made with care in Lagos, Nigeria 🇳🇬</span></div>
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="index.html">Home</a> › Services</div>
+    <h1>Our Treatments</h1>
+    <p>Comprehensive home physiotherapy services designed to restore your mobility, relieve pain, and rebuild your
+      quality of life.</p>
   </div>
-</footer>
-<script src="scripts/main.js"></script>
+
+  <section class="section">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:64px;align-items:start;">
+        <div>
+          <div class="section-label fade-in">What We Treat</div>
+          <h2 class="fade-in">Specialised Services</h2>
+          <div class="divider fade-in"></div>
+          <div class="services-list">
+            <!-- STROKE -->
+            <div class="service-item fade-in" id="stroke">
+              <div class="service-num">01</div>
+              <div class="service-content">
+                <h3>Stroke Rehabilitation</h3>
+                <p>A stroke can take away your independence in an instant. Our neurological rehabilitation programmes
+                  are designed to help you reclaim it — one session at a time. We use evidence-based techniques to
+                  rewire the brain and retrain the body.</p>
+                <div class="service-tags"><span class="tag">Neurological Rehab</span><span class="tag">Balance &
+                    Coordination</span><span class="tag">Movement Restoration</span></div>
+                <div class="service-benefit">Regain arm and leg movement</div>
+                <div class="service-benefit">Improve balance and prevent falls</div>
+                <div class="service-benefit">Regain speech support exercises</div>
+                <div class="service-benefit">Personalised weekly progress tracking</div>
+              </div>
+            </div>
+            <!-- BACK PAIN -->
+            <div class="service-item fade-in fade-in-delay-1" id="back">
+              <div class="service-num">02</div>
+              <div class="service-content">
+                <h3>Back Pain & Sciatica</h3>
+                <p>Chronic back pain and sciatica can be debilitating. We use manual therapy, targeted exercises, and
+                  postural correction to eliminate pain at the source — not just mask it.</p>
+                <div class="service-tags"><span class="tag">Manual Therapy</span><span class="tag">Spinal
+                    Mobilisation</span><span class="tag">Postural Correction</span></div>
+                <div class="service-benefit">Relieve herniated disc pain</div>
+                <div class="service-benefit">Reduce sciatic nerve inflammation</div>
+                <div class="service-benefit">Strengthen core muscles</div>
+                <div class="service-benefit">Return to daily activities faster</div>
+              </div>
+            </div>
+            <!-- KNEE -->
+            <div class="service-item fade-in fade-in-delay-2" id="knee">
+              <div class="service-num">03</div>
+              <div class="service-content">
+                <h3>Knee & Arthritis Treatment</h3>
+                <p>Arthritis and knee conditions limit your ability to walk, climb stairs, and enjoy life. Our treatment
+                  reduces joint inflammation, strengthens surrounding muscles, and improves range of motion.</p>
+                <div class="service-tags"><span class="tag">Osteoarthritis</span><span class="tag">Rheumatoid
+                    Arthritis</span><span class="tag">Joint Mobilisation</span></div>
+                <div class="service-benefit">Reduce joint swelling and stiffness</div>
+                <div class="service-benefit">Improve walking distance</div>
+                <div class="service-benefit">Strengthen quadriceps and glutes</div>
+                <div class="service-benefit">Delay or avoid surgery</div>
+              </div>
+            </div>
+            <!-- SURGERY -->
+            <div class="service-item fade-in fade-in-delay-3" id="surgery">
+              <div class="service-num">04</div>
+              <div class="service-content">
+                <h3>Post-Surgery Recovery</h3>
+                <p>Surgery is only half the battle — a structured rehabilitation plan is what determines your long-term
+                  outcome. We start rehab early to prevent complications, rebuild strength, and ensure a lasting
+                  recovery.</p>
+                <div class="service-tags"><span class="tag">Orthopaedic Surgery</span><span class="tag">Hip
+                    Replacement</span><span class="tag">Knee Replacement</span></div>
+                <div class="service-benefit">Prevent post-operative stiffness</div>
+                <div class="service-benefit">Reduce healing time</div>
+                <div class="service-benefit">Rebuild muscle strength</div>
+                <div class="service-benefit">Return to full function faster</div>
+              </div>
+            </div>
+            <!-- ELDERLY -->
+            <div class="service-item fade-in fade-in-delay-4" id="elderly">
+              <div class="service-num">05</div>
+              <div class="service-content">
+                <h3>Elderly Mobility Therapy</h3>
+                <p>Ageing doesn't have to mean losing independence. Our gentle, age-appropriate mobility programmes help
+                  seniors stay active, reduce fall risk, and maintain the ability to live life on their own terms.</p>
+                <div class="service-tags"><span class="tag">Fall Prevention</span><span class="tag">Balance
+                    Training</span><span class="tag">Gentle Exercise</span></div>
+                <div class="service-benefit">Improve daily mobility and independence</div>
+                <div class="service-benefit">Prevent dangerous falls</div>
+                <div class="service-benefit">Maintain strength and flexibility</div>
+                <div class="service-benefit">Home safety assessment included</div>
+              </div>
+              <!-- ONLINE CONSULTATION -->
+              <div class="service-item fade-in fade-in-delay-5" id="online">
+                <div class="service-num">06</div>
+                <div class="service-content">
+                  <h3>Online Consultation</h3>
+                  <p>Get expert physiotherapy guidance from anywhere in Nigeria. Perfect for initial assessments,
+                    exercise progression, and understanding the cause of your pain without leaving home.</p>
+                  <div class="service-tags"><span class="tag">Video Consultation</span><span class="tag">Nationwide
+                      Support</span><span class="tag">Assessment & Rehab</span></div>
+                  <div class="service-benefit">Convenient video calls</div>
+                  <div class="service-benefit">Personalized digital rehab plan</div>
+                  <div class="service-benefit">Guidance on root cause of pain</div>
+                  <div class="service-benefit">Follow-up support via messaging</div>
+                  <a href="online-consultation.html" class="service-link" style="margin-top: 16px;">View Consultation
+                    Details →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div style="position:sticky;top:100px;">
+          <div class="pricing-section fade-in">
+            <div class="section-label">Pricing</div>
+            <h2 style="font-size:1.6rem;">Transparent &amp; Fair</h2>
+            <div class="divider"></div>
+            <p>Session fees are personalised based on your condition, location, and treatment plan. We believe in fair,
+              value-driven pricing.</p>
+            <p style="font-size:0.9rem;">Starting from <strong
+                style="color:var(--teal-800);font-size:1.2rem;">₦25,000</strong> per session.</p>
+            <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20would%20like%20to%20ask%20about%20pricing%20and%20book%20a%20session."
+              target="_blank" class="btn btn-whatsapp" style="width:100%;justify-content:center;margin-top:16px;">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+              </svg>
+              Ask About Pricing
+            </a>
+          </div>
+          <div class="card" style="padding:28px;margin-top:24px;" class="fade-in">
+            <h4 style="margin-bottom:12px;">Not Sure Which Service?</h4>
+            <p style="font-size:0.88rem;margin-bottom:16px;">Message us on WhatsApp and we'll guide you to the right
+              treatment for your condition.</p>
+            <a href="booking.html" class="btn btn-secondary" style="width:100%;justify-content:center;">Book a
+              Consultation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="fade-in">Start Your Treatment Today</h2>
+      <p class="fade-in" style="margin-bottom:36px;">All treatments are delivered to your home. No equipment needed from
+        your side.</p>
+      <div class="cta-btn-group fade-in">
+        <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20would%20like%20to%20book%20a%20home%20physiotherapy%20session."
+          target="_blank" class="btn btn-whatsapp">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+          </svg>
+          Book via WhatsApp
+        </a>
+        <a href="about.html" class="btn btn-outline-white">Meet the Physiotherapist</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand"><span class="footer-logo-name">Relief Motion</span>
+          <p>Professional home physiotherapy in Lagos. Licensed, experienced, and committed to your recovery.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a></li>
+            <li><a href="testimonials.html">Testimonials</a></li>
+            <li><a href="booking.html">Book a Session</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#stroke">Stroke Rehab</a></li>
+            <li><a href="services.html#back">Back Pain</a></li>
+            <li><a href="services.html#knee">Knee & Arthritis</a></li>
+            <li><a href="services.html#surgery">Post-Surgery</a></li>
+            <li><a href="services.html#elderly">Elderly Mobility</a></li>
+            <li><a href="online-consultation.html">Online Consultation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://wa.me/2348000000000" target="_blank">WhatsApp Us</a></li>
+            <li><a href="mailto:hello@reliefmotionphysio.com">Email Us</a></li>
+            <li><a href="booking.html">Book a Session</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 Relief Motion. All rights reserved.</span><span>Made with care in Lagos,
+          Nigeria 🇳🇬</span></div>
+    </div>
+  </footer>
+  <script src="scripts/main.js"></script>
 </body>
+
 </html>
