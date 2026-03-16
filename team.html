@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Team | Relief Motion — Home Physiotherapy Lagos</title>
+  <meta name="description" content="Meet the licensed physiotherapists at Relief Motion. Professional home physiotherapy experts dedicated to your recovery in Lagos." />
+  <link rel="stylesheet" href="styles/main.css" />
+  <style>
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 48px; }
+    .team-card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); transition: var(--transition); border: 1px solid var(--gray-100); }
+    .team-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+    .team-img-wrap { width: 100%; height: 380px; overflow: hidden; }
+    .team-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: var(--transition); }
+    .team-card:hover .team-img-wrap img { transform: scale(1.05); }
+    .team-info { padding: 32px; text-align: center; }
+    .team-info h3 { font-size: 1.4rem; color: var(--teal-800); margin-bottom: 6px; }
+    .team-role { font-size: 0.9rem; color: var(--gold-dark); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 20px; }
+    .team-bio { font-size: 0.95rem; line-height: 1.6; color: var(--gray-700); margin-bottom: 24px; }
+    .team-creds { display: flex; flex-direction: column; gap: 8px; text-align: left; background: var(--gray-50); padding: 20px; border-radius: var(--radius-sm); }
+    .cred-line { display: flex; gap: 10px; font-size: 0.85rem; color: var(--gray-900); }
+    .cred-line svg { width: 16px; height: 16px; color: var(--teal-600); flex-shrink: 0; margin-top: 3px; }
+  </style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/brand_logo.png" alt="Relief Motion Logo" style="height: 54px; width: auto;" />
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="testimonials.html">Testimonials</a>
+      <a href="booking.html" class="nav-cta">Book a Session</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="mobile-nav">
+  <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="testimonials.html">Testimonials</a>
+  <a href="booking.html" class="mobile-cta">Book a Session</a>
+</div>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="index.html">Home</a> › Our Team</div>
+  <h1>Meet The Experts</h1>
+  <p>Our licensed clinical physiotherapists bring extensive hospital experience directly to your living room.</p>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header center fade-in">
+      <div class="section-label">The Practitioners</div>
+      <h2>Expert Care in Safe Hands</h2>
+      <div class="divider center"></div>
+      <p style="max-width:600px;margin:0 auto;">At Relief Motion, we carefully select practitioners who combine clinical excellence with genuine empathy. Every physiotherapist is fully licensed and vetted.</p>
+    </div>
+    
+    <div class="team-grid">
+      <!-- Dr. Abatan -->
+      <div class="team-card fade-in">
+        <div class="team-img-wrap">
+          <!-- User provided image -->
+          <img src="assets/team_abatan.jpg" alt="PT. Abatan K.D." />
+        </div>
+        <div class="team-info">
+          <h3>PT. Abatan K.D.</h3>
+          <div class="team-role">Lead Physiotherapist</div>
+          <p class="team-bio">With years of specialized experience in neuro-musculoskeletal rehabilitation, PT. Abatan K.D. leads our clinical practice. He combines evidence-based manual therapy with tailored exercise prescriptions to ensure lasting recovery for patients.</p>
+          <div class="team-creds">
+            <div class="cred-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Licensed Physiotherapist (MRTB)</div>
+            <div class="cred-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Specialist in Post-Surgical Rehab</div>
+            <div class="cred-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Advanced Manual Therapy</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dr. Amaka (From About section) -->
+      <div class="team-card fade-in fade-in-delay-1">
+        <div class="team-img-wrap">
+          <img src="assets/dr_amaka.jpg" alt="PT. Abatan T.D." />
+        </div>
+        <div class="team-info">
+          <h3>PT. Abatan T.D.</h3>
+          <div class="team-role">Senior Physiotherapist</div>
+          <p class="team-bio">PT. Abatan T.D. brings over 8 years of clinical expertise, with a special focus on stroke rehabilitation and geriatric care. His patient-first approach has helped hundreds of Lagos residents regain their independence at home.</p>
+          <div class="team-creds">
+            <div class="cred-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> B.Sc. Physiotherapy, UNILAG</div>
+            <div class="cred-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Registered MRTB Practitioner</div>
+            <div class="cred-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Neuro-rehab Specialist</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2 class="fade-in">Start Your Recovery Journey</h2>
+    <p class="fade-in" style="margin-bottom:36px;">Schedule a home visit with one of our expert physiotherapists today.</p>
+    <div class="cta-btn-group fade-in">
+      <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20would%20like%20to%20book%20a%20home%20physiotherapy%20session." target="_blank" class="btn btn-whatsapp">Book via WhatsApp</a>
+      <a href="services.html" class="btn btn-outline-white">View Services</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><span class="footer-logo-name">Relief Motion</span><p>Professional home physiotherapy in Lagos. Licensed, experienced, and committed to your recovery.</p></div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="team.html">Our Team</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html#stroke">Stroke Rehab</a></li><li><a href="services.html#back">Back Pain</a></li><li><a href="services.html#knee">Knee & Arthritis</a></li><li><a href="services.html#surgery">Post-Surgery</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="https://wa.me/2348000000000" target="_blank">WhatsApp Us</a></li><li><a href="mailto:hello@reliefmotionphysio.com">Email Us</a></li><li><a href="booking.html">Book a Session</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Relief Motion. All rights reserved.</span><span>Lagos, Nigeria 🇳🇬</span></div>
+  </div>
+</footer>
+<script src="scripts/main.js"></script>
+</body>
+</html>

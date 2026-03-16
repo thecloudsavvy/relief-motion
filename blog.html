@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Physiotherapy Blog | Relief Motion — Home Physiotherapy Lagos</title>
+  <meta name="description" content="Read our latest articles on stroke recovery, back pain management, and physiotherapy tips for seniors in Lagos." />
+  <link rel="stylesheet" href="styles/main.css" />
+  <style>
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 32px; margin-top: 48px; }
+    .blog-card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--gray-100); transition: var(--transition); display: flex; flex-direction: column; }
+    .blog-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .blog-img { height: 220px; background: var(--gray-100); position: relative; }
+    .blog-img img { width: 100%; height: 100%; object-fit: cover; }
+    .blog-category { position: absolute; top: 16px; left: 16px; background: var(--teal-800); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+    .blog-content { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+    .blog-meta { font-size: 0.85rem; color: var(--gray-400); margin-bottom: 12px; display: flex; justify-content: space-between; }
+    .blog-title { font-size: 1.25rem; color: var(--teal-900); margin-bottom: 12px; line-height: 1.4; }
+    .blog-card:hover .blog-title { color: var(--teal-600); }
+    .blog-excerpt { font-size: 0.95rem; color: var(--gray-600); line-height: 1.6; margin-bottom: 24px; flex-grow: 1; }
+    .blog-read-more { font-weight: 600; color: var(--gold-dark); display: inline-flex; align-items: center; gap: 6px; font-size: 0.95rem; }
+    .blog-read-more:hover { color: var(--teal-700); }
+    
+    /* Featured Post */
+    .featured-post { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--gray-100); margin-bottom: 64px; }
+    .featured-img { height: 100%; min-height: 400px; }
+    .featured-img img { width: 100%; height: 100%; object-fit: cover; }
+    .featured-content { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
+    .featured-content .blog-category { position: relative; top: 0; left: 0; display: inline-block; margin-bottom: 16px; align-self: flex-start; }
+    .featured-content .blog-title { font-size: 2rem; margin-bottom: 16px; }
+    
+    @media (max-width: 900px) {
+      .featured-post { grid-template-columns: 1fr; }
+      .featured-img { min-height: 250px; }
+      .featured-content { padding: 32px; }
+    }
+  </style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/brand_logo.png" alt="Relief Motion Logo" style="height: 54px; width: auto;" />
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="testimonials.html">Testimonials</a>
+      <a href="booking.html" class="nav-cta">Book a Session</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="mobile-nav">
+  <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="testimonials.html">Testimonials</a>
+  <a href="booking.html" class="mobile-cta">Book a Session</a>
+</div>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="index.html">Home</a> › Blog</div>
+  <h1>Physiotherapy Insights</h1>
+  <p>Expert advice, recovery stories, and tips for managing pain from our specialist team.</p>
+</div>
+
+<section class="section">
+  <div class="container">
+    
+    <!-- Featured Post -->
+    <div class="featured-post fade-in">
+      <div class="featured-img">
+        <div style="width:100%;height:100%;background:linear-gradient(135deg, var(--teal-800), var(--teal-600));display:flex;align-items:center;justify-content:center;color:white;font-size:4rem;opacity:0.9;">🧠</div>
+      </div>
+      <div class="featured-content">
+        <span class="blog-category">Stroke Recovery</span>
+        <div class="blog-meta"><span>By PT. Abatan K.D.</span><span>March 10, 2026</span></div>
+        <h2 class="blog-title">The First 30 Days: Why Early Physiotherapy is Crucial After a Stroke</h2>
+        <p class="blog-excerpt">The critical window for neuroplasticity opens immediately after a stroke. Discover why beginning targeted rehabilitation exercises within the first month drastically improves long-term mobility and independence outcomes for patients.</p>
+        <a href="#" class="blog-read-more">Read Article <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <div class="section-header center fade-in">
+      <h2>Latest Articles</h2>
+      <div class="divider center"></div>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="blog-grid">
+      
+      <div class="blog-card fade-in">
+        <div class="blog-img">
+          <span class="blog-category">Back Pain</span>
+          <div style="width:100%;height:100%;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:3rem;">⚡</div>
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta"><span>By PT. Abatan T.D.</span><span>Feb 28, 2026</span></div>
+          <h3 class="blog-title">Sciatica or Just a Bad Back? How to Tell the Difference</h3>
+          <p class="blog-excerpt">Not all lower back pain is sciatica. Learn the key symptoms that distinguish true sciatic nerve compression from muscular strain, and what treatments work best.</p>
+          <a href="#" class="blog-read-more">Read Article <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="blog-card fade-in fade-in-delay-1">
+        <div class="blog-img">
+          <span class="blog-category">Elderly Care</span>
+          <div style="width:100%;height:100%;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:3rem;">🦿</div>
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta"><span>By PT. Abatan K.D.</span><span>Feb 15, 2026</span></div>
+          <h3 class="blog-title">5 Simple Exercises to Prevent Falls in Older Adults</h3>
+          <p class="blog-excerpt">Falls are a leading cause of injury for seniors. Integrating these five simple balance and strengthening exercises into a daily routine can significantly reduce risk.</p>
+          <a href="#" class="blog-read-more">Read Article <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="blog-card fade-in fade-in-delay-2">
+        <div class="blog-img">
+          <span class="blog-category">Post-Surgery</span>
+          <div style="width:100%;height:100%;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:3rem;">🏥</div>
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta"><span>By PT. Abatan T.D.</span><span>Jan 22, 2026</span></div>
+          <h3 class="blog-title">What to Expect After Knee Replacement Surgery</h3>
+          <p class="blog-excerpt">A week-by-week guide to recovering from a total knee arthroplasty (TKA), from the day you return home to regaining full range of motion.</p>
+          <a href="#" class="blog-read-more">Read Article <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" style="background-color: var(--teal-800); border-top: 5px solid var(--gold);">
+  <div class="container">
+    <h2 class="fade-in">Need personalised advice?</h2>
+    <p class="fade-in" style="margin-bottom:36px;">Our specialists are available for home visits across Lagos.</p>
+    <div class="cta-btn-group fade-in">
+      <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20have%20an%20enquiry%20from%20reading%20your%20blog." target="_blank" class="btn btn-whatsapp">Message Us on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <!-- Footer content matches other pages -->
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><span class="footer-logo-name">Relief Motion</span><p>Professional home physiotherapy in Lagos. Licensed, experienced, and committed to your recovery.</p></div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="team.html">Our Team</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html#stroke">Stroke Rehab</a></li><li><a href="services.html#back">Back Pain</a></li><li><a href="services.html#knee">Knee & Arthritis</a></li><li><a href="services.html#surgery">Post-Surgery</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="https://wa.me/2348000000000" target="_blank">WhatsApp Us</a></li><li><a href="mailto:hello@reliefmotionphysio.com">Email Us</a></li><li><a href="booking.html">Book a Session</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Relief Motion. All rights reserved.</span><span>Lagos, Nigeria 🇳🇬</span></div>
+  </div>
+</footer>
+<script src="scripts/main.js"></script>
+</body>
+</html>
