@@ -208,8 +208,15 @@
       width: 100%;
       height: 480px;
       object-fit: cover;
+      object-position: center 20%;
       border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .why-image img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 30px 60px rgba(0, 0, 108, 0.15);
     }
 
     .why-feat {
@@ -440,7 +447,7 @@
     <div class="container">
       <div class="why-grid">
         <div class="why-image fade-in">
-          <img src="assets/dr_amaka.jpg" alt="Physiotherapist assisting patient"
+          <img src="assets/home-physio-care.png" alt="Physiotherapist providing hands-on care to a patient at home"
             style="width: 100%; height: 100%; object-fit: cover" />
         </div>
         <div>
