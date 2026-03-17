@@ -669,25 +669,44 @@ p {
 /* ─── Stats Row ─── */
 .stats-row {
   display: flex;
-  gap: 48px;
+  gap: 60px;
   flex-wrap: wrap;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.stat-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -30px;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .stat-item .number {
   font-family: var(--font-heading);
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--teal-800);
+  font-size: clamp(2.8rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: #ffffff;
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .stat-item .label {
-  font-size: 0.82rem;
-  color: var(--gray-300);
-  font-weight: 500;
-  margin-top: 4px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 600;
+  margin-top: 8px;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.12em;
 }
 
 /* ─── CTA Section ─── */
