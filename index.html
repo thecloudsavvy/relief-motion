@@ -126,18 +126,35 @@
     }
 
     .service-card {
-      padding: 32px 28px;
+      background: var(--white);
+      padding: 40px 32px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      border: 1px solid var(--gray-100);
+      transition: var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(11, 79, 108, 0.1);
+      border-color: var(--teal-100);
     }
 
     .sc-icon {
-      width: 60px;
-      height: 60px;
-      background: var(--teal-50);
-      border-radius: 16px;
+      width: 64px;
+      height: 64px;
+      background: rgba(16, 119, 160, 0.08);
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      transition: var(--transition);
+    }
+
+    .service-card:hover .sc-icon {
+      background: var(--teal-100);
+      transform: scale(1.1);
     }
 
     .sc-icon svg {
@@ -366,8 +383,8 @@
         <h2>Specialised Home Physiotherapy</h2>
         <div class="divider center"></div>
         <p>
-          Expert care delivered with clinical precision — in the comfort of
-          your own home.
+          Experience therapeutic excellence and clinical expertise in the comfort
+          of your own home. We don't just treat symptoms; we restore your quality of life.
         </p>
       </div>
       <div class="services-grid">
@@ -413,7 +430,7 @@
         </div>
       </div>
       <div class="text-center" style="margin-top: 40px">
-        <a href="services.html" class="btn btn-secondary">View All Services →</a>
+        <a href="services.html" class="btn btn-primary">Explore All Services — Get Started</a>
       </div>
     </div>
   </section>
