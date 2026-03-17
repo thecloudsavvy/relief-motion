@@ -606,16 +606,19 @@ p {
 /* ─── Testimonial cards ─── */
 .testimonial-card {
   background: var(--white);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   border: 1px solid var(--gray-100);
-  box-shadow: var(--shadow-md);
-  padding: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  padding: 40px;
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
 }
 
 .testimonial-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(11, 79, 108, 0.08);
+  border-color: var(--teal-100);
 }
 
 .testimonial-quote {
@@ -627,11 +630,12 @@ p {
 }
 
 .testimonial-text {
-  font-size: 0.98rem;
-  color: var(--gray-700);
+  font-size: 1.15rem;
+  color: var(--gray-800);
   font-style: italic;
-  margin-bottom: 20px;
-  line-height: 1.7;
+  margin-bottom: 24px;
+  line-height: 1.8;
+  flex-grow: 1;
 }
 
 .testimonial-author {
@@ -656,14 +660,15 @@ p {
 }
 
 .testimonial-name {
-  font-weight: 600;
-  font-size: 0.92rem;
+  font-weight: 700;
+  font-size: 1rem;
   color: var(--gray-900);
 }
 
 .testimonial-location {
-  font-size: 0.78rem;
-  color: var(--gray-300);
+  font-size: 0.8rem;
+  color: var(--gray-400);
+  font-weight: 500;
 }
 
 /* ─── Stats Row ─── */
@@ -737,10 +742,46 @@ p {
 }
 
 .cta-section p {
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 36px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 20px;
   max-width: 500px;
   margin-inline: auto;
+  font-size: 1.1rem;
+}
+
+.cta-urgency {
+  color: var(--gold);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 36px;
+  display: block;
+}
+
+.cta-trust {
+  display: block;
+  margin-top: 24px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+}
+
+/* WhatsApp Pulse Effect */
+@keyframes cta-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px transparent;
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.cta-section .btn-whatsapp {
+  animation: cta-pulse 2s infinite;
 }
 
 .cta-btn-group {
@@ -778,18 +819,35 @@ p {
 }
 
 .footer-brand p {
-  font-size: 0.88rem;
-  line-height: 1.7;
-  max-width: 260px;
+  font-size: 0.92rem;
+  line-height: 1.8;
+  max-width: 320px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-col {
+  position: relative;
+}
+
+@media (min-width: 1025px) {
+  .footer-col:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -24px;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.05);
+  }
 }
 
 .footer-col h4 {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: white;
-  margin-bottom: 20px;
+  color: var(--white);
+  margin-bottom: 24px;
 }
 
 .footer-col ul {
@@ -914,11 +972,36 @@ p {
   margin-inline: auto;
 }
 
-/* ─── Areas grid ─── */
+/* ─── Areas Section Container ─── */
+.areas-container {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 60px 40px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.areas-visual {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.areas-visual svg {
+  width: 300px;
+  height: 300px;
+}
+
 .areas-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
 }
 
 .area-chip {
