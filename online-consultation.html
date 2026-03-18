@@ -299,6 +299,29 @@
                 font-size: 2.5rem;
             }
         }
+
+        .oc-hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 900px) {
+            .oc-hero-actions {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 14px;
+                margin: 0 auto;
+                width: 100%;
+                max-width: 360px;
+            }
+
+            .oc-hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 
@@ -340,7 +363,7 @@
             <h1>Speak With a<br><span>Licensed Physiotherapist</span></h1>
             <p>Get expert guidance for back pain, sports injuries, and post-surgery recovery from the comfort of your
                 home, anywhere in Nigeria.</p>
-            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <div class="oc-hero-actions">
                 <a href="booking.html" class="btn btn-primary">Book Online Consultation</a>
                 <a href="https://wa.me/2349164944357" target="_blank" class="btn btn-whatsapp"
                     style="background: transparent; border: 2px solid white; color: white;">Chat on WhatsApp</a>
