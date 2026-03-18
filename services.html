@@ -12,97 +12,264 @@
     .services-list {
       display: flex;
       flex-direction: column;
-      gap: 0;
+      gap: 32px;
     }
 
-    .service-item {
+    .service-card-item {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+      border: 1px solid var(--gray-100);
+      transition: var(--transition);
       display: grid;
       grid-template-columns: 80px 1fr;
       gap: 32px;
       align-items: start;
-      padding: 44px 0;
-      border-bottom: 1px solid var(--gray-100);
     }
 
-    .service-item:last-child {
-      border-bottom: none;
+    .service-card-item:hover {
+      box-shadow: 0 20px 50px rgba(11, 79, 108, 0.06);
+      border-color: var(--teal-100);
+      transform: translateY(-5px);
     }
 
-    .service-num {
-      font-family: var(--font-heading);
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: var(--teal-100);
-      line-height: 1;
-      padding-top: 4px;
+    .service-icon-wrap {
+      width: 72px;
+      height: 72px;
+      background: var(--teal-50);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--teal-700);
+      transition: var(--transition);
+    }
+
+    .service-card-item:hover .service-icon-wrap {
+      background: var(--teal-700);
+      color: white;
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .service-icon-wrap svg {
+      width: 32px;
+      height: 32px;
     }
 
     .service-content h3 {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       margin-bottom: 12px;
-      color: var(--teal-800);
-    }
-
-    .service-content p {
-      margin-bottom: 20px;
-    }
-
-    .service-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .tag {
-      background: var(--teal-50);
-      color: var(--teal-700);
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 5px 14px;
-      border-radius: 100px;
-    }
-
-    .service-benefit {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--gray-700);
-      margin-bottom: 6px;
-    }
-
-    .service-benefit::before {
-      content: "✓";
-      color: var(--teal-700);
+      color: var(--teal-900);
       font-weight: 700;
     }
 
-    .pricing-section {
-      background: linear-gradient(135deg, var(--teal-50), var(--white));
-      border-radius: var(--radius-lg);
-      padding: 48px;
-      border: 1px solid var(--teal-100);
+    .service-content p {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      color: var(--gray-700);
+      max-width: 600px;
     }
 
-    .pricing-section h2 {
+    /* Sidebar Enhancements */
+    .sidebar-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+      border: 1px solid var(--gray-100);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-badge {
+      display: inline-block;
+      background: var(--gold-light);
+      color: var(--gold-dark);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
       margin-bottom: 12px;
     }
 
-    .pricing-section p {
+    .support-card {
+      background: var(--teal-900);
+      color: white;
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      margin-top: 24px;
+      position: relative;
+    }
+
+    .support-card h4 {
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .support-card p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
       margin-bottom: 24px;
     }
 
-    @media (max-width: 600px) {
-      .service-item {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
+    .support-icon {
+      position: absolute;
+      top: -20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(245, 166, 35, 0.4);
+    }
 
-      .service-num {
-        font-size: 2rem;
+    @media (max-width: 900px) {
+      .service-card-item {
+        grid-template-columns: 1fr;
+        padding: 32px;
+        gap: 20px;
       }
+    }
+
+    .online-consultation-section {
+      background: var(--off-white);
+      border-top: 1px solid var(--gray-100);
+    }
+
+    .online-consultation-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .online-consultation-heading {
+      font-weight: 800;
+      margin-bottom: 24px;
+    }
+
+    .online-consultation-paragraph {
+      margin-bottom: 40px;
+      color: var(--gray-700);
+      font-size: 1.15rem;
+      line-height: 1.6;
+      max-width: 650px;
+    }
+
+    /* Online Sidebar Card Specifics */
+    .online-sidebar-card {
+      box-shadow: var(--shadow-lg);
+      border: none;
+      padding: 48px;
+    }
+
+    .online-sidebar-card-heading {
+      font-size: 1.4rem;
+      color: var(--teal-900);
+      font-family: var(--font-body);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .online-sidebar-card-divider {
+      margin-bottom: 24px;
+    }
+
+    .online-sidebar-card-paragraph {
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      margin-bottom: 32px;
+    }
+
+    .online-sidebar-card-paragraph.italic {
+      font-style: italic;
+    }
+
+    .online-sidebar-card-btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .online-sidebar-card-btn-primary {
+      width: 100%;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .online-sidebar-card-btn-outline {
+      width: 100%;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .online-consultation-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+    }
+
+    /* Feature List & Trust Line */
+    .feature-list {
+      margin: 32px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 12px;
+      align-items: start;
+      font-size: 1.05rem;
+      color: var(--gray-700);
+    }
+
+    .feature-item svg {
+      width: 22px;
+      height: 22px;
+      color: var(--teal-600);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .value-card ul {
+      margin: 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .value-card li {
+      display: flex;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: var(--gray-700);
+      align-items: center;
+    }
+
+    .value-card li::before {
+      content: "✓";
+      color: var(--teal-600);
+      font-weight: 800;
+      margin-right: 4px;
+    }
+
+    .trust-line {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 0.95rem;
+      color: var(--gray-500);
+      font-weight: 500;
+      letter-spacing: 0.02em;
     }
   </style>
 </head>
@@ -131,153 +298,258 @@
   </div>
 
   <div class="page-hero">
-    <div class="breadcrumb"><a href="index.html">Home</a> › Services</div>
-    <h1>Our Treatments</h1>
-    <p>Comprehensive home physiotherapy services designed to restore your mobility, relieve pain, and rebuild your
-      quality of life.</p>
+    <div class="hero-overlay-pattern" style="opacity: 0.08;"></div>
+    <div class="container" style="position: relative; z-index: 2;">
+      <div class="breadcrumb"><a href="index.html">Home</a> › Services</div>
+      <h1>Reclaim Your Freedom<br><span>Expert Care at Home</span></h1>
+      <p>Specialised physiotherapy treatments delivered in the comfort of your home. We don't just treat symptoms; we
+        restore your independence and quality of life.</p>
+    </div>
   </div>
 
-  <section class="section">
+  <!-- SECTION 1: HOME PHYSIOTHERAPY -->
+  <section class="section" style="padding-bottom: 0;">
     <div class="container">
       <div style="display:grid;grid-template-columns:2fr 1fr;gap:64px;align-items:start;">
         <div>
-          <div class="section-label fade-in">What We Treat</div>
-          <h2 class="fade-in">Specialised Services</h2>
+          <div class="section-label fade-in">At-Home Care</div>
+          <h2 class="fade-in">Home Physiotherapy Services</h2>
           <div class="divider fade-in"></div>
           <div class="services-list">
             <!-- STROKE -->
-            <div class="service-item fade-in" id="stroke">
-              <div class="service-num">01</div>
+            <div class="service-card-item fade-in" id="stroke">
+              <div class="service-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
               <div class="service-content">
                 <h3>Stroke Rehabilitation</h3>
-                <p>A stroke can take away your independence in an instant. Our neurological rehabilitation programmes
-                  are designed to help you reclaim it — one session at a time. We use evidence-based techniques to
-                  rewire the brain and retrain the body.</p>
-                <div class="service-tags"><span class="tag">Neurological Rehab</span><span class="tag">Balance &
-                    Coordination</span><span class="tag">Movement Restoration</span></div>
-                <div class="service-benefit">Regain arm and leg movement</div>
+                <p>Reclaim your movement and independence after a stroke. Our sessions focus on rewiring motor pathways
+                  and rebuilding confidence.</p>
+                <div class="service-tags"><span class="tag">Neurological</span><span class="tag">Movement Rehab</span>
+                </div>
                 <div class="service-benefit">Improve balance and prevent falls</div>
-                <div class="service-benefit">Regain speech support exercises</div>
-                <div class="service-benefit">Personalised weekly progress tracking</div>
+                <div class="service-benefit">Regain arm and leg functionality</div>
+                <div class="service-benefit">Weekly goal-based progress tracking</div>
               </div>
             </div>
             <!-- BACK PAIN -->
-            <div class="service-item fade-in fade-in-delay-1" id="back">
-              <div class="service-num">02</div>
+            <div class="service-card-item fade-in fade-in-delay-1" id="back">
+              <div class="service-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19v-2a2 2 0 012-2h12a2 2 0 012 2v2M4 8a2 2 0 012-2h12a2 2 0 012 2v2M12 11V3m0 21v-5" />
+                </svg>
+              </div>
               <div class="service-content">
                 <h3>Back Pain & Sciatica</h3>
-                <p>Chronic back pain and sciatica can be debilitating. We use manual therapy, targeted exercises, and
-                  postural correction to eliminate pain at the source — not just mask it.</p>
-                <div class="service-tags"><span class="tag">Manual Therapy</span><span class="tag">Spinal
-                    Mobilisation</span><span class="tag">Postural Correction</span></div>
-                <div class="service-benefit">Relieve herniated disc pain</div>
-                <div class="service-benefit">Reduce sciatic nerve inflammation</div>
-                <div class="service-benefit">Strengthen core muscles</div>
-                <div class="service-benefit">Return to daily activities faster</div>
+                <p>Don't let pain dictate your life. We use advanced manual therapy and corrective exercises to fix the
+                  root cause of your back or nerve pain.</p>
+                <div class="service-tags"><span class="tag">Manual Therapy</span><span class="tag">Pain
+                    Management</span></div>
+                <div class="service-benefit">Instant relief from acute nerve pain</div>
+                <div class="service-benefit">Long-term postural correction</div>
+                <div class="service-benefit">Guided core strengthening</div>
               </div>
             </div>
             <!-- KNEE -->
-            <div class="service-item fade-in fade-in-delay-2" id="knee">
-              <div class="service-num">03</div>
+            <div class="service-card-item fade-in fade-in-delay-2" id="knee">
+              <div class="service-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
+                </svg>
+              </div>
               <div class="service-content">
-                <h3>Knee & Arthritis Treatment</h3>
-                <p>Arthritis and knee conditions limit your ability to walk, climb stairs, and enjoy life. Our treatment
-                  reduces joint inflammation, strengthens surrounding muscles, and improves range of motion.</p>
-                <div class="service-tags"><span class="tag">Osteoarthritis</span><span class="tag">Rheumatoid
-                    Arthritis</span><span class="tag">Joint Mobilisation</span></div>
+                <h3>Knee & Arthritis Care</h3>
+                <p>Reduce joint inflammation and climb stairs again with ease. We help you stay active and mobile
+                  despite joint wear and tear.</p>
+                <div class="service-tags"><span class="tag">Joint Health</span><span class="tag">Arthritis Rehab</span>
+                </div>
                 <div class="service-benefit">Reduce joint swelling and stiffness</div>
-                <div class="service-benefit">Improve walking distance</div>
-                <div class="service-benefit">Strengthen quadriceps and glutes</div>
-                <div class="service-benefit">Delay or avoid surgery</div>
+                <div class="service-benefit">Improve walking range and ease</div>
+                <div class="service-benefit">Avoid or delay invasive surgery</div>
               </div>
             </div>
             <!-- SURGERY -->
-            <div class="service-item fade-in fade-in-delay-3" id="surgery">
-              <div class="service-num">04</div>
+            <div class="service-card-item fade-in fade-in-delay-3" id="surgery">
+              <div class="service-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M11 5L6 9l5 4m3-8l5 4-5 4M3 12h18" />
+                </svg>
+              </div>
               <div class="service-content">
                 <h3>Post-Surgery Recovery</h3>
-                <p>Surgery is only half the battle — a structured rehabilitation plan is what determines your long-term
-                  outcome. We start rehab early to prevent complications, rebuild strength, and ensure a lasting
-                  recovery.</p>
-                <div class="service-tags"><span class="tag">Orthopaedic Surgery</span><span class="tag">Hip
-                    Replacement</span><span class="tag">Knee Replacement</span></div>
-                <div class="service-benefit">Prevent post-operative stiffness</div>
-                <div class="service-benefit">Reduce healing time</div>
-                <div class="service-benefit">Rebuild muscle strength</div>
-                <div class="service-benefit">Return to full function faster</div>
+                <p>Expert recovery plans for hip, knee, or spinal surgeries. We ensure you hit your recovery milestones
+                  safely and efficiently.</p>
+                <div class="service-tags"><span class="tag">Orthopaedic</span><span class="tag">Rehab Milestones</span>
+                </div>
+                <div class="service-benefit">Accelerated healing and strength</div>
+                <div class="service-benefit">Prevent complications and stiffness</div>
+                <div class="service-benefit">Safe return to weight-bearing</div>
               </div>
             </div>
             <!-- ELDERLY -->
-            <div class="service-item fade-in fade-in-delay-4" id="elderly">
-              <div class="service-num">05</div>
-              <div class="service-content">
-                <h3>Elderly Mobility Therapy</h3>
-                <p>Ageing doesn't have to mean losing independence. Our gentle, age-appropriate mobility programmes help
-                  seniors stay active, reduce fall risk, and maintain the ability to live life on their own terms.</p>
-                <div class="service-tags"><span class="tag">Fall Prevention</span><span class="tag">Balance
-                    Training</span><span class="tag">Gentle Exercise</span></div>
-                <div class="service-benefit">Improve daily mobility and independence</div>
-                <div class="service-benefit">Prevent dangerous falls</div>
-                <div class="service-benefit">Maintain strength and flexibility</div>
-                <div class="service-benefit">Home safety assessment included</div>
+            <div class="service-card-item fade-in fade-in-delay-4" id="elderly">
+              <div class="service-icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
               </div>
-              <!-- ONLINE CONSULTATION -->
-              <div class="service-item fade-in fade-in-delay-5" id="online">
-                <div class="service-num">06</div>
-                <div class="service-content">
-                  <h3>Online Consultation</h3>
-                  <p>Get expert physiotherapy guidance from anywhere in Nigeria. Perfect for initial assessments,
-                    exercise progression, and understanding the cause of your pain without leaving home.</p>
-                  <div class="service-tags"><span class="tag">Video Consultation</span><span class="tag">Nationwide
-                      Support</span><span class="tag">Assessment & Rehab</span></div>
-                  <div class="service-benefit">Convenient video calls</div>
-                  <div class="service-benefit">Personalized digital rehab plan</div>
-                  <div class="service-benefit">Guidance on root cause of pain</div>
-                  <div class="service-benefit">Follow-up support via messaging</div>
-                  <a href="online-consultation.html" class="service-link" style="margin-top: 16px;">View Consultation
-                    Details →</a>
+              <div class="service-content">
+                <h3>Elderly Mobility</h3>
+                <p>Stay strong and independent as you age. Our gentle mobility programmes help seniors maintain balance
+                  and confidence at home.</p>
+                <div class="service-tags"><span class="tag">Fall Prevention</span><span class="tag">Gentle Rehab</span>
                 </div>
+                <div class="service-benefit">Maintain posture and daily strength</div>
+                <div class="service-benefit">Significantly reduced fall risk</div>
+                <div class="service-benefit">Gentle, safe, at-home exercise</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- SIDEBAR -->
+        <!-- SIDEBAR HOME -->
         <div style="position:sticky;top:100px;">
-          <div class="pricing-section fade-in">
-            <div class="section-label">Pricing</div>
-            <h2 style="font-size:1.6rem;">Transparent &amp; Fair</h2>
+          <div class="sidebar-card pricing-card fade-in">
+            <div class="price-badge">Home Visit Pricing</div>
+            <h2 style="font-size:1.6rem; color: var(--teal-900);">Transparent Fees</h2>
             <div class="divider"></div>
-            <p>Session fees are personalised based on your condition, location, and treatment plan. We believe in fair,
-              value-driven pricing.</p>
-            <p style="font-size:0.9rem;">Starting from <strong
-                style="color:var(--teal-800);font-size:1.2rem;">₦25,000</strong> per session.</p>
-            <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20would%20like%20to%20ask%20about%20pricing%20and%20book%20a%20session."
-              target="_blank" class="btn btn-whatsapp" style="width:100%;justify-content:center;margin-top:16px;">
-              <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px">
+            <p style="font-size: 0.95rem; line-height: 1.6;">Personalised therapy plans delivered at your convenience
+              within Lagos.</p>
+            <div style="margin: 24px 0;">
+              <span style="font-size: 0.9rem; color: var(--gray-500);">Per session from</span>
+              <div style="font-size: 2.2rem; font-weight: 800; color: var(--teal-800); line-height: 1;">₦25,000</div>
+            </div>
+            <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20would%20like%20to%20ask%20about%20at-home%20pricing%20and%20book%20a%20session."
+              target="_blank" class="btn btn-whatsapp" style="width:100%;justify-content:center;">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px">
                 <path
                   d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
               </svg>
-              Ask About Pricing
+              Chat About Home Visits
             </a>
           </div>
-          <div class="card" style="padding:28px;margin-top:24px;" class="fade-in">
-            <h4 style="margin-bottom:12px;">Not Sure Which Service?</h4>
-            <p style="font-size:0.88rem;margin-bottom:16px;">Message us on WhatsApp and we'll guide you to the right
-              treatment for your condition.</p>
-            <a href="booking.html" class="btn btn-secondary" style="width:100%;justify-content:center;">Book a
-              Consultation</a>
+          <div class="support-card fade-in">
+            <div class="support-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" style="width:28px;height:28px;">
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01" />
+              </svg>
+            </div>
+            <h4>Not Sure Which Service?</h4>
+            <p>Describe your condition on WhatsApp. We'll help you choose the right specialist rehab plan.</p>
+            <a href="booking.html" class="btn btn-secondary"
+              style="width:100%;justify-content:center;background:white;color:var(--teal-900);">Consult a Specialist</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- SECTION 2: ONLINE CONSULTATION -->
+  <section class="section online-consultation-section">
+    <div class="container">
+      <div class="online-consultation-grid">
+        <div>
+          <div class="section-label fade-in">Virtual Healthcare</div>
+          <h2 class="fade-in online-consultation-heading">Online Consultation (Virtual Care)</h2>
+          <div class="divider fade-in"></div>
+          <p class="fade-in online-consultation-paragraph">
+            Expert physiotherapy care is now just a click away. Whether you're in Lagos or anywhere else in Nigeria, our
+            virtual consultations provide professional guidance and recovery plans without the need for travel.
+          </p>
+
+          <div class="feature-list fade-in">
+            <div class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <span><strong>Nationwide Access:</strong> Expert care available across all 36 states in Nigeria.</span>
+            </div>
+            <div class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                <circle cx="8.5" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+              </svg>
+              <span><strong>1-on-1 Expert Care:</strong> Private video sessions with a fully licensed
+                physiotherapist.</span>
+            </div>
+            <div class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M23 7l-7 5 7 5V7z" />
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+              </svg>
+              <span><strong>HD Guided Exercise:</strong> Real-time visual feedback to ensure you're performing exercises
+                safely.</span>
+            </div>
+            <div class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                <path d="M14 2v6h6m-8 10h4m-4-4h4m-4-4h1" />
+              </svg>
+              <span><strong>Digital Recovery Plan:</strong> Receive a personalized PDF roadmap after every
+                session.</span>
+            </div>
+            <div class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 16v-4m0-4h.01" />
+              </svg>
+              <span><strong>Immediate Support:</strong> Fast-track your recovery with expert advice on managing acute
+                pain.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- VALUE CARD ONLINE -->
+        <div style="position:sticky;top:120px;">
+          <div class="sidebar-card value-card fade-in online-sidebar-card">
+            <h3 class="online-sidebar-card-heading">
+              Virtual Care Includes</h3>
+            <div class="divider online-sidebar-card-divider"></div>
+            <ul>
+              <li>1-on-1 expert consultation</li>
+              <li>Guided exercise sessions</li>
+              <li>Personalized recovery plan</li>
+              <li>Nationwide access (Nigeria)</li>
+            </ul>
+            <p class="online-sidebar-card-paragraph italic">
+              "Get expert physiotherapy care from the comfort of your home, anywhere in Nigeria."
+            </p>
+            <div class="online-sidebar-card-btn-group">
+              <a href="online-consultation.html" class="btn btn-primary online-sidebar-card-btn-primary">
+                View Consultation Details
+              </a>
+              <a href="booking.html" class="btn btn-outline online-sidebar-card-btn-outline">
+                Book Online Session
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="trust-line fade-in">
+        <svg viewBox="0 0 24 24" fill="var(--teal-600)"
+          style="width:18px; height:18px; display:inline-block; vertical-align:middle; margin-right:8px;">
+          <path
+            d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+        </svg>
+        Trusted by patients across Nigeria
+      </div>
+    </div>
+  </section>
+
   <section class="cta-section">
     <div class="container">
-      <h2 class="fade-in">Start Your Treatment Today</h2>
-      <p class="fade-in" style="margin-bottom:36px;">All treatments are delivered to your home. No equipment needed from
-        your side.</p>
+      <div class="section-label" style="color: var(--gold)">Get Started Today</div>
+      <h2 class="fade-in">Ready to Reclaim Your Mobility?</h2>
+      <p class="fade-in">Speak with a licensed physiotherapist today and start your journey to a pain-free life.</p>
+      <span class="cta-urgency fade-in">Limited home-visit slots available this week. Restore your movement
+        today.</span>
       <div class="cta-btn-group fade-in">
         <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20would%20like%20to%20book%20a%20home%20physiotherapy%20session."
           target="_blank" class="btn btn-whatsapp">
@@ -287,23 +559,29 @@
           </svg>
           Book via WhatsApp
         </a>
-        <a href="about.html" class="btn btn-outline-white">Meet the Physiotherapist</a>
+        <a href="about.html" class="btn btn-outline-white">Consult a Professional</a>
       </div>
+      <span class="cta-trust fade-in">Trusted by 200+ patients across Lagos.</span>
     </div>
   </section>
 
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-top">
-        <div class="footer-brand"><span class="footer-logo-name">Relief Motion</span>
-          <p>Professional home physiotherapy in Lagos. Licensed, experienced, and committed to your recovery.</p>
+        <div class="footer-brand">
+          <span class="footer-logo-name">Relief Motion</span>
+          <p>
+            Relief Motion provides expert home physiotherapy across Lagos, specializing in stroke rehab, back pain, and
+            post-surgery recovery. We bring clinical excellence to your doorstep.
+          </p>
         </div>
         <div class="footer-col">
           <h4>Pages</h4>
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="services.html">Services</a></li>
-            <li><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a></li>
+            <li><a href="online-consultation.html">Online Consultation</a></li>
+            <li><a href="about.html">About</a> <a href="team.html">Our Team</a> <a href="blog.html">Blog</a></li>
             <li><a href="testimonials.html">Testimonials</a></li>
             <li><a href="booking.html">Book a Session</a></li>
           </ul>
@@ -322,14 +600,16 @@
         <div class="footer-col">
           <h4>Contact</h4>
           <ul>
-            <li><a href="https://wa.me/2348000000000" target="_blank">WhatsApp Us</a></li>
-            <li><a href="mailto:hello@reliefmotionphysio.com">Email Us</a></li>
-            <li><a href="booking.html">Book a Session</a></li>
+            <li><a href="https://wa.me/2348000000000" target="_blank">WhatsApp: +234 800 000 0000</a></li>
+            <li><a href="tel:+2348000000000">Call: +234 800 000 0000</a></li>
+            <li><a href="mailto:hello@reliefmotionphysio.com">hello@reliefmotionphysio.com</a></li>
           </ul>
         </div>
       </div>
-      <div class="footer-bottom"><span>© 2026 Relief Motion. All rights reserved.</span><span>Made with care in Lagos,
-          Nigeria 🇳🇬</span></div>
+      <div class="footer-bottom">
+        <span>© 2026 Relief Motion. All rights reserved.</span>
+        <span>Made with care in Lagos, Nigeria 🇳🇬</span>
+      </div>
     </div>
   </footer>
   <script src="scripts/main.js"></script>

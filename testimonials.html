@@ -1,202 +1,474 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Patient Testimonials | Relief Motion — Home Physiotherapy Lagos</title>
-  <meta name="description" content="Real patient success stories from Relief Motion's home physiotherapy service in Lagos. See how we've helped patients recover from strokes, back pain, and surgery." />
+  <meta name="description"
+    content="Real patient success stories from Relief Motion's home physiotherapy service in Lagos. See how we've helped patients recover from strokes, back pain, and surgery." />
   <link rel="stylesheet" href="styles/main.css" />
   <style>
-    .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
-    .t-card-featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding: 48px; background: linear-gradient(135deg, var(--teal-50), white); border: 1px solid var(--teal-100); }
-    .t-card-featured .big-quote { font-family: var(--font-heading); font-size: 5rem; color: var(--teal-100); line-height: 0.7; margin-bottom: 16px; }
-    .t-card-featured blockquote { font-size: 1.15rem; font-style: italic; color: var(--gray-700); line-height: 1.8; margin-bottom: 24px; }
-    .t-card { padding: 32px; }
-    .t-card .q { font-size: 2.5rem; font-family: var(--font-heading); color: var(--teal-100); line-height: 1; }
-    .t-card blockquote { font-size: 0.96rem; font-style: italic; color: var(--gray-700); margin: 8px 0 20px; line-height: 1.7; }
-    .reviewer { display: flex; align-items: center; gap: 12px; }
-    .avatar { width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg, var(--teal-800), var(--teal-600)); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: white; flex-shrink: 0; }
-    .reviewer-name { font-weight: 600; font-size: 0.92rem; color: var(--gray-900); }
-    .reviewer-info { font-size: 0.75rem; color: var(--gray-300); }
-    .recovery-strip { background: var(--gray-50); border-radius: var(--radius-lg); padding: 48px; border: 1px solid var(--gray-100); }
-    .recovery-item { display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--gray-100); }
-    .recovery-item:last-child { border-bottom: none; }
-    .recovery-before, .recovery-after { padding: 20px 24px; border-radius: var(--radius-md); }
-    .recovery-before { background: #fff1f2; border: 1px solid #fecdd3; }
-    .recovery-after { background: #f0fdf4; border: 1px solid #bbf7d0; }
-    .recovery-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
-    .recovery-before .recovery-label { color: #dc2626; }
-    .recovery-after .recovery-label { color: #16a34a; }
-    .recovery-text { font-size: 0.9rem; color: var(--gray-700); font-weight: 500; }
-    .arrow { font-size: 1.5rem; color: var(--gold); }
-    .recovery-patient { font-size: 0.75rem; color: var(--gray-300); margin-top: 4px; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .t-card-featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      padding: 48px;
+      background: linear-gradient(135deg, var(--teal-50), white);
+      border: 1px solid var(--teal-100);
+    }
+
+    .t-card-featured .big-quote {
+      font-family: var(--font-heading);
+      font-size: 5rem;
+      color: var(--teal-100);
+      line-height: 0.7;
+      margin-bottom: 16px;
+    }
+
+    .t-card-featured blockquote {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--gray-700);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .t-card {
+      padding: 32px;
+    }
+
+    .t-card .q {
+      font-size: 2.5rem;
+      font-family: var(--font-heading);
+      color: var(--teal-100);
+      line-height: 1;
+    }
+
+    .t-card blockquote {
+      font-size: 0.96rem;
+      font-style: italic;
+      color: var(--gray-700);
+      margin: 8px 0 20px;
+      line-height: 1.7;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal-800), var(--teal-600));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .reviewer-name {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--gray-900);
+    }
+
+    .reviewer-info {
+      font-size: 0.75rem;
+      color: var(--gray-300);
+    }
+
+    .recovery-strip {
+      background: var(--gray-50);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      border: 1px solid var(--gray-100);
+    }
+
+    .recovery-item {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 24px;
+      align-items: center;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .recovery-item:last-child {
+      border-bottom: none;
+    }
+
+    .recovery-before,
+    .recovery-after {
+      padding: 20px 24px;
+      border-radius: var(--radius-md);
+    }
+
+    .recovery-before {
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+    }
+
+    .recovery-after {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+    }
+
+    .recovery-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .recovery-before .recovery-label {
+      color: #dc2626;
+    }
+
+    .recovery-after .recovery-label {
+      color: #16a34a;
+    }
+
+    .recovery-text {
+      font-size: 0.9rem;
+      color: var(--gray-700);
+      font-weight: 500;
+    }
+
+    .arrow {
+      font-size: 1.5rem;
+      color: var(--gold);
+    }
+
+    .recovery-patient {
+      font-size: 0.75rem;
+      color: var(--gray-300);
+      margin-top: 4px;
+    }
+
     @media (max-width: 900px) {
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .t-card-featured { grid-column: 1; grid-template-columns: 1fr; gap: 24px; }
-      .recovery-item { grid-template-columns: 1fr; }
-      .arrow { text-align: center; transform: rotate(90deg); }
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .t-card-featured {
+        grid-column: 1;
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .recovery-item {
+        grid-template-columns: 1fr;
+      }
+
+      .arrow {
+        text-align: center;
+        transform: rotate(90deg);
+      }
     }
   </style>
 </head>
+
 <body>
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="assets/brand_logo.png" alt="Relief Motion Logo" style="height: 54px; width: auto;" />
-    </a>
-    <div class="nav-links">
-      <a href="index.html">Home</a><a href="services.html">Services</a><a href="online-consultation.html">Online Consultation</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="testimonials.html">Testimonials</a>
-      <a href="booking.html" class="nav-cta">Book a Session</a>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/brand_logo.png" alt="Relief Motion Logo" style="height: 54px; width: auto;" />
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a><a href="services.html">Services</a><a href="online-consultation.html">Online
+          Consultation</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a
+          href="testimonials.html">Testimonials</a>
+        <a href="booking.html" class="nav-cta">Book a Session</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger"
+        aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
-    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="nav-mobile" id="mobile-nav">
+    <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a
+      href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="testimonials.html">Testimonials</a>
+    <a href="booking.html" class="mobile-cta">Book a Session</a>
   </div>
-</nav>
-<div class="nav-mobile" id="mobile-nav">
-  <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="testimonials.html">Testimonials</a>
-  <a href="booking.html" class="mobile-cta">Book a Session</a>
-</div>
 
-<div class="page-hero">
-  <div class="breadcrumb"><a href="index.html">Home</a> › Testimonials</div>
-  <h1>Patient Success Stories</h1>
-  <p>Real results from real patients across Lagos. These are the recoveries that drive everything we do.</p>
-</div>
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="index.html">Home</a> › Testimonials</div>
+    <h1>Patient Success Stories</h1>
+    <p>Real results from real patients across Lagos. These are the recoveries that drive everything we do.</p>
+  </div>
 
-<section class="section">
-  <div class="container">
-    <div class="section-header center fade-in">
-      <div class="section-label">Testimonials</div>
-      <h2>Hear From Our Patients</h2>
-      <div class="divider center"></div>
-    </div>
-    <div class="testimonials-grid">
-      <!-- Featured -->
-      <div class="card t-card-featured fade-in">
-        <div>
-          <div class="big-quote">"</div>
-          <blockquote>After my stroke, I had lost all movement in my left arm and my family was devastated. Relief Motion came to our home in Gbagada and started treatment within days. Eight weeks later, I was feeding myself, holding a cup of water, and taking short walks. Words cannot describe the gratitude we feel. This service is a miracle for stroke families in Lagos.</blockquote>
-          <div class="reviewer">
-            <div class="avatar">M</div>
-            <div>
-              <div class="stars">⭐⭐⭐⭐⭐</div>
-              <div class="reviewer-name">Mrs. Maryam T.</div>
-              <div class="reviewer-info">Stroke Patient, 61 · Gbagada, Lagos</div>
+  <section class="section">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <div class="section-label">Testimonials</div>
+        <h2>Hear From Our Patients</h2>
+        <div class="divider center"></div>
+      </div>
+      <div class="testimonials-grid">
+        <!-- Featured -->
+        <div class="card t-card-featured fade-in">
+          <div>
+            <div class="big-quote">"</div>
+            <blockquote>After my stroke, I had lost all movement in my left arm and my family was devastated. Relief
+              Motion came to our home in Gbagada and started treatment within days. Eight weeks later, I was feeding
+              myself, holding a cup of water, and taking short walks. Words cannot describe the gratitude we feel. This
+              service is a miracle for stroke families in Lagos.</blockquote>
+            <div class="reviewer">
+              <div class="avatar">M</div>
+              <div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <div class="reviewer-name">Mrs. Maryam T.</div>
+                <div class="reviewer-info">Stroke Patient, 61 · Gbagada, Lagos</div>
+              </div>
+            </div>
+          </div>
+          <div
+            style="background:var(--teal-50);border-radius:var(--radius-md);padding:32px;border:1px solid var(--teal-100);">
+            <div class="section-label">Recovery Timeline</div>
+            <div style="display:flex;flex-direction:column;gap:16px;margin-top:8px;">
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <div
+                  style="width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;">
+                </div>
+                <div><strong>Week 1:</strong> Initial assessment, passive movement exercises</div>
+              </div>
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <div
+                  style="width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;">
+                </div>
+                <div><strong>Week 3:</strong> Active assisted movement, 20% arm function restored</div>
+              </div>
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <div
+                  style="width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;">
+                </div>
+                <div><strong>Week 6:</strong> Self-feeding, able to hold objects independently</div>
+              </div>
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <div
+                  style="width:8px;height:8px;border-radius:50%;background:var(--teal-700);margin-top:6px;flex-shrink:0;">
+                </div>
+                <div><strong>Week 8:</strong> Walking short distances, 70% mobility restored</div>
+              </div>
             </div>
           </div>
         </div>
-        <div style="background:var(--teal-50);border-radius:var(--radius-md);padding:32px;border:1px solid var(--teal-100);">
-          <div class="section-label">Recovery Timeline</div>
-          <div style="display:flex;flex-direction:column;gap:16px;margin-top:8px;">
-            <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;"></div><div><strong>Week 1:</strong> Initial assessment, passive movement exercises</div></div>
-            <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;"></div><div><strong>Week 3:</strong> Active assisted movement, 20% arm function restored</div></div>
-            <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:8px;height:8px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;"></div><div><strong>Week 6:</strong> Self-feeding, able to hold objects independently</div></div>
-            <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:8px;height:8px;border-radius:50%;background:var(--teal-700);margin-top:6px;flex-shrink:0;"></div><div><strong>Week 8:</strong> Walking short distances, 70% mobility restored</div></div>
+
+        <div class="card t-card fade-in fade-in-delay-1">
+          <div class="q">"</div>
+          <blockquote>I had severe sciatica for two years and visited three different hospitals. Nothing worked until
+            Relief Motion came to my house in Surulere. Three weeks in, the pain was half. By week 6, I was back at
+            work. The professionalism, punctuality, and knowledge of the therapist was on another level.</blockquote>
+          <div class="reviewer">
+            <div class="avatar">K</div>
+            <div>
+              <div class="stars">⭐⭐⭐⭐⭐</div>
+              <div class="reviewer-name">Mr. Kunle A., 38</div>
+              <div class="reviewer-info">Sciatica · Surulere, Lagos</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card t-card fade-in fade-in-delay-2">
+          <div class="q">"</div>
+          <blockquote>My 74-year-old mother had knee replacement surgery in January. Relief Motion came daily for 4
+            weeks. Her recovery was so fast that the orthopaedic surgeon was impressed. She now walks without a cane.
+            This service is a blessing for elderly patients who cannot travel.</blockquote>
+          <div class="reviewer">
+            <div class="avatar">A</div>
+            <div>
+              <div class="stars">⭐⭐⭐⭐⭐</div>
+              <div class="reviewer-name">Adaeze O., 42</div>
+              <div class="reviewer-info">On behalf of her mother · Lekki, Lagos</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card t-card fade-in fade-in-delay-3">
+          <div class="q">"</div>
+          <blockquote>I had back surgery in December and was terrified of the recovery. Relief Motion started within one
+            week of discharge. They were thorough, patient, and explained everything clearly. I was back to light
+            exercise in 6 weeks. Highly recommend to anyone recovering from spinal surgery.</blockquote>
+          <div class="reviewer">
+            <div class="avatar">E</div>
+            <div>
+              <div class="stars">⭐⭐⭐⭐⭐</div>
+              <div class="reviewer-name">Emeka N., 45</div>
+              <div class="reviewer-info">Post-Spinal Surgery · Yaba, Lagos</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card t-card fade-in fade-in-delay-4">
+          <div class="q">"</div>
+          <blockquote>My father has arthritis and was barely able to walk from his bedroom to the living room. After 3
+            months of therapy, he's climbing stairs again. Seeing him walk with confidence means everything to our
+            family. Relief Motion gave us our dad back.</blockquote>
+          <div class="reviewer">
+            <div class="avatar">F</div>
+            <div>
+              <div class="stars">⭐⭐⭐⭐⭐</div>
+              <div class="reviewer-name">Fatima B., 35</div>
+              <div class="reviewer-info">On behalf of her father · Ikeja, Lagos</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card t-card fade-in fade-in-delay-5">
+          <div class="q">"</div>
+          <blockquote>I've used two other home physio services before. None came close to Relief Motion. The assessment
+            was thorough, the exercises were perfectly calibrated, and the follow-up was consistent. This is what
+            professional healthcare should look like. Worth every naira.</blockquote>
+          <div class="reviewer">
+            <div class="avatar">T</div>
+            <div>
+              <div class="stars">⭐⭐⭐⭐⭐</div>
+              <div class="reviewer-name">Taiwo S., 52</div>
+              <div class="reviewer-info">Chronic Knee Pain · Victoria Island, Lagos</div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="card t-card fade-in fade-in-delay-1">
-        <div class="q">"</div>
-        <blockquote>I had severe sciatica for two years and visited three different hospitals. Nothing worked until Relief Motion came to my house in Surulere. Three weeks in, the pain was half. By week 6, I was back at work. The professionalism, punctuality, and knowledge of the therapist was on another level.</blockquote>
-        <div class="reviewer">
-          <div class="avatar">K</div>
-          <div><div class="stars">⭐⭐⭐⭐⭐</div><div class="reviewer-name">Mr. Kunle A., 38</div><div class="reviewer-info">Sciatica · Surulere, Lagos</div></div>
-        </div>
+  <!-- BEFORE & AFTER -->
+  <section class="section" style="background:var(--gray-50);">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <div class="section-label">Recovery Outcomes</div>
+        <h2>Before &amp; After Treatment</h2>
+        <div class="divider center"></div>
+        <p>A snapshot of real patient journeys with Relief Motion.</p>
       </div>
-
-      <div class="card t-card fade-in fade-in-delay-2">
-        <div class="q">"</div>
-        <blockquote>My 74-year-old mother had knee replacement surgery in January. Relief Motion came daily for 4 weeks. Her recovery was so fast that the orthopaedic surgeon was impressed. She now walks without a cane. This service is a blessing for elderly patients who cannot travel.</blockquote>
-        <div class="reviewer">
-          <div class="avatar">A</div>
-          <div><div class="stars">⭐⭐⭐⭐⭐</div><div class="reviewer-name">Adaeze O., 42</div><div class="reviewer-info">On behalf of her mother · Lekki, Lagos</div></div>
+      <div class="recovery-strip fade-in">
+        <div class="recovery-item">
+          <div class="recovery-before">
+            <div class="recovery-label">Before Treatment</div>
+            <div class="recovery-text">Unable to walk more than 10 steps without severe pain</div>
+            <div class="recovery-patient">Mrs. Maryam T. — Stroke Patient</div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="recovery-after">
+            <div class="recovery-label">After 8 Weeks</div>
+            <div class="recovery-text">Walking independently, feeding herself, 70% mobility restored</div>
+          </div>
         </div>
-      </div>
-
-      <div class="card t-card fade-in fade-in-delay-3">
-        <div class="q">"</div>
-        <blockquote>I had back surgery in December and was terrified of the recovery. Relief Motion started within one week of discharge. They were thorough, patient, and explained everything clearly. I was back to light exercise in 6 weeks. Highly recommend to anyone recovering from spinal surgery.</blockquote>
-        <div class="reviewer">
-          <div class="avatar">E</div>
-          <div><div class="stars">⭐⭐⭐⭐⭐</div><div class="reviewer-name">Emeka N., 45</div><div class="reviewer-info">Post-Spinal Surgery · Yaba, Lagos</div></div>
+        <div class="recovery-item">
+          <div class="recovery-before">
+            <div class="recovery-label">Before Treatment</div>
+            <div class="recovery-text">2 years of debilitating sciatic pain, unable to work</div>
+            <div class="recovery-patient">Mr. Kunle A. — Sciatica</div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="recovery-after">
+            <div class="recovery-label">After 6 Weeks</div>
+            <div class="recovery-text">Pain-free, fully returned to work and daily activities</div>
+          </div>
         </div>
-      </div>
-
-      <div class="card t-card fade-in fade-in-delay-4">
-        <div class="q">"</div>
-        <blockquote>My father has arthritis and was barely able to walk from his bedroom to the living room. After 3 months of therapy, he's climbing stairs again. Seeing him walk with confidence means everything to our family. Relief Motion gave us our dad back.</blockquote>
-        <div class="reviewer">
-          <div class="avatar">F</div>
-          <div><div class="stars">⭐⭐⭐⭐⭐</div><div class="reviewer-name">Fatima B., 35</div><div class="reviewer-info">On behalf of her father · Ikeja, Lagos</div></div>
-        </div>
-      </div>
-
-      <div class="card t-card fade-in fade-in-delay-5">
-        <div class="q">"</div>
-        <blockquote>I've used two other home physio services before. None came close to Relief Motion. The assessment was thorough, the exercises were perfectly calibrated, and the follow-up was consistent. This is what professional healthcare should look like. Worth every naira.</blockquote>
-        <div class="reviewer">
-          <div class="avatar">T</div>
-          <div><div class="stars">⭐⭐⭐⭐⭐</div><div class="reviewer-name">Taiwo S., 52</div><div class="reviewer-info">Chronic Knee Pain · Victoria Island, Lagos</div></div>
+        <div class="recovery-item">
+          <div class="recovery-before">
+            <div class="recovery-label">Before Treatment</div>
+            <div class="recovery-text">Unable to walk room-to-room; dependent on walking frame</div>
+            <div class="recovery-patient">Mr. Bello — Arthritis (74 yrs)</div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="recovery-after">
+            <div class="recovery-label">After 12 Weeks</div>
+            <div class="recovery-text">Climbing stairs independently, walking without any aid</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- BEFORE & AFTER -->
-<section class="section" style="background:var(--gray-50);">
-  <div class="container">
-    <div class="section-header center fade-in">
-      <div class="section-label">Recovery Outcomes</div>
-      <h2>Before &amp; After Treatment</h2>
-      <div class="divider center"></div>
-      <p>A snapshot of real patient journeys with Relief Motion.</p>
+  <section class="cta-section">
+    <div class="container">
+      <div class="section-label" style="color: var(--gold)">Join Our Patients</div>
+      <h2 class="fade-in">Your Recovery Story Starts Here</h2>
+      <p class="fade-in">Join hundreds of patients across Lagos who have regained their mobility and independence with
+        Relief Motion.</p>
+      <span class="cta-urgency fade-in">Limited home-visit slots available this week. Restore your movement
+        today.</span>
+      <div class="cta-btn-group fade-in center">
+        <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20would%20like%20to%20book%20a%20home%20physiotherapy%20session."
+          target="_blank" class="btn btn-whatsapp">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+          </svg>
+          Book via WhatsApp
+        </a>
+        <a href="services.html" class="btn btn-outline-white">View All Services</a>
+      </div>
+      <span class="cta-trust fade-in">Trusted by 200+ patients across Lagos.</span>
     </div>
-    <div class="recovery-strip fade-in">
-      <div class="recovery-item">
-        <div class="recovery-before"><div class="recovery-label">Before Treatment</div><div class="recovery-text">Unable to walk more than 10 steps without severe pain</div><div class="recovery-patient">Mrs. Maryam T. — Stroke Patient</div></div>
-        <div class="arrow">→</div>
-        <div class="recovery-after"><div class="recovery-label">After 8 Weeks</div><div class="recovery-text">Walking independently, feeding herself, 70% mobility restored</div></div>
-      </div>
-      <div class="recovery-item">
-        <div class="recovery-before"><div class="recovery-label">Before Treatment</div><div class="recovery-text">2 years of debilitating sciatic pain, unable to work</div><div class="recovery-patient">Mr. Kunle A. — Sciatica</div></div>
-        <div class="arrow">→</div>
-        <div class="recovery-after"><div class="recovery-label">After 6 Weeks</div><div class="recovery-text">Pain-free, fully returned to work and daily activities</div></div>
-      </div>
-      <div class="recovery-item">
-        <div class="recovery-before"><div class="recovery-label">Before Treatment</div><div class="recovery-text">Unable to walk room-to-room; dependent on walking frame</div><div class="recovery-patient">Mr. Bello — Arthritis (74 yrs)</div></div>
-        <div class="arrow">→</div>
-        <div class="recovery-after"><div class="recovery-label">After 12 Weeks</div><div class="recovery-text">Climbing stairs independently, walking without any aid</div></div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="cta-section">
-  <div class="container">
-    <h2 class="fade-in">Your Recovery Story Starts Here</h2>
-    <p class="fade-in" style="margin-bottom:36px;">Join hundreds of patients across Lagos who have regained their mobility and independence with Relief Motion.</p>
-    <div class="cta-btn-group fade-in">
-      <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20would%20like%20to%20book%20a%20home%20physiotherapy%20session." target="_blank" class="btn btn-whatsapp">
-        <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        Book via WhatsApp
-      </a>
-      <a href="services.html" class="btn btn-outline-white">View All Services</a>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo-name">Relief Motion</span>
+          <p>
+            Relief Motion provides expert home physiotherapy across Lagos, specializing in stroke rehab, back pain, and
+            post-surgery recovery. We bring clinical excellence to your doorstep.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="online-consultation.html">Online Consultation</a></li>
+            <li><a href="about.html">About</a> <a href="team.html">Our Team</a> <a href="blog.html">Blog</a></li>
+            <li><a href="testimonials.html">Testimonials</a></li>
+            <li><a href="booking.html">Book a Session</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#stroke">Stroke Rehab</a></li>
+            <li><a href="services.html#back">Back Pain</a></li>
+            <li><a href="services.html#knee">Knee & Arthritis</a></li>
+            <li><a href="services.html#surgery">Post-Surgery</a></li>
+            <li><a href="services.html#elderly">Elderly Mobility</a></li>
+            <li><a href="online-consultation.html">Online Consultation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://wa.me/2348000000000" target="_blank">WhatsApp: +234 800 000 0000</a></li>
+            <li><a href="tel:+2348000000000">Call: +234 800 000 0000</a></li>
+            <li><a href="mailto:hello@reliefmotionphysio.com">hello@reliefmotionphysio.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Relief Motion. All rights reserved.</span>
+        <span>Made with care in Lagos, Nigeria 🇳🇬</span>
+      </div>
     </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand"><span class="footer-logo-name">Relief Motion</span><p>Professional home physiotherapy in Lagos. Licensed, experienced, and committed to your recovery.</p></div>
-      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a></li><li><a href="testimonials.html">Testimonials</a></li><li><a href="booking.html">Book a Session</a></li></ul></div>
-      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Stroke Rehab</a></li><li><a href="services.html">Back Pain</a></li><li><a href="services.html">Knee & Arthritis</a></li><li><a href="services.html">Post-Surgery</a></li><li><a href="services.html">Elderly Mobility</a></li></ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul><li><a href="https://wa.me/2348000000000" target="_blank">WhatsApp Us</a></li><li><a href="mailto:hello@reliefmotionphysio.com">Email Us</a></li><li><a href="booking.html">Book a Session</a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><span>© 2026 Relief Motion. All rights reserved.</span><span>Made with care in Lagos, Nigeria 🇳🇬</span></div>
-  </div>
-</footer>
-<script src="scripts/main.js"></script>
+  </footer>
+  <script src="scripts/main.js"></script>
 </body>
+
 </html>

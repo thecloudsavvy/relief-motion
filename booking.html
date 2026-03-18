@@ -1,17 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book a Session | Relief Motion — Home Physiotherapy Lagos</title>
-  <meta name="description" content="Book a home physiotherapy session with Relief Motion in Lagos. Contact us via WhatsApp for fast responses and same-day scheduling." />
+  <meta name="description"
+    content="Book a home physiotherapy session with Relief Motion in Lagos. Contact us via WhatsApp for fast responses and same-day scheduling." />
   <link rel="stylesheet" href="styles/main.css" />
   <style>
-    .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
-    .steps-list { display: flex; flex-direction: column; gap: 28px; margin-bottom: 40px; }
-    .step { display: flex; gap: 20px; }
-    .step-content h4 { margin-bottom: 8px; color: var(--teal-800); }
-    .step-content p { font-size: 0.9rem; }
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+    }
+
+    .step-content h4 {
+      margin-bottom: 8px;
+      color: var(--teal-800);
+    }
+
+    .step-content p {
+      font-size: 0.9rem;
+    }
+
     .wa-box {
       background: linear-gradient(135deg, #f0fdf4, #dcfce7);
       border: 1px solid #86efac;
@@ -19,186 +44,350 @@
       padding: 40px;
       text-align: center;
     }
-    .wa-box .wa-icon { font-size: 3rem; margin-bottom: 16px; }
-    .wa-box h3 { color: #16a34a; margin-bottom: 8px; }
-    .wa-box p { font-size: 0.9rem; margin-bottom: 24px; color: var(--gray-700); }
+
+    .wa-box .wa-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .wa-box h3 {
+      color: #16a34a;
+      margin-bottom: 8px;
+    }
+
+    .wa-box p {
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+      color: var(--gray-700);
+    }
+
     .wa-message-preview {
-      background: white; border-radius: var(--radius-md); padding: 20px;
-      text-align: left; border: 1px solid #bbf7d0; margin-bottom: 24px;
-      font-size: 0.88rem; color: var(--gray-700); line-height: 1.7;
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: left;
+      border: 1px solid #bbf7d0;
+      margin-bottom: 24px;
+      font-size: 0.88rem;
+      color: var(--gray-700);
+      line-height: 1.7;
     }
-    .wa-message-preview strong { display: block; color: var(--gray-900); margin-bottom: 8px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
-    .session-info { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .info-card { background: var(--white); border: 1px solid var(--gray-100); border-radius: var(--radius-md); padding: 24px; text-align: center; box-shadow: var(--shadow-sm); }
-    .info-card .ic-icon { font-size: 1.8rem; margin-bottom: 10px; }
-    .info-card h4 { font-size: 0.92rem; margin-bottom: 6px; color: var(--teal-800); }
-    .info-card p { font-size: 0.82rem; }
-    .faq-section { background: var(--gray-50); }
-    .faq-wrap { max-width: 700px; margin: 0 auto; }
+
+    .wa-message-preview strong {
+      display: block;
+      color: var(--gray-900);
+      margin-bottom: 8px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .session-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .info-card {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-card .ic-icon {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .info-card h4 {
+      font-size: 0.92rem;
+      margin-bottom: 6px;
+      color: var(--teal-800);
+    }
+
+    .info-card p {
+      font-size: 0.82rem;
+    }
+
+    .faq-section {
+      background: var(--gray-50);
+    }
+
+    .faq-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
     @media (max-width: 900px) {
-      .booking-grid { grid-template-columns: 1fr; }
-      .session-info { grid-template-columns: 1fr 1fr; }
+      .booking-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .session-info {
+        grid-template-columns: 1fr 1fr;
+      }
     }
-    @media (max-width: 480px) { .session-info { grid-template-columns: 1fr; } }
+
+    @media (max-width: 480px) {
+      .session-info {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
+
 <body>
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="assets/brand_logo.png" alt="Relief Motion Logo" style="height: 54px; width: auto;" />
-    </a>
-    <div class="nav-links">
-      <a href="index.html">Home</a><a href="services.html">Services</a><a href="online-consultation.html">Online Consultation</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="testimonials.html">Testimonials</a>
-      <a href="booking.html" class="nav-cta">Book a Session</a>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/brand_logo.png" alt="Relief Motion Logo" style="height: 54px; width: auto;" />
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a><a href="services.html">Services</a><a href="online-consultation.html">Online
+          Consultation</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a
+          href="testimonials.html">Testimonials</a>
+        <a href="booking.html" class="nav-cta">Book a Session</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger"
+        aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
-    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="nav-mobile" id="mobile-nav">
+    <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a
+      href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="testimonials.html">Testimonials</a>
+    <a href="booking.html" class="mobile-cta">Book a Session</a>
   </div>
-</nav>
-<div class="nav-mobile" id="mobile-nav">
-  <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="testimonials.html">Testimonials</a>
-  <a href="booking.html" class="mobile-cta">Book a Session</a>
-</div>
 
-<div class="page-hero">
-  <div class="breadcrumb"><a href="index.html">Home</a> › Book a Session</div>
-  <h1>Book Your Home Visit</h1>
-  <p>Getting started is simple. Message us on WhatsApp and we'll confirm your session details within hours.</p>
-</div>
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="index.html">Home</a> › Book a Session</div>
+    <h1>Book Your Home Visit</h1>
+    <p>Getting started is simple. Message us on WhatsApp and we'll confirm your session details within hours.</p>
+  </div>
 
-<section class="section">
-  <div class="container">
-    <div class="booking-grid">
-      <!-- LEFT: Steps -->
-      <div>
-        <div class="section-label fade-in">How It Works</div>
-        <h2 class="fade-in">3 Simple Steps to Your First Session</h2>
-        <div class="divider fade-in"></div>
-        <div class="steps-list">
-          <div class="step fade-in fade-in-delay-1">
-            <div class="step-number">1</div>
-            <div class="step-content">
-              <h4>Send Us a WhatsApp Message</h4>
-              <p>Tap the button below. A pre-filled message will open. Tell us your condition, location, and preferred days/times. We respond fast — usually within 2 hours.</p>
+  <section class="section">
+    <div class="container">
+      <div class="booking-grid">
+        <!-- LEFT: Steps -->
+        <div>
+          <div class="section-label fade-in">How It Works</div>
+          <h2 class="fade-in">3 Simple Steps to Your First Session</h2>
+          <div class="divider fade-in"></div>
+          <div class="steps-list">
+            <div class="step fade-in fade-in-delay-1">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h4>Send Us a WhatsApp Message</h4>
+                <p>Tap the button below. A pre-filled message will open. Tell us your condition, location, and preferred
+                  days/times. We respond fast — usually within 2 hours.</p>
+              </div>
+            </div>
+            <div class="step fade-in fade-in-delay-2">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h4>We Discuss Your Needs</h4>
+                <p>Our physiotherapist will ask a few questions to understand your condition and recommend the right
+                  treatment approach and frequency of visits.</p>
+              </div>
+            </div>
+            <div class="step fade-in fade-in-delay-3">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h4>We Come to Your Home</h4>
+                <p>Your physiotherapist arrives at your agreed time, fully equipped. No waiting rooms. No travel stress.
+                  Just focused, professional care in your own space.</p>
+              </div>
             </div>
           </div>
-          <div class="step fade-in fade-in-delay-2">
-            <div class="step-number">2</div>
-            <div class="step-content">
-              <h4>We Discuss Your Needs</h4>
-              <p>Our physiotherapist will ask a few questions to understand your condition and recommend the right treatment approach and frequency of visits.</p>
+
+          <!-- Session Info Cards -->
+          <div class="section-label fade-in" style="margin-top:8px;">What to Expect</div>
+          <div class="session-info fade-in" style="margin-top:16px;">
+            <div class="info-card">
+              <div class="ic-icon">⏱️</div>
+              <h4>Session Duration</h4>
+              <p>45–60 minutes per session, depending on your treatment plan.</p>
+            </div>
+            <div class="info-card">
+              <div class="ic-icon">🏠</div>
+              <h4>Home Visit</h4>
+              <p>We bring all equipment. You just need comfortable clothing and space to move.</p>
+            </div>
+            <div class="info-card">
+              <div class="ic-icon">📋</div>
+              <h4>First Visit Assessment</h4>
+              <p>The first session includes a full assessment to design your personalised treatment plan.</p>
+            </div>
+            <div class="info-card">
+              <div class="ic-icon">💳</div>
+              <h4>Payment Options</h4>
+              <p>Bank transfer before each session. Session packages available at a discount.</p>
             </div>
           </div>
-          <div class="step fade-in fade-in-delay-3">
-            <div class="step-number">3</div>
-            <div class="step-content">
-              <h4>We Come to Your Home</h4>
-              <p>Your physiotherapist arrives at your agreed time, fully equipped. No waiting rooms. No travel stress. Just focused, professional care in your own space.</p>
+        </div>
+
+        <!-- RIGHT: WhatsApp CTA -->
+        <div class="fade-in fade-in-delay-2">
+          <div class="wa-box">
+            <div class="wa-icon">💬</div>
+            <h3>Book Directly via WhatsApp</h3>
+            <p>The fastest way to reach us. We'll confirm your appointment within a few hours.</p>
+            <div class="wa-message-preview">
+              <strong>Your message will be pre-filled as:</strong>
+              "Hello Relief Motion, I would like to book a home physiotherapy session. Could you please let me know your
+              availability?"
             </div>
+            <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20would%20like%20to%20book%20a%20home%20physiotherapy%20session.%20Could%20you%20please%20let%20me%20know%20your%20availability%3F"
+              target="_blank" class="btn btn-whatsapp" id="main-wa-book-btn"
+              style="width:100%;justify-content:center;font-size:1rem;padding:18px;">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width:22px;height:22px">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+              </svg>
+              Open WhatsApp &amp; Book Now
+            </a>
+            <p style="margin-top:16px;font-size:0.8rem;color:var(--gray-300);">Response time: usually within 2–4 hours
+              during business hours.</p>
           </div>
-        </div>
 
-        <!-- Session Info Cards -->
-        <div class="section-label fade-in" style="margin-top:8px;">What to Expect</div>
-        <div class="session-info fade-in" style="margin-top:16px;">
-          <div class="info-card">
-            <div class="ic-icon">⏱️</div>
-            <h4>Session Duration</h4>
-            <p>45–60 minutes per session, depending on your treatment plan.</p>
-          </div>
-          <div class="info-card">
-            <div class="ic-icon">🏠</div>
-            <h4>Home Visit</h4>
-            <p>We bring all equipment. You just need comfortable clothing and space to move.</p>
-          </div>
-          <div class="info-card">
-            <div class="ic-icon">📋</div>
-            <h4>First Visit Assessment</h4>
-            <p>The first session includes a full assessment to design your personalised treatment plan.</p>
-          </div>
-          <div class="info-card">
-            <div class="ic-icon">💳</div>
-            <h4>Payment Options</h4>
-            <p>Bank transfer before each session. Session packages available at a discount.</p>
+          <div
+            style="margin-top:28px;padding:28px;background:var(--teal-50);border-radius:var(--radius-md);border:1px solid var(--teal-100);">
+            <h4 style="margin-bottom:8px;">Not ready to book?</h4>
+            <p style="font-size:0.9rem;margin-bottom:16px;">Send us a message just to ask questions. We're happy to
+              advise on whether physiotherapy is right for your condition — with no obligation.</p>
+            <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20have%20a%20question%20about%20your%20physiotherapy%20services."
+              target="_blank" class="btn btn-secondary" style="width:100%;justify-content:center;">Ask a Question →</a>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- RIGHT: WhatsApp CTA -->
-      <div class="fade-in fade-in-delay-2">
-        <div class="wa-box">
-          <div class="wa-icon">💬</div>
-          <h3>Book Directly via WhatsApp</h3>
-          <p>The fastest way to reach us. We'll confirm your appointment within a few hours.</p>
-          <div class="wa-message-preview">
-            <strong>Your message will be pre-filled as:</strong>
-            "Hello Relief Motion, I would like to book a home physiotherapy session. Could you please let me know your availability?"
+  <!-- FAQ -->
+  <section class="section faq-section">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <div class="section-label">FAQ</div>
+        <h2>Frequently Asked Questions</h2>
+        <div class="divider center"></div>
+      </div>
+      <div class="faq-wrap">
+        <div class="faq-item fade-in">
+          <div class="faq-question" id="faq1">How quickly can you start treatment? <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M5 12h14" />
+            </svg></div>
+          <div class="faq-answer" aria-labelledby="faq1">
+            <p>In most cases, we can begin within 48–72 hours of your first contact. For urgent cases, we do our best to
+              accommodate same-day or next-day visits.</p>
           </div>
-          <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20would%20like%20to%20book%20a%20home%20physiotherapy%20session.%20Could%20you%20please%20let%20me%20know%20your%20availability%3F" target="_blank" class="btn btn-whatsapp" id="main-wa-book-btn" style="width:100%;justify-content:center;font-size:1rem;padding:18px;">
-            <svg viewBox="0 0 24 24" fill="currentColor" style="width:22px;height:22px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            Open WhatsApp &amp; Book Now
-          </a>
-          <p style="margin-top:16px;font-size:0.8rem;color:var(--gray-300);">Response time: usually within 2–4 hours during business hours.</p>
         </div>
-
-        <div style="margin-top:28px;padding:28px;background:var(--teal-50);border-radius:var(--radius-md);border:1px solid var(--teal-100);">
-          <h4 style="margin-bottom:8px;">Not ready to book?</h4>
-          <p style="font-size:0.9rem;margin-bottom:16px;">Send us a message just to ask questions. We're happy to advise on whether physiotherapy is right for your condition — with no obligation.</p>
-          <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20have%20a%20question%20about%20your%20physiotherapy%20services." target="_blank" class="btn btn-secondary" style="width:100%;justify-content:center;">Ask a Question →</a>
+        <div class="faq-item fade-in fade-in-delay-1">
+          <div class="faq-question" id="faq2">Do I need any equipment at home? <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M5 12h14" />
+            </svg></div>
+          <div class="faq-answer" aria-labelledby="faq2">
+            <p>No. We bring everything required — therapy bands, exercise balls, manual therapy tools, and all
+              professional equipment. You just need comfortable clothing and a space approximately 3m × 2m.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in fade-in-delay-2">
+          <div class="faq-question" id="faq3">How much does a session cost? <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M5 12h14" />
+            </svg></div>
+          <div class="faq-answer" aria-labelledby="faq3">
+            <p>Sessions start from ₦25,000 depending on your condition, location, and the complexity of treatment
+              required. We offer transparent, personalised quotes before you commit to anything.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in fade-in-delay-3">
+          <div class="faq-question" id="faq4">How many sessions will I need? <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M5 12h14" />
+            </svg></div>
+          <div class="faq-answer" aria-labelledby="faq4">
+            <p>This varies by condition. Acute back pain may resolve in 4–6 sessions. Stroke rehabilitation can be 2–3
+              sessions per week for several months. We'll give you a clear estimate after the initial assessment.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in fade-in-delay-4">
+          <div class="faq-question" id="faq5">Is the physiotherapist fully licensed? <svg viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M5 12h14" />
+            </svg></div>
+          <div class="faq-answer" aria-labelledby="faq5">
+            <p>Yes. Our physiotherapist holds a B.Sc. in Physiotherapy and is fully registered with the Medical
+              Rehabilitation Therapists Board of Nigeria (MRTM). We are happy to share our registration details on
+              request.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-in fade-in-delay-5">
+          <div class="faq-question" id="faq6">Do you treat elderly patients? <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M5 12h14" />
+            </svg></div>
+          <div class="faq-answer" aria-labelledby="faq6">
+            <p>Absolutely. Elderly care is one of our specialities. Our home-based approach is especially beneficial for
+              older patients who find it difficult to travel to clinics. We use gentle, age-appropriate techniques
+              throughout.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FAQ -->
-<section class="section faq-section">
-  <div class="container">
-    <div class="section-header center fade-in">
-      <div class="section-label">FAQ</div>
-      <h2>Frequently Asked Questions</h2>
-      <div class="divider center"></div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo-name">Relief Motion</span>
+          <p>
+            Relief Motion provides expert home physiotherapy across Lagos, specializing in stroke rehab, back pain, and
+            post-surgery recovery. We bring clinical excellence to your doorstep.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="online-consultation.html">Online Consultation</a></li>
+            <li><a href="about.html">About</a> <a href="team.html">Our Team</a> <a href="blog.html">Blog</a></li>
+            <li><a href="testimonials.html">Testimonials</a></li>
+            <li><a href="booking.html">Book a Session</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#stroke">Stroke Rehab</a></li>
+            <li><a href="services.html#back">Back Pain</a></li>
+            <li><a href="services.html#knee">Knee & Arthritis</a></li>
+            <li><a href="services.html#surgery">Post-Surgery</a></li>
+            <li><a href="services.html#elderly">Elderly Mobility</a></li>
+            <li><a href="online-consultation.html">Online Consultation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://wa.me/2348000000000" target="_blank">WhatsApp: +234 800 000 0000</a></li>
+            <li><a href="tel:+2348000000000">Call: +234 800 000 0000</a></li>
+            <li><a href="mailto:hello@reliefmotionphysio.com">hello@reliefmotionphysio.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Relief Motion. All rights reserved.</span>
+        <span>Made with care in Lagos, Nigeria 🇳🇬</span>
+      </div>
     </div>
-    <div class="faq-wrap">
-      <div class="faq-item fade-in">
-        <div class="faq-question" id="faq1">How quickly can you start treatment? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
-        <div class="faq-answer" aria-labelledby="faq1"><p>In most cases, we can begin within 48–72 hours of your first contact. For urgent cases, we do our best to accommodate same-day or next-day visits.</p></div>
-      </div>
-      <div class="faq-item fade-in fade-in-delay-1">
-        <div class="faq-question" id="faq2">Do I need any equipment at home? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
-        <div class="faq-answer" aria-labelledby="faq2"><p>No. We bring everything required — therapy bands, exercise balls, manual therapy tools, and all professional equipment. You just need comfortable clothing and a space approximately 3m × 2m.</p></div>
-      </div>
-      <div class="faq-item fade-in fade-in-delay-2">
-        <div class="faq-question" id="faq3">How much does a session cost? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
-        <div class="faq-answer" aria-labelledby="faq3"><p>Sessions start from ₦25,000 depending on your condition, location, and the complexity of treatment required. We offer transparent, personalised quotes before you commit to anything.</p></div>
-      </div>
-      <div class="faq-item fade-in fade-in-delay-3">
-        <div class="faq-question" id="faq4">How many sessions will I need? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
-        <div class="faq-answer" aria-labelledby="faq4"><p>This varies by condition. Acute back pain may resolve in 4–6 sessions. Stroke rehabilitation can be 2–3 sessions per week for several months. We'll give you a clear estimate after the initial assessment.</p></div>
-      </div>
-      <div class="faq-item fade-in fade-in-delay-4">
-        <div class="faq-question" id="faq5">Is the physiotherapist fully licensed? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
-        <div class="faq-answer" aria-labelledby="faq5"><p>Yes. Our physiotherapist holds a B.Sc. in Physiotherapy and is fully registered with the Medical Rehabilitation Therapists Board of Nigeria (MRTM). We are happy to share our registration details on request.</p></div>
-      </div>
-      <div class="faq-item fade-in fade-in-delay-5">
-        <div class="faq-question" id="faq6">Do you treat elderly patients? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
-        <div class="faq-answer" aria-labelledby="faq6"><p>Absolutely. Elderly care is one of our specialities. Our home-based approach is especially beneficial for older patients who find it difficult to travel to clinics. We use gentle, age-appropriate techniques throughout.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand"><span class="footer-logo-name">Relief Motion</span><p>Professional home physiotherapy in Lagos. Licensed, experienced, and committed to your recovery.</p></div>
-      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a></li><li><a href="testimonials.html">Testimonials</a></li><li><a href="booking.html">Book a Session</a></li></ul></div>
-      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Stroke Rehab</a></li><li><a href="services.html">Back Pain</a></li><li><a href="services.html">Knee & Arthritis</a></li><li><a href="services.html">Post-Surgery</a></li><li><a href="services.html">Elderly Mobility</a></li></ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul><li><a href="https://wa.me/2348000000000" target="_blank">WhatsApp Us</a></li><li><a href="mailto:hello@reliefmotionphysio.com">Email Us</a></li><li><a href="booking.html">Book a Session</a></li></ul></div>
-    </div>
-    <div class="footer-bottom"><span>© 2026 Relief Motion. All rights reserved.</span><span>Made with care in Lagos, Nigeria 🇳🇬</span></div>
-  </div>
-</footer>
-<script src="scripts/main.js"></script>
+  </footer>
+  <script src="scripts/main.js"></script>
 </body>
+
 </html>

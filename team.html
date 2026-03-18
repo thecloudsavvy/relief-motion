@@ -1,122 +1,494 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Our Team | Relief Motion — Home Physiotherapy Lagos</title>
-  <meta name="description" content="Meet the licensed physiotherapists at Relief Motion. Professional home physiotherapy experts dedicated to your recovery in Lagos." />
+  <meta name="description"
+    content="Meet the licensed physiotherapists at Relief Motion. Professional home physiotherapy experts dedicated to your recovery in Lagos." />
   <link rel="stylesheet" href="styles/main.css" />
   <style>
-    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 48px; }
-    .team-card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); transition: var(--transition); border: 1px solid var(--gray-100); }
-    .team-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
-    .team-img-wrap { width: 100%; height: 380px; overflow: hidden; }
-    .team-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: var(--transition); }
-    .team-card:hover .team-img-wrap img { transform: scale(1.05); }
-    .team-info { padding: 32px; text-align: center; }
-    .team-info h3 { font-size: 1.4rem; color: var(--teal-800); margin-bottom: 6px; }
-    .team-role { font-size: 0.9rem; color: var(--gold-dark); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 20px; }
-    .team-bio { font-size: 0.95rem; line-height: 1.6; color: var(--gray-700); margin-bottom: 24px; }
-    .team-creds { display: flex; flex-direction: column; gap: 8px; text-align: left; background: var(--gray-50); padding: 20px; border-radius: var(--radius-sm); }
-    .cred-line { display: flex; gap: 10px; font-size: 0.85rem; color: var(--gray-900); }
-    .cred-line svg { width: 16px; height: 16px; color: var(--teal-600); flex-shrink: 0; margin-top: 3px; }
+    /* Team Grid */
+    .team-section {
+      padding: 80px 0;
+    }
+
+    /* Team Directory Grid */
+    .team-directory-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      text-align: center;
+    }
+
+    @media (min-width: 769px) {
+      .team-directory-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 900px;
+        margin-inline: auto;
+      }
+    }
+
+    .team-card-directory {
+      background: white;
+      padding: 48px 32px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-50);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .team-card-directory:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--teal-100);
+    }
+
+    .team-avatar-wrap {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 32px;
+      border: 6px solid var(--teal-50);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .team-avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .practitioner-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gray-400);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .team-card-directory h2 {
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+      color: var(--teal-900);
+    }
+
+    .team-card-role {
+      font-size: 1rem;
+      color: var(--gold-dark);
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+
+    .btn-view-profile {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--teal-700);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition-fast);
+    }
+
+    .btn-view-profile:hover {
+      color: var(--teal-900);
+      gap: 12px;
+    }
+
+    .btn-view-profile svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Shared Note */
+    .shared-credibility {
+      background: var(--teal-50);
+      padding: 24px;
+      border-radius: var(--radius-md);
+      text-align: center;
+      margin-bottom: 80px;
+      border: 1px solid var(--teal-100);
+    }
+
+    .shared-credibility p {
+      color: var(--teal-900);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+
+    /* Support Team */
+    .support-team-section {
+      background: var(--off-white);
+      padding: 100px 0;
+      border-top: 1px solid var(--gray-100);
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    @media (min-width: 769px) {
+      .support-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 800px;
+        margin-inline: auto;
+      }
+    }
+
+    .support-card {
+      background: white;
+      padding: 40px 24px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--gray-50);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .support-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .support-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      overflow: hidden;
+      border: 4px solid var(--teal-50);
+    }
+
+    .support-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .support-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 6px;
+      color: var(--teal-900);
+      font-weight: 600;
+    }
+
+    .support-role {
+      font-size: 0.9rem;
+      color: var(--gold-dark);
+      font-weight: 500;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .support-bullets {
+      list-style: none;
+      padding: 0;
+      font-size: 0.88rem;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+
+    .support-bullets li {
+      margin-bottom: 8px;
+    }
+
+
+    /* Trust Section */
+    .trust-section {
+      padding: 120px 0;
+      background: white;
+    }
+
+    .trust-points {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-top: 60px;
+    }
+
+    @media (min-width: 769px) {
+      .trust-points {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+      }
+    }
+
+    .trust-card {
+      background: white;
+      padding: 48px 32px;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      border: 1px solid var(--gray-50);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .trust-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border-color: var(--teal-100);
+    }
+
+    .trust-icon {
+      width: 48px;
+      height: 48px;
+      color: var(--teal-600);
+      margin-bottom: 24px;
+    }
+
+    .trust-card h4 {
+      font-size: 1.25rem;
+      color: var(--teal-900);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .trust-card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--gray-500);
+    }
   </style>
 </head>
+
 <body>
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="assets/brand_logo.png" alt="Relief Motion Logo" style="height: 54px; width: auto;" />
-    </a>
-    <div class="nav-links">
-      <a href="index.html">Home</a><a href="services.html">Services</a><a href="online-consultation.html">Online Consultation</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="testimonials.html">Testimonials</a>
-      <a href="booking.html" class="nav-cta">Book a Session</a>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/brand_logo.png" alt="Relief Motion Logo" style="height: 54px; width: auto;" />
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a><a href="services.html">Services</a><a href="online-consultation.html">Online
+          Consultation</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a
+          href="testimonials.html">Testimonials</a>
+        <a href="booking.html" class="nav-cta">Book a Session</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger"
+        aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
-    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="nav-mobile" id="mobile-nav">
+    <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a
+      href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="testimonials.html">Testimonials</a>
+    <a href="booking.html" class="mobile-cta">Book a Session</a>
   </div>
-</nav>
 
-<div class="nav-mobile" id="mobile-nav">
-  <a href="index.html">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a><a href="testimonials.html">Testimonials</a>
-  <a href="booking.html" class="mobile-cta">Book a Session</a>
-</div>
+  <div class="page-hero">
+    <div class="breadcrumb"><a href="index.html">Home</a> › Our Team</div>
+    <h1>Meet Your Physiotherapists</h1>
+    <p>Clinical excellence built on professional hospital expertise and a commitment to personalized home-based
+      recovery.</p>
+  </div>
 
-<div class="page-hero">
-  <div class="breadcrumb"><a href="index.html">Home</a> › Our Team</div>
-  <h1>Meet The Experts</h1>
-  <p>Our licensed clinical physiotherapists bring extensive hospital experience directly to your living room.</p>
-</div>
-
-<section class="section">
-  <div class="container">
-    <div class="section-header center fade-in">
-      <div class="section-label">The Practitioners</div>
-      <h2>Expert Care in Safe Hands</h2>
-      <div class="divider center"></div>
-      <p style="max-width:600px;margin:0 auto;">At Relief Motion, we carefully select practitioners who combine clinical excellence with genuine empathy. Every physiotherapist is fully licensed and vetted.</p>
-    </div>
-    
-    <div class="team-grid">
-      <!-- Dr. Abatan -->
-      <div class="team-card fade-in">
-        <div class="team-img-wrap">
-          <!-- User provided image -->
-          <img src="assets/team_abatan.jpg" alt="PT. Abatan K.D." />
-        </div>
-        <div class="team-info">
-          <h3>PT. Abatan K.D.</h3>
-          <div class="team-role">Lead Physiotherapist</div>
-          <p class="team-bio">With years of specialized experience in neuro-musculoskeletal rehabilitation, PT. Abatan K.D. leads our clinical practice. He combines evidence-based manual therapy with tailored exercise prescriptions to ensure lasting recovery for patients.</p>
-          <div class="team-creds">
-            <div class="cred-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Licensed Physiotherapist (MRTB)</div>
-            <div class="cred-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Specialist in Post-Surgical Rehab</div>
-            <div class="cred-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Advanced Manual Therapy</div>
-          </div>
-        </div>
+  <section class="team-section">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <div class="section-label">OUR SPECIALISTS</div>
+        <h2>Clinical Practitioners</h2>
+        <div class="divider center"></div>
       </div>
 
-      <!-- Dr. Amaka (From About section) -->
-      <div class="team-card fade-in fade-in-delay-1">
-        <div class="team-img-wrap">
-          <img src="assets/dr_amaka.jpg" alt="PT. Abatan T.D." />
-        </div>
-        <div class="team-info">
-          <h3>PT. Abatan T.D.</h3>
-          <div class="team-role">Senior Physiotherapist</div>
-          <p class="team-bio">PT. Abatan T.D. brings over 8 years of clinical expertise, with a special focus on stroke rehabilitation and geriatric care. His patient-first approach has helped hundreds of Lagos residents regain their independence at home.</p>
-          <div class="team-creds">
-            <div class="cred-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> B.Sc. Physiotherapy, UNILAG</div>
-            <div class="cred-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Registered MRTB Practitioner</div>
-            <div class="cred-line"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Neuro-rehab Specialist</div>
+      <div class="team-directory-grid">
+        <!-- PT. Abatan T.D. -->
+        <div class="team-card-directory fade-in">
+          <div class="team-avatar-wrap">
+            <img src="assets/team_abatan_2.jpg" alt="PT. Abatan T.D." />
           </div>
+          <div class="practitioner-label">CLINICAL PRACTITIONER</div>
+          <h2>PT. Abatan T.D.</h2>
+          <div class="team-card-role">Lead Physiotherapist</div>
+        </div>
+
+        <!-- PT. Abatan K.D. -->
+        <div class="team-card-directory fade-in">
+          <div class="team-avatar-wrap">
+            <img src="assets/team_abatan.jpg" alt="PT. Abatan K.D." />
+          </div>
+          <div class="practitioner-label">CLINICAL PRACTITIONER</div>
+          <h2>PT. Abatan K.D.</h2>
+          <div class="team-card-role">Co-Founder, Physiotherapist</div>
+        </div>
+
+        <!-- PT. Ifelowo O.O -->
+        <div class="team-card-directory fade-in">
+          <div class="team-avatar-wrap">
+            <img src="assets/lanre.png" alt="PT. Ifelowo O.O" />
+          </div>
+          <div class="practitioner-label">CLINICAL PRACTITIONER</div>
+          <h2>PT. Ifelowo O.O</h2>
+          <div class="team-card-role">Physiotherapist | Doctor of Physiotherapy (In View)</div>
+        </div>
+
+        <!-- PT. Esho F.A -->
+        <div class="team-card-directory fade-in">
+          <div class="team-avatar-wrap">
+            <img src="assets/fola.png" alt="PT. Esho F.A" />
+          </div>
+          <div class="practitioner-label">CLINICAL PRACTITIONER</div>
+          <h2>PT. Esho F.A</h2>
+          <div class="team-card-role">Physiotherapist | Doctor of Physiotherapy (In View)</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="cta-section">
-  <div class="container">
-    <h2 class="fade-in">Start Your Recovery Journey</h2>
-    <p class="fade-in" style="margin-bottom:36px;">Schedule a home visit with one of our expert physiotherapists today.</p>
-    <div class="cta-btn-group fade-in">
-      <a href="https://wa.me/2348000000000?text=Hello%20Relief%20Motion%2C%20I%20would%20like%20to%20book%20a%20home%20physiotherapy%20session." target="_blank" class="btn btn-whatsapp">Book via WhatsApp</a>
-      <a href="services.html" class="btn btn-outline-white">View Services</a>
-    </div>
-  </div>
-</section>
+  <!-- Clinical Support Team -->
+  <section class="support-team-section">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <div class="section-label">OUR SUPPORT TEAM</div>
+        <h2>Clinical Support Team</h2>
+        <div class="divider center"></div>
+        <p>Expert coordination and clinical assistance to ensure your recovery journey is seamless from assessment to
+          discharge.</p>
+      </div>
 
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand"><span class="footer-logo-name">Relief Motion</span><p>Professional home physiotherapy in Lagos. Licensed, experienced, and committed to your recovery.</p></div>
-      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="team.html">Our Team</a></li><li><a href="blog.html">Blog</a></li></ul></div>
-      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html#stroke">Stroke Rehab</a></li><li><a href="services.html#back">Back Pain</a></li><li><a href="services.html#knee">Knee & Arthritis</a></li><li><a href="services.html#surgery">Post-Surgery</a></li></ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul><li><a href="https://wa.me/2348000000000" target="_blank">WhatsApp Us</a></li><li><a href="mailto:hello@reliefmotionphysio.com">Email Us</a></li><li><a href="booking.html">Book a Session</a></li></ul></div>
+      <div class="support-grid">
+        <!-- Specialist 1 -->
+        <div class="support-card fade-in">
+          <div class="support-avatar">
+            <img src="assets/sarah_johnson.jpg" alt="Sarah Johnson" />
+          </div>
+          <h3>Sarah Johnson</h3>
+          <span class="support-role">Patient Care Coordinator</span>
+          <ul class="support-bullets">
+            <li>Session scheduling & tracking</li>
+            <li>Post-discharge follow-ups</li>
+            <li>Clinical documentation management</li>
+          </ul>
+        </div>
+
+        <!-- Specialist 2 -->
+        <div class="support-card fade-in">
+          <div class="support-avatar">
+            <img
+              src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=200&h=200"
+              alt="Clinical Assistant" />
+          </div>
+          <h3>PT. David Chima</h3>
+          <span class="support-role">Clinical Assistant</span>
+          <ul class="support-bullets">
+            <li>Direct patient rehab assistance</li>
+            <li>Equipment setup & maintenance</li>
+            <li>Baseline assessment support</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Relief Motion. All rights reserved.</span><span>Lagos, Nigeria 🇳🇬</span></div>
-  </div>
-</footer>
-<script src="scripts/main.js"></script>
+  </section>
+
+  <!-- Why Patients Trust Us -->
+  <section class="trust-section">
+    <div class="container">
+      <div class="section-header center" style="margin-top: 0;">
+        <div class="section-label">OUR PHILOSOPHY</div>
+        <h2>Why Patients Trust Us</h2>
+        <div class="divider center"></div>
+      </div>
+
+      <div class="trust-points">
+        <div class="trust-card fade-in">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <h4>Clinical Integrity</h4>
+          <p>Rooted in medical evidence and clinical excellence.</p>
+        </div>
+        <div class="trust-card fade-in">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+          <h4>Patient Independence</h4>
+          <p>Empowering you with tools for sustainable recovery.</p>
+        </div>
+        <div class="trust-card fade-in">
+          <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+            </path>
+          </svg>
+          <h4>Compassionate Care</h4>
+          <p>A supportive environment that respects your pace.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="fade-in">Ready to Start Your Recovery?</h2>
+      <p class="fade-in" style="margin-bottom:36px;">Schedule a session today and take the first step toward pain-free
+        movement at home.</p>
+      <div class="cta-btn-group fade-in center">
+        <a href="https://wa.me/2348000000000?text=Hello%20PT.%20Abatan%20T.D.%2C%20I%20would%20like%20to%20book%20a%20home%20physiotherapy%20session."
+          target="_blank" class="btn btn-whatsapp">Book via WhatsApp</a>
+        <a href="booking.html" class="btn btn-outline-white">Schedule a Session</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo-name">Relief Motion</span>
+          <p>
+            Relief Motion provides expert home physiotherapy across Lagos, specializing in stroke rehab, back pain, and
+            post-surgery recovery. We bring clinical excellence to your doorstep.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="online-consultation.html">Online Consultation</a></li>
+            <li><a href="about.html">About</a> <a href="team.html">Our Team</a> <a href="blog.html">Blog</a></li>
+            <li><a href="testimonials.html">Testimonials</a></li>
+            <li><a href="booking.html">Book a Session</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html#stroke">Stroke Rehab</a></li>
+            <li><a href="services.html#back">Back Pain</a></li>
+            <li><a href="services.html#knee">Knee & Arthritis</a></li>
+            <li><a href="services.html#surgery">Post-Surgery</a></li>
+            <li><a href="services.html#elderly">Elderly Mobility</a></li>
+            <li><a href="online-consultation.html">Online Consultation</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://wa.me/2348000000000" target="_blank">WhatsApp: +234 800 000 0000</a></li>
+            <li><a href="tel:+2348000000000">Call: +234 800 000 0000</a></li>
+            <li><a href="mailto:hello@reliefmotionphysio.com">hello@reliefmotionphysio.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Relief Motion. All rights reserved.</span>
+        <span>Made with care in Lagos, Nigeria 🇳🇬</span>
+      </div>
+    </div>
+  </footer>
+  <script src="scripts/main.js"></script>
 </body>
+
 </html>
