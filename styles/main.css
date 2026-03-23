@@ -292,16 +292,14 @@ p {
 }
 
 .nav-logo img {
-  height: 62px !important;
+  height: 90px !important;
   width: auto;
   transition: var(--transition);
-  mix-blend-mode: multiply;
-  filter: contrast(1.1);
+  border-radius: var(--radius-sm);
 }
 
 .nav.scrolled .nav-logo img {
-  height: 54px !important;
-  mix-blend-mode: normal;
+  height: 70px !important;
 }
 
 .nav-logo-icon {
@@ -1176,6 +1174,10 @@ p {
 
   .nav-links {
     display: none;
+  }
+
+  .nav-logo img {
+    height: 65px !important;
   }
 
   .nav-hamburger {
