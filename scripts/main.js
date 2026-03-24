@@ -124,7 +124,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ── Global Floating WhatsApp Button ───────────
   const waBtn = document.createElement("a");
-  waBtn.href = "https://wa.me/2349164944357?text=Hello%2C%20I%E2%80%99d%20like%20to%20book%20a%20session.";
+  
+  let waText = "Hello%2C%20I%E2%80%99d%20like%20to%20book%20a%20session.";
+  if (window.location.pathname.includes("online-consultation")) {
+    waText = "Hello%2C%20I%E2%80%99d%20like%20to%20book%20an%20online%20physiotherapy%20consultation.";
+  }
+  
+  waBtn.href = `https://wa.me/2349164944357?text=${waText}`;
   waBtn.target = "_blank";
   waBtn.className = "floating-whatsapp";
   waBtn.setAttribute("aria-label", "Chat on WhatsApp");
