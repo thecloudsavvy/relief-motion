@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clinical Standards | Relief Motion</title>
+  <meta name="description"
+    content="Relief Motion clinical standards: structured assessment, documentation, measurable goals, continuity of care, and escalation pathways. Built to integrate with hospitals, HMOs, and partner clinics." />
+  <link rel="stylesheet" href="styles/main.css" />
+  <style>
+    .standards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .standard-card {
+      padding: 36px 30px;
+    }
+
+    .standard-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .standard-card ul {
+      margin-top: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .standard-card li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.95rem;
+      color: var(--gray-500);
+    }
+
+    .standard-card li::before {
+      content: "•";
+      color: var(--gold);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    @media (max-width: 900px) {
+      .standards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/brand_logo.png" alt="Relief Motion Logo" style="height: 54px; width: auto;" />
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="partnerships.html">Partnerships</a>
+        <a href="method.html">Our Method</a>
+        <a href="outcomes.html">Clinical Outcomes</a>
+        <a href="digital-health.html">Digital Health</a>
+        <a href="services.html">Programs</a>
+        <a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="referrals.html" class="nav-cta">Physician Referral</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-mobile" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="partnerships.html">Partnerships</a>
+    <a href="method.html">Our Method</a>
+    <a href="outcomes.html">Clinical Outcomes</a>
+    <a href="digital-health.html">Digital Health</a>
+    <a href="services.html">Programs</a>
+    <a href="about.html">About</a>
+    <a href="team.html">Our Team</a>
+    <a href="blog.html">Blog</a>
+    <a href="patient-info.html">Patient Info</a>
+    <a href="referrals.html" class="mobile-cta">Physician Referral</a>
+  </div>
+
+  <section class="page-hero">
+    <div class="hero-overlay-pattern"></div>
+    <div class="container">
+      <div class="breadcrumb fade-in">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span>Clinical Standards</span>
+      </div>
+      <h1 class="fade-in">Our Clinical Standards</h1>
+      <p class="fade-in">
+        A partner‑ready operating standard for rehabilitation delivery—built for clinical integration and continuity of care.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header center fade-in">
+        <div class="section-label">Quality System</div>
+        <h2>Designed for Clinical Confidence</h2>
+        <div class="divider center"></div>
+        <p>
+          Our standard ensures predictable delivery, measurable progress, and clinician‑friendly reporting—supporting hospitals, HMOs, and partner clinics.
+        </p>
+      </div>
+
+      <div class="standards-grid">
+        <div class="card standard-card fade-in fade-in-delay-1">
+          <div class="section-label">01</div>
+          <h3>Structured Assessment</h3>
+          <p>Baseline measures and risk screening to support appropriate care plans.</p>
+          <ul>
+            <li>Intake: diagnosis, acuity, co‑morbidities, precautions</li>
+            <li>Red‑flag screening and escalation triggers</li>
+            <li>Functional baseline measures and goals</li>
+          </ul>
+        </div>
+
+        <div class="card standard-card fade-in fade-in-delay-2">
+          <div class="section-label">02</div>
+          <h3>Program Design</h3>
+          <p>Phase‑based pathways aligned to condition type and clinical goals.</p>
+          <ul>
+            <li>Neuro: 4‑phase protocol progression</li>
+            <li>Ortho: return‑to‑activity progression planning</li>
+            <li>Post‑op: precautions, staged loading, benchmarks</li>
+          </ul>
+        </div>
+
+        <div class="card standard-card fade-in fade-in-delay-3">
+          <div class="section-label">03</div>
+          <h3>Clinical Documentation</h3>
+          <p>Notes and summaries written for clinician-to-clinician clarity.</p>
+          <ul>
+            <li>Session documentation (SOAP‑style)</li>
+            <li>Progress summaries and milestone tracking</li>
+            <li>Discharge summary with recommendations</li>
+          </ul>
+        </div>
+
+        <div class="card standard-card fade-in fade-in-delay-4">
+          <div class="section-label">04</div>
+          <h3>Continuity & Follow‑Up</h3>
+          <p>Hybrid care that supports adherence and reduces regression.</p>
+          <ul>
+            <li>Tele‑rehab check‑ins between visits</li>
+            <li>Maintenance planning and adherence support</li>
+            <li>Clear handover to referring clinician</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="text-center fade-in" style="margin-top: 44px;">
+        <a href="partnerships.html" class="btn btn-secondary">Partnerships portal</a>
+        <a href="referrals.html" class="btn btn-primary">Physician referral</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo-name">Relief Motion</span>
+          <p>
+            Relief Motion is a digital health rehabilitation brand delivering evidence‑based programs, tele‑rehab, and clinical integration for partner hospitals, HMOs, and clinics—while maintaining patient‑centred care.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="partnerships.html">Partnerships</a></li>
+            <li><a href="method.html">Our Method</a></li>
+            <li><a href="outcomes.html">Clinical Outcomes</a></li>
+            <li><a href="digital-health.html">Digital Health</a></li>
+            <li><a href="services.html">Programs</a></li>
+            <li><a href="referrals.html">Physician Referral</a></li>
+            <li><a href="clinical-standards.html">Clinical Standards</a></li>
+            <li><a href="patient-info.html">Patient Info</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:reliefmotion.co@gmail.com">reliefmotion.co@gmail.com</a></li>
+            <li><a href="mailto:reliefmotion.co@gmail.com?subject=Partnership%20Inquiry%20%E2%80%94%20Relief%20Motion">Partnership inquiries</a></li>
+            <li><a href="mailto:reliefmotion.co@gmail.com?subject=Physician%20Referral%20%E2%80%94%20Relief%20Motion">Physician referrals</a></li>
+            <li><a href="tel:+2349164944357">Call: +234 916 494 4357</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Relief Motion. All rights reserved.</span>
+        <span>Built in Lagos, Nigeria</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+</body>
+
+</html>

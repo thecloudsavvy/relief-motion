@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Physician Referral | Relief Motion Clinical Intake</title>
+  <meta name="description"
+    content="Clinician referral portal for Relief Motion—submit diagnosis, ICD-10 codes, precautions, and care goals. We respond with intake confirmation and discharge reporting." />
+  <meta name="keywords" content="Physiotherapy Partnership Nigeria, physician referral physiotherapy Lagos, ICD-10 physiotherapy referral" />
+  <link rel="stylesheet" href="styles/main.css" />
+  <style>
+    .referral-wrap {
+      display: grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .referral-aside {
+      position: sticky;
+      top: 104px;
+    }
+
+    .stepper {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .step-pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--gray-100);
+      background: var(--white);
+      color: var(--gray-500);
+    }
+
+    .step-pill.active {
+      border-color: var(--teal-100);
+      background: var(--teal-50);
+      color: var(--teal-800);
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .referral-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .step-panel[hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 900px) {
+      .referral-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .referral-aside {
+        position: static;
+      }
+
+      .form-grid-2,
+      .form-grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/brand_logo.png" alt="Relief Motion Logo" style="height: 54px; width: auto;" />
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="partnerships.html">Partnerships</a>
+        <a href="method.html">Our Method</a>
+        <a href="outcomes.html">Clinical Outcomes</a>
+        <a href="digital-health.html">Digital Health</a>
+        <a href="services.html">Programs</a>
+        <a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="referrals.html" class="nav-cta">Physician Referral</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-mobile" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="partnerships.html">Partnerships</a>
+    <a href="method.html">Our Method</a>
+    <a href="outcomes.html">Clinical Outcomes</a>
+    <a href="digital-health.html">Digital Health</a>
+    <a href="services.html">Programs</a>
+    <a href="about.html">About</a>
+    <a href="team.html">Our Team</a>
+    <a href="blog.html">Blog</a>
+    <a href="patient-info.html">Patient Info</a>
+    <a href="referrals.html" class="mobile-cta">Physician Referral</a>
+  </div>
+
+  <section class="page-hero">
+    <div class="hero-overlay-pattern"></div>
+    <div class="container">
+      <div class="breadcrumb fade-in">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span>Physician Referral</span>
+      </div>
+      <h1 class="fade-in">Physician Referral Portal</h1>
+      <p class="fade-in">
+        Submit a clinician referral for outpatient rehabilitation. We confirm intake and provide progress updates and a discharge summary.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="referral-wrap">
+        <div class="card" style="padding: 40px;">
+          <div class="stepper" aria-label="Referral form steps">
+            <span class="step-pill active" data-step-pill="1">1. Referrer</span>
+            <span class="step-pill" data-step-pill="2">2. Patient</span>
+            <span class="step-pill" data-step-pill="3">3. Clinical</span>
+            <span class="step-pill" data-step-pill="4">4. Logistics</span>
+            <span class="step-pill" data-step-pill="5">5. Review</span>
+          </div>
+
+          <form id="referral-form" novalidate>
+            <!-- STEP 1 -->
+            <section class="step-panel" data-step="1">
+              <div class="section-label">Referring Clinician</div>
+              <h2 style="margin-bottom: 10px;">Referrer details</h2>
+              <p style="max-width: 680px;">We use this information for intake confirmation and clinical reporting.</p>
+
+              <div class="form-grid-2" style="margin-top: 18px;">
+                <div class="form-field">
+                  <label class="form-label" for="referrerName">Clinician name *</label>
+                  <input class="form-input" id="referrerName" name="referrerName" autocomplete="name" required />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="referrerRole">Role / specialty</label>
+                  <input class="form-input" id="referrerRole" name="referrerRole" placeholder="e.g., Orthopedic Surgeon, Family Physician" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="referrerFacility">Facility / organisation</label>
+                  <input class="form-input" id="referrerFacility" name="referrerFacility" placeholder="Hospital / clinic / HMO" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="referrerEmail">Clinician email *</label>
+                  <input class="form-input" id="referrerEmail" name="referrerEmail" type="email" autocomplete="email" required />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="referrerPhone">Phone</label>
+                  <input class="form-input" id="referrerPhone" name="referrerPhone" autocomplete="tel" placeholder="+234…" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="reportPreference">Reporting preference</label>
+                  <select class="form-select" id="reportPreference" name="reportPreference">
+                    <option value="Email">Email</option>
+                    <option value="Phone call">Phone call</option>
+                    <option value="WhatsApp (general)">WhatsApp (general)</option>
+                  </select>
+                  <div class="form-hint">We avoid sending sensitive patient identifiers over consumer chat apps when possible.</div>
+                </div>
+              </div>
+            </section>
+
+            <!-- STEP 2 -->
+            <section class="step-panel" data-step="2" hidden>
+              <div class="section-label">Patient Information</div>
+              <h2 style="margin-bottom: 10px;">Patient demographics</h2>
+              <p style="max-width: 680px;">Use initials if preferred. Detailed identifiers can be provided during intake confirmation.</p>
+
+              <div class="form-grid-2" style="margin-top: 18px;">
+                <div class="form-field">
+                  <label class="form-label" for="patientName">Patient name / initials *</label>
+                  <input class="form-input" id="patientName" name="patientName" required />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="patientDOB">Date of birth / age</label>
+                  <input class="form-input" id="patientDOB" name="patientDOB" placeholder="e.g., 63y or 1962-04-11" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="patientSex">Sex</label>
+                  <select class="form-select" id="patientSex" name="patientSex">
+                    <option value="">Select</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Other">Other</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="patientPhone">Patient / caregiver phone *</label>
+                  <input class="form-input" id="patientPhone" name="patientPhone" autocomplete="tel" required placeholder="+234…" />
+                </div>
+              </div>
+            </section>
+
+            <!-- STEP 3 -->
+            <section class="step-panel" data-step="3" hidden>
+              <div class="section-label">Clinical Details</div>
+              <h2 style="margin-bottom: 10px;">Diagnosis & clinical constraints</h2>
+              <p style="max-width: 680px;">This helps us match the correct pathway and safety plan.</p>
+
+              <div class="form-grid-2" style="margin-top: 18px;">
+                <div class="form-field">
+                  <label class="form-label" for="primaryDx">Primary diagnosis *</label>
+                  <input class="form-input" id="primaryDx" name="primaryDx" required placeholder="e.g., Ischemic stroke, TKR, lumbar radiculopathy" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="icd10">ICD‑10 codes</label>
+                  <input class="form-input" id="icd10" name="icd10" placeholder="e.g., I63.9, Z96.651 (comma-separated)" />
+                </div>
+              </div>
+
+              <div class="form-field" style="margin-top: 14px;">
+                <label class="form-label" for="clinicalSummary">Clinical summary *</label>
+                <textarea class="form-textarea" id="clinicalSummary" name="clinicalSummary" required
+                  placeholder="Baseline function, current limitations, relevant imaging/surgery notes, pain profile, neuro status, caregiver context, etc."></textarea>
+              </div>
+
+              <div class="form-grid-2" style="margin-top: 14px;">
+                <div class="form-field">
+                  <label class="form-label" for="precautions">Precautions / contraindications</label>
+                  <textarea class="form-textarea" id="precautions" name="precautions" placeholder="e.g., WB status, ROM limits, fall risk, BP limits, DVT/PE history"></textarea>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="goals">Referral goals</label>
+                  <textarea class="form-textarea" id="goals" name="goals" placeholder="e.g., independent transfers, gait endurance, ROM target, return-to-work"></textarea>
+                </div>
+              </div>
+            </section>
+
+            <!-- STEP 4 -->
+            <section class="step-panel" data-step="4" hidden>
+              <div class="section-label">Logistics</div>
+              <h2 style="margin-bottom: 10px;">Delivery model & location</h2>
+              <p style="max-width: 680px;">We deliver in Lagos with hybrid tele‑rehab as needed.</p>
+
+              <div class="form-grid-3" style="margin-top: 18px;">
+                <div class="form-field">
+                  <label class="form-label" for="careModel">Preferred model</label>
+                  <select class="form-select" id="careModel" name="careModel">
+                    <option value="In-person (Lagos)">In-person (Lagos)</option>
+                    <option value="Hybrid (in-person + tele-rehab)">Hybrid (in-person + tele-rehab)</option>
+                    <option value="Tele-rehab (nationwide)">Tele-rehab (nationwide)</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="location">Location (Lagos)</label>
+                  <input class="form-input" id="location" name="location" placeholder="e.g., Lekki, Ikoyi, Yaba" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="urgency">Urgency</label>
+                  <select class="form-select" id="urgency" name="urgency">
+                    <option value="Routine">Routine</option>
+                    <option value="Priority (within 72h)">Priority (within 72h)</option>
+                    <option value="Urgent (within 24-48h)">Urgent (within 24-48h)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-field" style="margin-top: 14px;">
+                <label class="form-label" for="availability">Preferred visit window</label>
+                <input class="form-input" id="availability" name="availability" placeholder="e.g., Mon/Wed mornings, after 4pm, weekends" />
+              </div>
+            </section>
+
+            <!-- STEP 5 -->
+            <section class="step-panel" data-step="5" hidden>
+              <div class="section-label">Review</div>
+              <h2 style="margin-bottom: 10px;">Review & submit</h2>
+              <p style="max-width: 680px;">We’ll generate a structured referral message you can send securely.</p>
+
+              <div class="card" style="padding: 22px; background: var(--gray-50); border: 1px solid var(--gray-100); margin-top: 16px;">
+                <div class="section-label" style="margin-bottom: 8px;">Referral preview</div>
+                <pre id="referral-preview" class="form-pre" style="margin:0; white-space: pre-wrap;"></pre>
+              </div>
+
+              <div class="form-field" style="margin-top: 14px;">
+                <label class="form-label" for="consent">
+                  <input id="consent" name="consent" type="checkbox" required style="margin-right: 10px;" />
+                  I confirm I have consent/authorisation to share this clinical information for care coordination.
+                </label>
+              </div>
+
+              <div class="form-hint">
+                Submission routes via email to create an auditable intake record. If you prefer direct integration, use the Partnerships portal.
+              </div>
+            </section>
+
+            <div class="referral-actions">
+              <button type="button" class="btn btn-secondary" id="prev-step">Back</button>
+              <div style="display:flex; gap: 12px; flex-wrap: wrap;">
+                <button type="button" class="btn btn-outline" id="save-draft">Save draft</button>
+                <button type="button" class="btn btn-primary" id="next-step">Next</button>
+                <button type="submit" class="btn btn-primary" id="submit-referral" hidden>Submit referral</button>
+              </div>
+            </div>
+            <div id="form-error" class="form-error" role="alert" aria-live="polite" style="margin-top: 14px;" hidden></div>
+          </form>
+        </div>
+
+        <aside class="referral-aside">
+          <div class="card" style="padding: 30px;">
+            <div class="section-label">What you get</div>
+            <h3 style="margin-bottom: 10px;">Clinical loop closure</h3>
+            <p style="font-size: 0.95rem; color: var(--gray-700);">
+              We confirm intake, provide progress updates, and return a discharge summary to support continuity of care.
+            </p>
+            <div style="margin-top: 18px; display:grid; gap: 10px;">
+              <div style="display:flex; gap: 10px; align-items:flex-start;">
+                <span style="color: var(--gold); font-weight: 900;">•</span>
+                <span style="font-size: 0.92rem; color: var(--gray-700);"><b>Intake confirmation</b> within 24–72h (based on urgency).</span>
+              </div>
+              <div style="display:flex; gap: 10px; align-items:flex-start;">
+                <span style="color: var(--gold); font-weight: 900;">•</span>
+                <span style="font-size: 0.92rem; color: var(--gray-700);"><b>Program pathway</b> aligned to neuro, ortho, post‑op, or geriatric strategy.</span>
+              </div>
+              <div style="display:flex; gap: 10px; align-items:flex-start;">
+                <span style="color: var(--gold); font-weight: 900;">•</span>
+                <span style="font-size: 0.92rem; color: var(--gray-700);"><b>Discharge reporting</b> for handover and next‑step recommendations.</span>
+              </div>
+            </div>
+            <div style="margin-top: 18px;">
+              <a href="partnerships.html" class="btn btn-secondary" style="width:100%; justify-content:center;">Partnerships portal</a>
+            </div>
+          </div>
+
+          <div class="card" style="padding: 30px; margin-top: 18px; background: var(--teal-900); color: white; border: none;">
+            <div class="section-label" style="color: rgba(255,255,255,0.75);">Contact</div>
+            <h3 style="color: white; margin-bottom: 10px;">Need to speak to the team?</h3>
+            <p style="color: rgba(255,255,255,0.75); font-size: 0.92rem; margin-bottom: 16px;">
+              For urgent clarifications, call. For general contact, WhatsApp is available.
+            </p>
+            <div style="display:grid; gap: 10px;">
+              <a href="tel:+2349164944357" class="btn btn-outline-white" style="width:100%; justify-content:center;">Call +234 916 494 4357</a>
+              <a href="mailto:reliefmotion.co@gmail.com?subject=Physician%20Referral%20%E2%80%94%20Relief%20Motion" class="btn btn-outline-white" style="width:100%; justify-content:center;">Email referral team</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo-name">Relief Motion</span>
+          <p>
+            Relief Motion is a digital health rehabilitation brand delivering evidence‑based programs, tele‑rehab, and clinical integration for partner hospitals, HMOs, and clinics—while maintaining patient‑centred care.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="partnerships.html">Partnerships</a></li>
+            <li><a href="method.html">Our Method</a></li>
+            <li><a href="outcomes.html">Clinical Outcomes</a></li>
+            <li><a href="digital-health.html">Digital Health</a></li>
+            <li><a href="services.html">Programs</a></li>
+            <li><a href="referrals.html">Physician Referral</a></li>
+            <li><a href="clinical-standards.html">Clinical Standards</a></li>
+            <li><a href="patient-info.html">Patient Info</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:reliefmotion.co@gmail.com">reliefmotion.co@gmail.com</a></li>
+            <li><a href="mailto:reliefmotion.co@gmail.com?subject=Partnership%20Inquiry%20%E2%80%94%20Relief%20Motion">Partnership inquiries</a></li>
+            <li><a href="mailto:reliefmotion.co@gmail.com?subject=Physician%20Referral%20%E2%80%94%20Relief%20Motion">Physician referrals</a></li>
+            <li><a href="tel:+2349164944357">Call: +234 916 494 4357</a></li>
+            <li><a href="https://wa.me/2349164944357?text=Hello%2C%20I%E2%80%99d%20like%20to%20speak%20with%20Relief%20Motion%20about%20a%20clinical%20referral." target="_blank">WhatsApp (general)</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Relief Motion. All rights reserved.</span>
+        <span>Built in Lagos, Nigeria</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+  <script src="scripts/referrals.js"></script>
+</body>
+
+</html>
+
