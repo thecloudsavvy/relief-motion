@@ -6,204 +6,496 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | Relief Motion Digital Health Rehabilitation</title>
   <meta name="description"
-    content="Learn about Relief Motion—an evidence-based digital health rehabilitation brand delivering structured post-acute pathways, tele-rehab, and clinical integration across Lagos and Nigeria." />
-  <meta name="keywords" content="Digital Health Physiotherapy Lagos, Physiotherapy Partnership Nigeria, rehabilitation pathways Nigeria" />
+    content="Learn about Relief Motion, a Lagos-based physiotherapy and digital rehabilitation provider delivering home care, online consultations, post-acute rehab pathways, and hospital partnerships." />
+  <meta name="keywords"
+    content="Digital Health Physiotherapy Lagos, Physiotherapy Partnership Nigeria, rehabilitation pathways Nigeria, home physiotherapy Lagos" />
   <link rel="stylesheet" href="styles/main.css" />
   <style>
-    /* Trust Strip */
-    .trust-strip {
-      background: var(--gray-50);
-      border-top: 1px solid var(--gray-100);
-      border-bottom: 1px solid var(--gray-100);
-      padding: 32px 0;
+    .about-page {
+      background: var(--white);
     }
 
-    .trust-inner {
-      display: flex;
-      justify-content: center;
-      gap: 60px;
-      flex-wrap: wrap;
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 600;
-      color: var(--teal-800);
-      font-size: 0.95rem;
-    }
-
-    .trust-item svg {
-      color: var(--gold-dark);
-    }
-
-    /* Why We Exist */
-    .why-exist-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .mission-highlight {
-      background: var(--teal-900);
-      color: white;
-      padding: 60px;
-      border-radius: var(--radius-lg);
+    .about-hero {
+      background:
+        linear-gradient(90deg, rgba(6, 47, 64, 0.96), rgba(11, 79, 108, 0.88)),
+        url("assets/home-physio-care.png") center right / cover;
+      padding: 148px 24px 78px;
+      color: var(--white);
       position: relative;
-      overflow: hidden;
     }
 
-    .mission-highlight h3 {
-      color: var(--gold);
-      font-size: 1.8rem;
+    .about-hero-inner,
+    .about-band-inner,
+    .about-section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .about-hero h1 {
+      color: var(--white);
+      font-size: clamp(2.25rem, 5vw, 4.15rem);
+      margin-bottom: 18px;
+      max-width: 700px;
+    }
+
+    .about-hero-lead {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: clamp(1.08rem, 2vw, 1.42rem);
+      line-height: 1.75;
+      max-width: 850px;
+      font-weight: 500;
+    }
+
+    .about-hero .breadcrumb {
+      justify-content: flex-start;
+      margin-top: 26px;
+      margin-bottom: 0;
+    }
+
+    .about-section {
+      padding: 82px 24px;
+    }
+
+    .about-section.compact {
+      padding-block: 64px;
+    }
+
+    .about-section.soft {
+      background: var(--gray-50);
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 58px;
+      align-items: start;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal-600);
+      margin-bottom: 10px;
+    }
+
+    .about-copy h2,
+    .section-heading h2 {
+      color: var(--teal-900);
+      margin-bottom: 18px;
+    }
+
+    .about-copy p,
+    .section-heading p {
+      color: var(--gray-700);
+      font-size: 1.03rem;
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+
+    .vision-card {
+      border-left: 5px solid var(--teal-600);
+      background: var(--teal-50);
+      padding: 32px;
+      border-radius: 8px;
       margin-bottom: 24px;
     }
 
-    .mission-highlight p {
-      font-size: 1.2rem;
-      line-height: 1.8;
-      opacity: 0.9;
-      font-style: italic;
+    .vision-card h3 {
+      color: var(--teal-900);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
     }
 
-    .values-grid {
+    .vision-card p {
+      margin: 0;
+      color: var(--gray-700);
+      line-height: 1.85;
+    }
+
+    .review-callout {
+      background: var(--teal-900);
+      color: var(--white);
+      padding: 34px;
+      border-radius: 8px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .review-callout h3,
+    .review-callout p {
+      color: var(--white);
+      margin: 0;
+    }
+
+    .review-callout p {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .presence-band {
+      background: var(--teal-900);
+      color: var(--white);
+      padding: 34px 24px;
+    }
+
+    .presence-content {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 38px;
+      align-items: center;
+    }
+
+    .presence-content h2 {
+      color: var(--white);
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      margin-bottom: 8px;
+    }
+
+    .presence-content p {
+      color: rgba(255, 255, 255, 0.76);
+      margin: 0;
+    }
+
+    .city-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .city-list a,
+    .city-list span {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .brand-panel {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .brand-card {
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      padding: 34px;
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-card h2 {
+      color: var(--teal-900);
+      margin-bottom: 14px;
+    }
+
+    .brand-card p {
+      color: var(--gray-700);
+      line-height: 1.85;
+      margin-bottom: 24px;
+    }
+
+    .feature-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--gray-700);
+      font-weight: 600;
+      line-height: 1.55;
+    }
+
+    .feature-list li::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--teal-600);
+      margin-top: 8px;
+      flex: 0 0 auto;
+    }
+
+    .brand-image img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 8px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .team-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+      margin-top: 34px;
+    }
+
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      min-height: 190px;
+    }
+
+    .team-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 190px;
+      object-fit: cover;
+    }
+
+    .team-card div {
+      padding: 24px;
+    }
+
+    .team-card h3 {
+      color: var(--teal-900);
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    .team-role {
+      color: var(--teal-600);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .team-card p {
+      color: var(--gray-600);
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
+    .partner-banner {
+      background: var(--teal-50);
+      border-top: 1px solid var(--teal-100);
+      border-bottom: 1px solid var(--teal-100);
+      padding: 46px 24px;
+    }
+
+    .partner-content {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .partner-content h2 {
+      color: var(--teal-900);
+      margin-bottom: 8px;
+    }
+
+    .partner-content p {
+      color: var(--gray-700);
+      margin: 0;
+      max-width: 760px;
+    }
+
+    .process-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 34px 0;
+      background: var(--white);
+    }
+
+    .process-tab {
+      padding: 18px 16px;
+      text-align: center;
+      font-weight: 800;
+      color: var(--teal-900);
+      background: var(--white);
+      border-right: 1px solid var(--gray-100);
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .process-tab:last-child {
+      border-right: 0;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .process-card {
+      border: 1px solid var(--gray-100);
+      background: var(--white);
+      border-radius: 8px;
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .process-number {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--teal-800);
+      color: var(--white);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .process-card h3 {
+      font-family: var(--font-body);
+      color: var(--teal-900);
+      font-size: 1.02rem;
+      margin-bottom: 10px;
+    }
+
+    .process-card p {
+      color: var(--gray-600);
+      font-size: 0.94rem;
+      line-height: 1.75;
+    }
+
+    .specialization-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      margin-top: 48px;
+      gap: 24px;
+      margin-top: 34px;
     }
 
-    .value-card {
-      background: white;
-      padding: 40px;
-      border-radius: var(--radius-lg);
+    .specialization-card {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      padding: 28px;
+      min-height: 210px;
       box-shadow: var(--shadow-sm);
-      text-align: center;
       transition: var(--transition);
     }
 
-    .value-card:hover {
+    .specialization-card:hover {
       transform: translateY(-5px);
+      border-color: var(--teal-100);
       box-shadow: var(--shadow-md);
     }
 
-    .value-icon {
-      width: 64px;
-      height: 64px;
-      background: var(--teal-50);
-      color: var(--teal-600);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 24px;
-      font-size: 1.5rem;
-    }
-
-    @media (max-width: 900px) {
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .about-float {
-        right: 0;
-      }
-
-      .about-image-wrap img {
-        height: 340px;
-      }
-
-      .values-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Social Media Section */
-    .social-section {
-      padding: 100px 0;
-      background: white;
-      text-align: center;
-    }
-
-    .social-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-      margin-top: 48px;
-    }
-
-    @media (min-width: 600px) {
-      .social-grid {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 700px;
-        margin-inline: auto;
-      }
-    }
-
-    .social-card {
-      background: white;
-      padding: 40px 32px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--gray-100);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      text-align: center;
-    }
-
-    .social-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-      border-color: var(--teal-100);
-    }
-
-    .social-icon-box {
-      width: 56px;
-      height: 56px;
-      background: var(--teal-50);
-      color: var(--teal-600);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 24px;
-    }
-
-    .social-platform-name {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--gray-400);
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .social-card p {
-      font-size: 1.1rem;
+    .specialization-card h3 {
+      font-family: var(--font-body);
       color: var(--teal-900);
-      font-weight: 600;
-      margin-bottom: 8px;
-      line-height: 1.4;
+      font-size: 1.05rem;
+      margin-bottom: 12px;
     }
 
-    .social-handle {
+    .specialization-card p {
+      color: var(--gray-600);
       font-size: 0.95rem;
-      color: var(--gold-dark);
-      font-weight: 600;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .text-link {
+      color: var(--teal-700);
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 980px) {
+      .split-grid,
+      .presence-content,
+      .brand-panel,
+      .partner-content {
+        grid-template-columns: 1fr;
+      }
+
+      .process-tabs,
+      .process-grid,
+      .specialization-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .team-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-image img {
+        height: 360px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .about-hero {
+        padding: 126px 20px 58px;
+        background-position: center;
+      }
+
+      .about-section {
+        padding: 64px 20px;
+      }
+
+      .feature-columns,
+      .process-tabs,
+      .process-grid,
+      .specialization-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-tab {
+        border-right: 0;
+        border-bottom: 1px solid var(--gray-100);
+      }
+
+      .team-card {
+        grid-template-columns: 1fr;
+      }
+
+      .team-card img {
+        height: 260px;
+      }
     }
   </style>
 </head>
 
-<body>
+<body class="about-page">
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">
-        <img src="assets/brand_logo.png" alt="Relief Motion Logo" style="height: 54px; width: auto;" />
+        <img src="assets/brand_logo.png" alt="Relief Motion Logo" />
       </a>
       <div class="nav-links">
         <a href="index.html">Home</a>
@@ -212,9 +504,12 @@
         <a href="outcomes.html">Clinical Outcomes</a>
         <a href="digital-health.html">Digital Health</a>
         <a href="services.html">Programs</a>
-        <a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="team.html">Our Team</a>
+        <a href="blog.html">Blog</a>
         <a href="patient-info.html">Patient Info</a>
-        <a href="referrals.html" class="nav-cta">Physician Referral</a>
+        <a href="tel:+2349164944357" class="nav-phone">(+234) 916 494 4357</a>
+        <a href="tel:+2349164944357" class="nav-cta">Call</a>
       </div>
       <button class="nav-hamburger" id="hamburger"
         aria-label="Toggle menu"><span></span><span></span><span></span></button>
@@ -231,218 +526,254 @@
     <a href="team.html">Our Team</a>
     <a href="blog.html">Blog</a>
     <a href="patient-info.html">Patient Info</a>
-    <a href="referrals.html" class="mobile-cta">Physician Referral</a>
+    <a href="tel:+2349164944357" class="mobile-phone">(+234) 916 494 4357</a>
+    <a href="tel:+2349164944357" class="mobile-cta">Call</a>
   </div>
 
-  <div class="page-hero">
-    <div class="breadcrumb"><a href="index.html">Home</a> › About</div>
-    <h1>Restoring Mobility, One Home at a Time</h1>
-    <p>Relief Motion is a specialized clinical service dedicated to bringing professional, high-impact physiotherapy
-      directly to where patients are most comfortable.</p>
-  </div>
-
-  <!-- Trust Strip -->
-  <div class="trust-strip">
-    <div class="container">
-      <div class="trust-inner">
-        <div class="trust-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-            <polyline points="22 4 12 14.01 9 11.01" />
-          </svg>
-          Licensed Physiotherapist
-        </div>
-        <div class="trust-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-            <circle cx="9" cy="7" r="4" />
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-          </svg>
-          200+ Patients Treated
-        </div>
-        <div class="trust-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg>
-          Home & Online Care
-        </div>
-        <div class="trust-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-            <circle cx="12" cy="10" r="3" />
-          </svg>
-          Lagos Coverage
-        </div>
-      </div>
+  <header class="about-hero">
+    <div class="about-hero-inner fade-in">
+      <h1>About Relief Motion</h1>
+      <p class="about-hero-lead">Relief Motion is a physiotherapy and rehabilitation brand focused on making quality
+        recovery care effective, accessible, and easier to begin across Lagos. We combine home physiotherapy, online
+        consultation, structured programs, and partner-ready clinical pathways.</p>
+      <div class="breadcrumb"><a href="index.html">Home</a> <span>&gt;</span> About</div>
     </div>
-  </div>
+  </header>
 
-  <!-- WHY WE EXIST -->
-  <section class="section">
-    <div class="container">
-      <div class="why-exist-grid">
-        <div class="fade-in">
-          <div class="section-label">Why We Exist</div>
-          <h2>Bridging the Gap in Quality Care</h2>
-          <div class="divider"></div>
-          <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 24px; color: var(--gray-700);">Accessing
-            professional physiotherapy shouldn't be a struggle. We saw patients facing long commutes, crowded clinics,
-            and impersonal treatment plans often while in significant pain.</p>
-          <p style="line-height: 1.7; color: var(--gray-600); margin-bottom: 32px;">Relief Motion was founded to solve
-            this problem. We believe that clinical excellence should meet patient convenience. By bringing
-            hospital-grade assessment and equipment into the home, we eliminate the stress of travel and allow recovery
-            to happen in the environment where it matters most.</p>
-          <a href="services.html" class="btn btn-primary">Our Recovery Services</a>
+  <main>
+    <section class="about-section">
+      <div class="about-section-inner split-grid">
+        <div class="about-copy fade-in">
+          <div class="section-kicker">Our Vision</div>
+          <h2>A preferred recovery partner for patients, hospitals, and care teams.</h2>
+          <p>We exist to help people move better after pain, surgery, stroke, injury, or loss of confidence. Our work is
+            built around practical access: the patient should be able to receive expert assessment, a clear plan, and
+            consistent follow-through without unnecessary friction.</p>
+          <p>Whether care happens at home, online, or through a partner facility, Relief Motion keeps the process
+            structured, measurable, and personal.</p>
         </div>
-        <div class="mission-highlight fade-in">
-          <h3>The Relief Mission</h3>
-          <p>"To bring hospital-quality physiotherapy into every patient's home, restoring not just their bodies but
-            their dignity, independence, and joy in life."</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VALUES -->
-  <section class="section" style="background:var(--gray-50);">
-    <div class="container">
-      <div class="section-header center fade-in">
-        <div class="section-label">Our Values</div>
-        <h2>What Drives Everything We Do</h2>
-        <div class="divider center"></div>
-      </div>
-      <div class="values-grid">
-        <div class="value-card fade-in">
-          <div class="value-icon">🏆</div>
-          <h4>Clinical Excellence</h4>
-          <p>Every treatment protocol follows evidence-based international standards. No shortcuts, no guesswork.</p>
-        </div>
-        <div class="value-card fade-in">
-          <div class="value-icon">🤝</div>
-          <h4>Dignity & Respect</h4>
-          <p>We treat each patient as an individual not a condition. Your comfort and privacy always come first.</p>
-        </div>
-        <div class="value-card fade-in">
-          <div class="value-icon">📈</div>
-          <h4>Measurable Progress</h4>
-          <p>We track your recovery with clinical precision. You'll always know how far you've come.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- AREAS -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header center fade-in">
-        <div class="section-label">Coverage Map</div>
-        <h2>Areas We Serve in Lagos</h2>
-        <div class="divider center"></div>
-        <p>We travel to you. Here are the areas we currently cover — and we're always expanding.</p>
-      </div>
-      <div class="areas-grid fade-in" style="justify-content:center;max-width:700px;margin:0 auto;">
-        <div class="area-chip">📍 Lekki</div>
-        <div class="area-chip">📍 Ikoyi</div>
-        <div class="area-chip">📍 Surulere</div>
-        <div class="area-chip">📍 Yaba</div>
-        <div class="area-chip">📍 Gbagada</div>
-        <div class="area-chip">📍 Victoria Island</div>
-        <div class="area-chip">📍 Maryland</div>
-        <div class="area-chip">📍 Ikeja</div>
-        <div class="area-chip">📍 Ajah</div>
-      </div>
-      <div class="text-center" style="margin-top:32px;">
-        <a href="https://wa.me/2349164944357?text=Hello%2C%20I%E2%80%99d%20like%20to%20book%20a%20home%20physiotherapy%20session%20with%20Relief%20Motion.%0A%0AFull%20Name%3A%0ALocation%3A%0ACondition%20%28e.g.%2C%20back%20pain%2C%20stroke%20rehab%29%3A%0APreferred%20Date%20%26%20Time%3A%0A%0AThank%20you."
-          target="_blank" class="btn btn-secondary">Ask If We Cover Your Area</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- SOCIAL MEDIA SECTION -->
-  <section class="social-section">
-    <div class="container">
-      <div class="section-header center fade-in">
-        <h2>Follow Our Work & Patient Stories</h2>
-        <div class="divider center"></div>
-        <p>See real recovery journeys, expert tips, and behind-the-scenes care.</p>
-      </div>
-
-      <div class="social-grid">
-        <!-- TikTok -->
-        <a href="https://tiktok.com/@relief_motion" target="_blank" class="social-card fade-in">
-          <div class="social-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.86-.6-4.12-1.31a8.313 8.313 0 01-1.87-1.41v7.1c.01 2.34-.49 4.71-2.12 6.4-1.6 1.65-4.14 2.19-6.38 2.12a8.89 8.89 0 01-5.4-2.12C1.13 19.34.46 16.94.51 14.63c.01-2.48.87-5.06 2.94-6.49 1.48-1.04 3.32-1.5 5.12-1.51v4.03c-.9.03-1.87.27-2.61.85-.91.7-1.4 1.83-1.44 2.97-.04 1.13.29 2.3 1.1 3.12.83.84 2.05 1.19 3.2 1.1 1.14-.08 2.22-.69 2.82-1.65.65-.99.79-2.22.78-3.39V0h1.12z" />
-            </svg>
+        <div class="fade-in fade-in-delay-1">
+          <div class="vision-card">
+            <h3>Our Approach</h3>
+            <p>Recovery works best when the patient understands the condition, the goal, and the actions required. We
+              assess current function, explain what is happening, agree on realistic milestones, and guide patients
+              through treatment that fits daily life.</p>
           </div>
-          <div class="social-platform-name">TikTok</div>
-          <p>Recovery Reels & Quick Fixes </p>
-          <span class="social-handle">relief_motion</span>
-        </a>
-
-        <!-- YouTube -->
-        <a href="https://youtube.com/@reliefmotion" target="_blank" class="social-card fade-in">
-          <div class="social-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-            </svg>
+          <div class="review-callout">
+            <h3>Patients vouch for it too</h3>
+            <p>Relief Motion patients are building confidence, strength, and independence through guided rehab and
+              consistent clinical support.</p>
+            <a href="testimonials.html" class="btn btn-secondary">Show Patient Reviews</a>
           </div>
-          <div class="social-platform-name">YouTube</div>
-          <p>Pain Relief, Posture & Rehab Guides </p>
-          <span class="social-handle">ReliefMotion</span>
-        </a>
-
-        <!-- Facebook -->
-        <a href="https://www.facebook.com/profile.php?id=61583842515822" target="_blank" class="social-card fade-in">
-          <div class="social-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-            </svg>
-          </div>
-          <div class="social-platform-name">Facebook</div>
-          <p>Reels, Patient Updates & Recovery Tips </p>
-          <span class="social-handle">Relief Motion</span>
-        </a>
-
-        <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/company/relief-motion-physiotherapy/" target="_blank" class="social-card fade-in">
-          <div class="social-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z" />
-            </svg>
-          </div>
-          <div class="social-platform-name">LinkedIn</div>
-          <p>Clinical Insights & Rehab Education </p>
-          <span class="social-handle">Relief Motion</span>
-        </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="cta-section">
-    <div class="container">
-      <h2 class="fade-in">Start Your Recovery Journey</h2>
-      <p class="fade-in" style="margin-bottom:32px;">Schedule an initial assessment and experience the difference of
-        clinical care at home.</p>
-      <div class="cta-btn-group fade-in center">
-        <a href="https://wa.me/2349164944357?text=Hello%2C%20I%E2%80%99d%20like%20to%20book%20a%20home%20physiotherapy%20session%20with%20Relief%20Motion.%0A%0AFull%20Name%3A%0ALocation%3A%0ACondition%20%28e.g.%2C%20back%20pain%2C%20stroke%20rehab%29%3A%0APreferred%20Date%20%26%20Time%3A%0A%0AThank%20you."
-          target="_blank" class="btn btn-whatsapp">
-          <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px">
-            <path
-              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-          </svg>
-          Book via WhatsApp
-        </a>
-        <a href="services.html" class="btn btn-outline-white">View Services</a>
+    <section class="presence-band">
+      <div class="about-band-inner presence-content">
+        <div>
+          <h2>Our Presence</h2>
+          <p>Home physiotherapy across key Lagos communities, plus online care for patients who need expert guidance
+            wherever they are.</p>
+        </div>
+        <div class="city-list" aria-label="Areas served in Lagos">
+          <a href="booking.html">Lekki</a>
+          <a href="booking.html">Ikoyi</a>
+          <a href="booking.html">Victoria Island</a>
+          <a href="booking.html">Ikeja</a>
+          <a href="booking.html">Yaba</a>
+          <a href="booking.html">Surulere</a>
+          <a href="booking.html">Gbagada</a>
+          <a href="booking.html">Maryland</a>
+          <a href="booking.html">Ajah</a>
+          <span>Online</span>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="about-section soft">
+      <div class="about-section-inner brand-panel">
+        <div class="brand-card fade-in">
+          <div class="section-kicker">Relief Motion</div>
+          <h2>Specialist physiotherapy with a full recovery pathway.</h2>
+          <p>Relief Motion provides home visit physiotherapy, online consultation, patient education, and digital health
+            support for people recovering from pain, immobility, surgery, neurological conditions, and long-term
+            movement limitations.</p>
+          <div class="feature-columns">
+            <ul class="feature-list">
+              <li>Expert physiotherapist-led care</li>
+              <li>Structured home and online programs</li>
+              <li>Patient education for self-management</li>
+              <li>Evidence-informed assessment and treatment</li>
+            </ul>
+            <ul class="feature-list">
+              <li>Recovery goals patients can track</li>
+              <li>Exercise as medicine</li>
+              <li>Hospital and HMO partnership readiness</li>
+              <li>Trusted recovery support in Lagos</li>
+            </ul>
+          </div>
+        </div>
+        <div class="brand-image fade-in fade-in-delay-1">
+          <img src="assets/physiotherapist.png" alt="Physiotherapist guiding a rehabilitation session" />
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section compact">
+      <div class="about-section-inner">
+        <div class="section-heading fade-in">
+          <div class="section-kicker">Core Team</div>
+          <h2>Care led by qualified rehabilitation professionals.</h2>
+          <p>Our team brings clinical skill, empathy, and practical systems thinking to patients who need more than a
+            one-off appointment. The goal is simple: help each person return to safer, more confident movement.</p>
+          <a href="team.html" class="btn btn-secondary">Meet the Team</a>
+        </div>
+        <div class="team-strip">
+          <article class="team-card fade-in">
+            <img src="assets/team_abatan.jpg" alt="Relief Motion clinical team member" />
+            <div>
+              <h3>Clinical Leadership</h3>
+              <p class="team-role">Physiotherapy</p>
+              <p>Hands-on assessment, treatment planning, and guided progression for recovery at home and online.</p>
+            </div>
+          </article>
+          <article class="team-card fade-in fade-in-delay-1">
+            <img src="assets/team-adaramola-op.jpg" alt="Relief Motion operations team member" />
+            <div>
+              <h3>Care Operations</h3>
+              <p class="team-role">Patient Pathways</p>
+              <p>Scheduling, follow-up, education, and partner coordination so care remains clear and dependable.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="partner-banner">
+      <div class="partner-content">
+        <div>
+          <h2>Preferred physiotherapy partner</h2>
+          <p>Relief Motion supports hospitals, HMOs, clinics, and community health providers with post-acute rehab
+            pathways, home physiotherapy coverage, online follow-up, and patient education.</p>
+        </div>
+        <a href="partnerships.html" class="btn btn-secondary">Know More</a>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <div class="about-section-inner">
+        <div class="section-heading text-center fade-in">
+          <div class="section-kicker">Our Process</div>
+          <h2>4 Step Standardized Relief Motion Process</h2>
+          <p>Every plan is shaped around understanding, recovery, maintenance, and prevention, so progress is not left
+            to guesswork.</p>
+        </div>
+
+        <div class="process-tabs fade-in">
+          <div class="process-tab">Awareness & Goal Setting</div>
+          <div class="process-tab">Recovery</div>
+          <div class="process-tab">Maintenance</div>
+          <div class="process-tab">Prevention & Lifestyle</div>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-card fade-in">
+            <span class="process-number">1</span>
+            <h3>Awareness & Goal Setting</h3>
+            <p>We assess pain, mobility, strength, balance, function, and daily demands, then explain the condition and
+              set practical recovery goals.</p>
+          </article>
+          <article class="process-card fade-in fade-in-delay-1">
+            <span class="process-number">2</span>
+            <h3>Recovery</h3>
+            <p>We use hands-on therapy, guided movement, education, and targeted exercise to reduce symptoms and improve
+              function safely.</p>
+          </article>
+          <article class="process-card fade-in fade-in-delay-2">
+            <span class="process-number">3</span>
+            <h3>Maintenance</h3>
+            <p>We progress home exercises and functional tasks so patients can keep building strength, mobility, and
+              confidence between sessions.</p>
+          </article>
+          <article class="process-card fade-in fade-in-delay-3">
+            <span class="process-number">4</span>
+            <h3>Prevention & Lifestyle</h3>
+            <p>We equip patients and caregivers with clear guidance, safe routines, and movement habits that reduce the
+              risk of relapse.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section soft">
+      <div class="about-section-inner">
+        <div class="section-heading fade-in">
+          <div class="section-kicker">Our Specializations</div>
+          <h2>Effective treatment across physiotherapy needs.</h2>
+          <p>Relief Motion helps patients access focused rehabilitation for common pain conditions, post-surgical
+            recovery, neurological rehab, mobility limitations, and ongoing health maintenance.</p>
+        </div>
+        <div class="specialization-grid">
+          <article class="specialization-card fade-in">
+            <h3>Orthopedic Physiotherapy</h3>
+            <p>Care for back pain, neck pain, shoulder pain, knee pain, arthritis, posture problems, and soft tissue
+              injuries.</p>
+            <a href="services.html#back" class="text-link">Read More -&gt;</a>
+          </article>
+          <article class="specialization-card fade-in fade-in-delay-1">
+            <h3>Neuro Physiotherapy</h3>
+            <p>Stroke rehab and neurological recovery support focused on movement, balance, strength, and independence.
+            </p>
+            <a href="services.html#stroke" class="text-link">Read More -&gt;</a>
+          </article>
+          <article class="specialization-card fade-in fade-in-delay-2">
+            <h3>Post Operative Physiotherapy</h3>
+            <p>Guided rehabilitation after surgery to rebuild mobility, reduce fear, and support safer return to daily
+              activity.</p>
+            <a href="services.html#surgery" class="text-link">Read More -&gt;</a>
+          </article>
+          <article class="specialization-card fade-in">
+            <h3>Geriatric Physiotherapy</h3>
+            <p>Mobility, fall prevention, strength, arthritis care, and confidence-building programs for older adults.
+            </p>
+            <a href="services.html#elderly" class="text-link">Read More -&gt;</a>
+          </article>
+          <article class="specialization-card fade-in fade-in-delay-1">
+            <h3>Online Physiotherapy</h3>
+            <p>Remote assessment, exercise guidance, posture education, and follow-up for patients who need flexible
+              support.</p>
+            <a href="online-consultation.html" class="text-link">Read More -&gt;</a>
+          </article>
+          <article class="specialization-card fade-in fade-in-delay-2">
+            <h3>Posture & Ergonomics</h3>
+            <p>Practical education and movement plans for desk-related pain, posture correction, and everyday body
+              mechanics.</p>
+            <a href="services.html" class="text-link">Read More -&gt;</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2 class="fade-in">Start Your Recovery Journey</h2>
+        <p class="fade-in" style="margin-bottom:32px;">Schedule an initial assessment and experience the difference of
+          clinical care at home.</p>
+        <div class="cta-btn-group fade-in center">
+          <a href="https://wa.me/2349164944357?text=Hello%2C%20I%E2%80%99d%20like%20to%20book%20a%20home%20physiotherapy%20session%20with%20Relief%20Motion.%0A%0AFull%20Name%3A%0ALocation%3A%0ACondition%20%28e.g.%2C%20back%20pain%2C%20stroke%20rehab%29%3A%0APreferred%20Date%20%26%20Time%3A%0A%0AThank%20you."
+            target="_blank" class="btn btn-whatsapp">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+            </svg>
+            Book via WhatsApp
+          </a>
+          <a href="services.html" class="btn btn-outline-white">View Services</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer class="footer">
     <div class="footer-inner">
@@ -479,15 +810,16 @@
         <div class="footer-col">
           <h4>Contact</h4>
           <ul>
-            <li><a href="https://wa.me/2349164944357?text=Hello%2C%20I%E2%80%99d%20like%20to%20book%20a%20session." target="_blank">WhatsApp: +234 916 494 4357</a></li>
+            <li><a href="https://wa.me/2349164944357?text=Hello%2C%20I%E2%80%99d%20like%20to%20book%20a%20session."
+                target="_blank">WhatsApp: +234 916 494 4357</a></li>
             <li><a href="tel:+2349164944357">Call: +234 916 494 4357</a></li>
             <li><a href="mailto:reliefmotion.co@gmail.com">reliefmotion.co@gmail.com</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 Relief Motion. All rights reserved.</span>
-        <span>Made with care in Lagos, Nigeria 🇳🇬</span>
+        <span>&copy; 2026 Relief Motion. All rights reserved.</span>
+        <span>Made with care in Lagos, Nigeria</span>
       </div>
     </div>
   </footer>
