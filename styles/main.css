@@ -410,15 +410,15 @@ p {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 2px;
+  gap: 16px;
   flex: 1;
   min-width: 0;
 }
 
 .nav-links a {
-  padding: 10px 9px;
+  padding: 10px 8px;
   border-radius: 0;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--gray-700);
   transition: var(--transition);
