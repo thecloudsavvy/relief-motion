@@ -69,6 +69,11 @@
       margin-bottom: 48px;
     }
 
+    .hero-btns .btn {
+      font-size: 1.05rem;
+      padding: 18px 36px;
+    }
+
     .hero-image {
       position: relative;
     }
@@ -314,8 +319,25 @@
 
       .hero-btns {
         margin-bottom: 32px;
+        flex-direction: column;
+        width: 100%;
       }
-    }
+
+      .hero-btns .btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        font-size: 1rem;
+        padding: 14px 24px;
+      }
+
+      .hero-badge {
+        font-size: 0.65rem;
+        padding: 6px 12px;
+        border-radius: 12px;
+        line-height: 1.4;
+        margin-bottom: 16px;
+      }
   </style>
 </head>
 
@@ -365,10 +387,10 @@
           Personalized physiotherapy care delivered in the comfort of your home helping you recover, regain movement, and live independently.
         </p>
         <div class="hero-btns">
-          <a href="booking.html" class="btn btn-primary" style="font-size: 1.05rem; padding: 18px 36px;">
+          <a href="booking.html" class="btn btn-primary">
             Book Assessment
           </a>
-          <a href="partnerships.html" class="btn btn-secondary" style="font-size: 1.05rem; padding: 18px 36px;">
+          <a href="partnerships.html" class="btn btn-secondary">
             Partner With Us
           </a>
         </div>
