@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partnerships | Relief Motion Rehabilitation Network</title>
+  <meta name="description"
+    content="Partner with Relief Motion for hospital physiotherapy outsourcing, discharge rehabilitation pathways, HMO rehab coverage, corporate wellness, and home physiotherapy support across Lagos." />
+  <meta name="keywords"
+    content="Physiotherapy Partnership Nigeria, outpatient rehab partner Lagos, hospital discharge rehabilitation Nigeria, HMO physiotherapy Lagos" />
+  <link rel="stylesheet" href="styles/main.css" />
+  <style>
+    .partners-hero {
+      background: var(--teal-900);
+      color: var(--white);
+      padding: 150px 24px 86px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .partners-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(6, 47, 64, 0.97), rgba(11, 79, 108, 0.8)),
+        linear-gradient(0deg, rgba(6, 47, 64, 0.28), rgba(6, 47, 64, 0.08));
+      z-index: 1;
+    }
+
+    .partners-hero-slideshow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .partners-hero-slide {
+      position: absolute;
+      inset: 0;
+      background-position: center right;
+      background-size: cover;
+      opacity: 0;
+      transform: scale(1.05) translateX(0);
+      animation: partnerHeroImage 18s infinite;
+    }
+
+    .partners-hero-slide:nth-child(1) {
+      background-image: url("assets/home-physio-care.png");
+    }
+
+    .partners-hero-slide:nth-child(2) {
+      background-image: url("assets/physiotherapist.png");
+      animation-delay: 6s;
+    }
+
+    .partners-hero-slide:nth-child(3) {
+      background-image: url("assets/stroke-featured-hero.jpg");
+      animation-delay: 12s;
+    }
+
+    @keyframes partnerHeroImage {
+      0% {
+        opacity: 0;
+        transform: scale(1.05) translateX(0);
+      }
+
+      8%,
+      34% {
+        opacity: 1;
+      }
+
+      45%,
+      100% {
+        opacity: 0;
+        transform: scale(1.13) translateX(-18px);
+      }
+    }
+
+    .partners-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .partners-hero h1 {
+      color: var(--white);
+      font-size: clamp(2.4rem, 5vw, 4.35rem);
+      margin-bottom: 18px;
+    }
+
+    .partners-hero p {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: clamp(1.1rem, 2vw, 1.42rem);
+      line-height: 1.72;
+      max-width: 830px;
+      font-weight: 500;
+    }
+
+    .partners-hero .breadcrumb {
+      justify-content: flex-start;
+      margin-top: 26px;
+      margin-bottom: 0;
+    }
+
+    .partners-hero .partners-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .partners-hero .fade-in,
+    .partners-section .fade-in,
+    .download-band .fade-in,
+    .cta-section .fade-in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .partners-section {
+      padding: 82px 24px;
+    }
+
+    .partners-section.soft {
+      background: var(--gray-50);
+    }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .partners-kicker {
+      color: var(--teal-600);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .partners-copy h2,
+    .partners-heading h2 {
+      color: var(--teal-900);
+      margin-bottom: 18px;
+    }
+
+    .partners-copy p,
+    .partners-heading p {
+      color: var(--gray-700);
+      font-size: 1.03rem;
+      line-height: 1.85;
+      margin-bottom: 18px;
+    }
+
+    .think-card {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+      padding: 34px;
+    }
+
+    .think-card h3 {
+      color: var(--teal-900);
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .check-list li {
+      color: var(--gray-700);
+      line-height: 1.7;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .check-list li::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--teal-600);
+      margin-top: 9px;
+      flex: 0 0 auto;
+    }
+
+    .download-band {
+      background: var(--teal-900);
+      color: var(--white);
+      padding: 40px 24px;
+    }
+
+    .download-content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .download-content h2 {
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .download-content p {
+      color: rgba(255, 255, 255, 0.76);
+      margin: 0;
+      max-width: 740px;
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .benefit-image img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .benefit-card {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      padding: 34px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .benefit-card + .benefit-card {
+      margin-top: 24px;
+    }
+
+    .benefit-card h3 {
+      color: var(--teal-900);
+      font-family: var(--font-body);
+      font-size: 1.08rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .callback-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      align-items: stretch;
+    }
+
+    .callback-card {
+      background: var(--teal-900);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 42px;
+      display: grid;
+      align-content: center;
+      gap: 16px;
+    }
+
+    .callback-card h2,
+    .callback-card p {
+      color: var(--white);
+      margin: 0;
+    }
+
+    .callback-card p {
+      color: rgba(255, 255, 255, 0.76);
+      line-height: 1.75;
+    }
+
+    .callback-form {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+      padding: 34px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .callback-form .btn {
+      justify-content: center;
+    }
+
+    .partner-logo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .partner-logo {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: 8px;
+      min-height: 118px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--teal-900);
+      font-weight: 800;
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .partner-logo span {
+      display: block;
+      color: var(--gray-500);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 980px) {
+      .partners-grid,
+      .download-content,
+      .benefit-grid,
+      .callback-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .partner-logo-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .benefit-image img {
+        height: 360px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .partners-hero {
+        padding: 128px 20px 62px;
+      }
+
+      .partners-section {
+        padding: 64px 20px;
+      }
+
+      .partner-logo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .partners-hero-slide {
+        animation: none;
+        opacity: 0;
+        transform: none;
+      }
+
+      .partners-hero-slide:first-child {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/brand_logo.png" alt="Relief Motion Logo" />
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="digital-health.html">Digital Health</a>
+        <a href="services.html">Programs</a>
+        <a href="about.html">About</a>
+        <a href="team.html">Our Team</a>
+        <a href="blog.html">Blog</a>
+        <a href="patient-info.html">Patient Info</a>
+        <a href="partnerships.html">Partnerships</a>
+        <a href="tel:+2349164944357" class="nav-phone">(+234) 916 494 4357</a>
+        <a href="tel:+2349164944357" class="nav-cta">Call</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-mobile" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="digital-health.html">Digital Health</a>
+    <a href="services.html">Programs</a>
+    <a href="about.html">About</a>
+    <a href="team.html">Our Team</a>
+    <a href="blog.html">Blog</a>
+    <a href="patient-info.html">Patient Info</a>
+    <a href="partnerships.html">Partnerships</a>
+    <a href="tel:+2349164944357" class="mobile-phone">(+234) 916 494 4357</a>
+    <a href="tel:+2349164944357" class="mobile-cta">Call</a>
+  </div>
+
+  <header class="partners-hero">
+    <div class="partners-hero-slideshow" aria-hidden="true">
+      <span class="partners-hero-slide"></span>
+      <span class="partners-hero-slide"></span>
+      <span class="partners-hero-slide"></span>
+    </div>
+    <div class="partners-inner fade-in">
+      <h1>Partners</h1>
+      <p>Preferred physiotherapy partner for hospitals, HMOs, clinics, and corporate teams that want dependable
+        rehabilitation care without building every layer in-house.</p>
+      <div class="breadcrumb"><a href="index.html">Home</a> <span>&gt;</span> Partners</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="partners-section">
+      <div class="partners-inner partners-grid">
+        <div class="partners-copy fade-in">
+          <div class="partners-kicker">Partner with Relief Motion</div>
+          <h2>Let Relief Motion take care of your physiotherapy requirements.</h2>
+          <p>Relief Motion is a physiotherapy and rehabilitation specialist built for home care, online care, discharge
+            follow-up, and partner-ready clinical pathways. We help healthcare providers extend recovery beyond the
+            ward, clinic, or consultation room.</p>
+          <p>Our model supports patient intake, treatment planning, home visit physiotherapy, virtual follow-up,
+            documentation, and communication back to the referring team.</p>
+          <div class="cta-btn-group" style="margin-top: 26px;">
+            <a href="mailto:reliefmotion.co@gmail.com?subject=Partnership%20Inquiry%20-%20Relief%20Motion"
+              class="btn btn-primary">Contact Us</a>
+            <a href="booking.html" class="btn btn-secondary">Send Referral</a>
+          </div>
+        </div>
+        <aside class="think-card fade-in fade-in-delay-1">
+          <h3>Think of us</h3>
+          <ul class="check-list">
+            <li>If your hospital needs a competent physiotherapy and rehab partner that can operate as a reliable
+              outpatient or post-discharge care arm.</li>
+            <li>If your HMO wants structured home physiotherapy, online review, and patient education pathways for
+              members who need rehabilitation access.</li>
+            <li>If your corporate team wants in-premise or scheduled physiotherapy support for employee pain,
+              ergonomics, mobility, and wellness.</li>
+            <li>If your clinic wants a trusted referral partner for stroke rehab, post-operative recovery, back pain,
+              arthritis, elderly mobility, and tele-rehab follow-up.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="download-band">
+      <div class="download-content">
+        <div>
+          <h2>Why outsource physiotherapy to Relief Motion?</h2>
+          <p>Because your patients need continuity, your team needs clear communication, and rehab outcomes improve when
+            care is structured after discharge.</p>
+        </div>
+        <a href="mailto:reliefmotion.co@gmail.com?subject=Request%20Partnership%20Presentation%20-%20Relief%20Motion"
+          class="btn btn-secondary">Request Presentation</a>
+      </div>
+    </section>
+
+    <section class="partners-section soft">
+      <div class="partners-inner benefit-grid">
+        <div class="benefit-image fade-in">
+          <img src="assets/physiotherapist.png" alt="Physiotherapist supporting a recovery session" />
+        </div>
+        <div>
+          <article class="benefit-card fade-in fade-in-delay-1">
+            <h3>Operational Benefits</h3>
+            <ul class="check-list">
+              <li>Enhanced physiotherapy capacity without hiring, training, and managing a full rehab team internally.
+              </li>
+              <li>Qualified physiotherapist support for home visits, virtual reviews, and program-based recovery care.
+              </li>
+              <li>Continuity for discharged patients through home care, online follow-up, and caregiver education.</li>
+              <li>A professional patient experience that reflects well on the referring hospital, clinic, or HMO.</li>
+            </ul>
+          </article>
+          <article class="benefit-card fade-in fade-in-delay-2">
+            <h3>Strategic Benefits</h3>
+            <ul class="check-list">
+              <li>Position physiotherapy as a dependable care pathway instead of a one-off service.</li>
+              <li>Create co-marketing opportunities around rehab education, prevention, and recovery programs.</li>
+              <li>Free clinical teams to focus on diagnosis, procedures, and medical management while rehab continues.
+              </li>
+              <li>Grow faster through a partner model designed for patient access, reporting, and measurable progress.
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="partners-section">
+      <div class="partners-inner callback-panel">
+        <div class="callback-card fade-in">
+          <div class="partners-kicker" style="color: var(--gold);">Ask for Callback</div>
+          <h2>Build a better rehabilitation pathway with us.</h2>
+          <p>Tell us the kind of partnership you have in mind. We can discuss hospital outsourcing, HMO coverage,
+            corporate physiotherapy days, clinic referrals, and post-discharge care pathways.</p>
+          <a href="tel:+2349164944357" class="btn btn-secondary">Call Now</a>
+        </div>
+        <form class="callback-form fade-in fade-in-delay-1"
+          action="mailto:reliefmotion.co@gmail.com?subject=Partnership%20Callback%20Request%20-%20Relief%20Motion"
+          method="post" enctype="text/plain">
+          <div class="form-field">
+            <label class="form-label" for="partner-name">Name</label>
+            <input class="form-input" id="partner-name" name="Name" type="text" placeholder="Your name" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="partner-organization">Organization</label>
+            <input class="form-input" id="partner-organization" name="Organization" type="text"
+              placeholder="Hospital, HMO, clinic, or company" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="partner-type">Partnership interest</label>
+            <select class="form-select" id="partner-type" name="Partnership interest">
+              <option>Hospital physiotherapy outsourcing</option>
+              <option>HMO rehabilitation coverage</option>
+              <option>Corporate wellness</option>
+              <option>Clinic referral pathway</option>
+              <option>Other partnership</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="partner-message">Message</label>
+            <textarea class="form-textarea" id="partner-message" name="Message"
+              placeholder="Tell us what you need"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Request Callback</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="partners-section soft">
+      <div class="partners-inner">
+        <div class="partners-heading text-center fade-in">
+          <div class="partners-kicker">Our Partners</div>
+          <h2>Built for trusted healthcare collaboration.</h2>
+          <p>Relief Motion works with care teams and organizations that want dependable rehabilitation access for their
+            patients, members, teams, and communities.</p>
+        </div>
+        <div class="partner-logo-grid">
+          <div class="partner-logo fade-in">Hospitals<span>Discharge rehab</span></div>
+          <div class="partner-logo fade-in fade-in-delay-1">HMOs<span>Member access</span></div>
+          <div class="partner-logo fade-in fade-in-delay-2">Clinics<span>Referral support</span></div>
+          <div class="partner-logo fade-in fade-in-delay-3">Corporates<span>Workplace care</span></div>
+          <div class="partner-logo fade-in">Home Care Teams<span>Continuity</span></div>
+          <div class="partner-logo fade-in fade-in-delay-1">Surgical Teams<span>Post-op recovery</span></div>
+          <div class="partner-logo fade-in fade-in-delay-2">Community Health<span>Access</span></div>
+          <div class="partner-logo fade-in fade-in-delay-3">Digital Health<span>Tele-rehab</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2 class="fade-in">Ready to discuss a partnership?</h2>
+        <p class="fade-in" style="margin-bottom:32px;">We will help you choose the right model for referrals, home care,
+          online follow-up, or embedded physiotherapy support.</p>
+        <div class="cta-btn-group fade-in center">
+          <a href="mailto:reliefmotion.co@gmail.com?subject=Partnership%20Inquiry%20-%20Relief%20Motion"
+            class="btn btn-secondary">Contact Us</a>
+          <a href="booking.html" class="btn btn-outline-white">Referral Portal</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo-name">Relief Motion</span>
+          <p>
+            Relief Motion is a digital health rehabilitation brand delivering evidence-based programs, tele-rehab, and
+            clinical integration for partner hospitals, HMOs, and clinics while maintaining patient-centred care.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="partnerships.html">Partnerships</a></li>
+            <li></li>
+            <li></li>
+            <li><a href="digital-health.html">Digital Health</a></li>
+            <li><a href="services.html">Programs</a></li>
+            <li><a href="booking.html">Book Assessment</a></li>
+            <li><a href="clinical-standards.html">Clinical Standards</a></li>
+            <li><a href="patient-info.html">Patient Info</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:reliefmotion.co@gmail.com">reliefmotion.co@gmail.com</a></li>
+            <li><a href="mailto:reliefmotion.co@gmail.com?subject=Partnership%20Inquiry%20-%20Relief%20Motion">Partnership inquiries</a></li>
+            <li><a href="mailto:reliefmotion.co@gmail.com?subject=Assessment%20Booking%20-%20Relief%20Motion">Book an Assessment</a></li>
+            <li><a href="tel:+2349164944357">Call: +234 916 494 4357</a></li>
+            <li><a href="https://wa.me/2349164944357?text=Hello%2C%20I%27d%20like%20to%20speak%20with%20Relief%20Motion%20about%20rehabilitation%20services."
+                target="_blank">WhatsApp (general)</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Relief Motion. All rights reserved.</span>
+        <span>Built in Lagos, Nigeria</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+</body>
+
+</html>
