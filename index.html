@@ -4,680 +4,355 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Relief Motion | Home Physiotherapy in Lagos</title>
+  <title>Relief Motion | Physiotherapy and rehabilitation</title>
   <meta name="description"
-    content="Professional home physiotherapy in Lagos. Specialising in stroke rehabilitation, back pain, post-surgery recovery, and elderly mobility." />
-  <link rel="stylesheet" href="styles/main.css" />
-  <style>
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 120px 24px 60px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    .hero-text {
-      color: white;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(245, 166, 35, 0.15);
-      border: 1px solid rgba(245, 166, 35, 0.35);
-      color: var(--gold);
-      padding: 8px 18px;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .hero-text h1 {
-      color: white;
-      margin-bottom: 22px;
-    }
-
-    .hero-text h1 span {
-      color: var(--gold);
-    }
-
-    .hero-text p {
-      color: rgba(255, 255, 255, 0.75);
-      font-size: 1.08rem;
-      margin-bottom: 36px;
-      max-width: 480px;
-    }
-
-    .hero-btns {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 48px;
-    }
-
-    .hero-image {
-      position: relative;
-    }
-
-    .hero-image img {
-      width: 100%;
-      height: 520px;
-      object-fit: cover;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-xl);
-    }
-
-    .hero-image-badge {
-      position: absolute;
-      bottom: -20px;
-      left: -24px;
-      background: white;
-      border-radius: var(--radius-md);
-      padding: 18px 22px;
-      box-shadow: var(--shadow-lg);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 200px;
-    }
-
-    .hero-image-badge .bi {
-      width: 44px;
-      height: 44px;
-      background: var(--teal-50);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .hero-image-badge .bi svg {
-      width: 22px;
-      height: 22px;
-      color: var(--teal-700);
-    }
-
-    .hero-image-badge strong {
-      display: block;
-      font-size: 0.9rem;
-      color: var(--gray-900);
-    }
-
-    .hero-image-badge span {
-      font-size: 0.75rem;
-      color: var(--gray-300);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-
-    .service-card {
-      background: var(--white);
-      padding: 40px 32px;
-      border-radius: var(--radius-md);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-      border: 1px solid var(--gray-100);
-      transition: var(--transition);
-    }
-
-    .service-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(11, 79, 108, 0.1);
-      border-color: var(--teal-100);
-    }
-
-    .sc-icon {
-      width: 64px;
-      height: 64px;
-      background: rgba(16, 119, 160, 0.08);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 24px;
-      transition: var(--transition);
-    }
-
-    .service-card:hover .sc-icon {
-      background: var(--teal-100);
-      transform: scale(1.1);
-    }
-
-    .sc-icon svg {
-      width: 28px;
-      height: 28px;
-      color: var(--teal-700);
-    }
-
-    .service-card h3 {
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-    }
-
-    .service-card p {
-      font-size: 0.9rem;
-      margin-bottom: 20px;
-    }
-
-    .service-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--teal-700);
-      transition: var(--transition-fast);
-    }
-
-    .service-link svg {
-      width: 16px;
-      height: 16px;
-      transition: transform 0.2s;
-    }
-
-    .service-link:hover {
-      color: var(--teal-800);
-    }
-
-    .service-link:hover svg {
-      transform: translateX(4px);
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-    }
-
-    .why-image img {
-      width: 100%;
-      height: 480px;
-      object-fit: cover;
-      object-position: center 20%;
-      border-radius: var(--radius-lg);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      transition: var(--transition);
-    }
-
-    .why-image img:hover {
-      transform: scale(1.02);
-      box-shadow: 0 30px 60px rgba(0, 0, 108, 0.15);
-    }
-
-    .why-feat {
-      display: flex;
-      gap: 18px;
-      margin-bottom: 28px;
-    }
-
-    .why-feat-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--teal-50);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .why-feat-icon svg {
-      width: 22px;
-      height: 22px;
-      color: var(--teal-700);
-    }
-
-    .why-feat h4 {
-      margin-bottom: 5px;
-      font-size: 0.97rem;
-    }
-
-    .why-feat p {
-      font-size: 0.88rem;
-    }
-
-    .test-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    @media (max-width: 900px) {
-      .hero-content {
-        grid-template-columns: 1fr;
-        gap: 48px;
-        padding-top: 140px;
-      }
-
-      .hero-image img {
-        height: 320px;
-      }
-
-      .hero-image-badge {
-        left: 0;
-      }
-
-      .services-grid,
-      .test-strip {
-        grid-template-columns: 1fr;
-      }
-
-      .why-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .why-image {
-        order: -1;
-      }
-
-      .why-image img {
-        height: 280px;
-      }
-    }
-  </style>
+    content="Relief Motion provides personalized physiotherapy and rehabilitation through home visits and online consultations across Nigeria." />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="styles/home.css?v=5" />
 </head>
 
 <body>
-  <nav class="nav" id="nav">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <img src="assets/brand_logo.png" alt="Relief Motion Logo" style="height: 54px; width: auto;" />
-      </a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="online-consultation.html">Online Consultation</a>
-        <a href="about.html">About</a><a href="team.html">Our Team</a><a href="blog.html">Blog</a>
-        <a href="testimonials.html">Testimonials</a>
-        <a href="booking.html" class="nav-cta">Book a Session</a>
-      </div>
-      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-  <div class="nav-mobile" id="mobile-nav">
-    <a href="index.html">Home</a><a href="services.html">Services</a><a href="online-consultation.html">Online
-      Consultation</a><a href="about.html">About</a><a href="testimonials.html">Testimonials</a>
-    <a href="booking.html" class="mobile-cta">Book a Session</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="topbar">
+    <a href="https://wa.me/2349164944357">WhatsApp +234 916 494 4357</a>
+    <a href="mailto:reliefmotion.co@gmail.com">reliefmotion.co@gmail.com</a>
   </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay-pattern"></div>
-    <div class="hero-content">
-      <div class="hero-text">
-        <div class="hero-badge">⭐ Lagos' Trusted Home Physio Service</div>
-        <h1>Recovery Begins<br /><span>In Your Home</span></h1>
-        <p>
-          Professional physiotherapy delivered to your doorstep. Stroke rehab,
-          back pain, surgery recovery, and elderly mobility — all in Lagos.
-        </p>
-        <div class="hero-btns">
-          <a href="https://wa.me/2349164944357?text=Hello%20Relief%20Motion%2C%20I%20would%20like%20to%20book%20a%20home%20physiotherapy%20session."
-            target="_blank" class="btn btn-whatsapp" id="hero-wa-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+  <header class="site-nav">
+    <a class="brand" href="index.html">
+      <img src="assets/logo-mark.png" alt="" width="40" height="40" />
+      <span>Relief Motion</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#team">Our team</a>
+      <a href="#coverage">Coverage</a>
+    </nav>
+    <a class="btn nav-cta" href="https://wa.me/2349164944357">Book an appointment</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" id="menu-toggle"
+      aria-label="Menu">
+      <span></span>
+    </button>
+    <div class="nav-drawer" id="nav-drawer">
+      <a href="#services">Services</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#team">Our team</a>
+      <a href="#coverage">Coverage</a>
+      <a class="btn" href="https://wa.me/2349164944357">Book an appointment</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="hero-kicker">Physiotherapy &amp; rehabilitation</p>
+          <h1>Professional physiotherapy care, wherever you are.</h1>
+          <p class="lede">Relief Motion provides personalized physiotherapy and rehabilitation through home visits and
+            online consultations. Get matched with a verified physiotherapist based on your condition, location and care
+            needs.</p>
+          <div class="hero-actions">
+            <a class="btn" href="https://wa.me/2349164944357">Book a physiotherapy session</a>
+            <a class="btn btn-ghost" href="#how-it-works">How it works</a>
+          </div>
+          <p class="hero-points">Home physiotherapy <span aria-hidden="true">·</span> Online physiotherapy <span aria-hidden="true">·</span> Rehabilitation <span aria-hidden="true">·</span> Nationwide network</p>
+        </div>
+        <figure class="hero-photo">
+          <img src="assets/hero-treatment.jpg"
+            alt="Physiotherapist helping an older patient with a home exercise" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="section tint" id="services">
+      <div class="section-head">
+        <h2>Physiotherapy for your recovery</h2>
+        <p>Whether you're dealing with pain, recovering from an injury, managing a neurological condition, or rebuilding
+          strength after surgery, our physiotherapists provide care designed around you.</p>
+      </div>
+      <ul class="treat-cards">
+        <li>
+          <img src="assets/carousel-shoulder.jpg" alt="Physiotherapist helping an older patient with an arm exercise" />
+          <h3>Stroke &amp; neurological rehabilitation</h3>
+        </li>
+        <li>
+          <img src="assets/carousel-knee.jpg" alt="Physiotherapist treating a patient for knee and joint pain" />
+          <h3>Back, neck &amp; joint pain</h3>
+        </li>
+        <li>
+          <img src="assets/carousel-core.jpg" alt="Physiotherapist coaching an athlete through agility training" />
+          <h3>Sports &amp; injury rehabilitation</h3>
+        </li>
+        <li>
+          <img src="assets/carousel-gait.jpg" alt="Physiotherapist supporting a patient walking down stairs" />
+          <h3>Post-surgery &amp; mobility rehabilitation</h3>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="section-head">
+        <h2>How it works</h2>
+        <p>You never get a random phone number. Relief Motion stays your point of contact from the first message to the
+          follow-up.</p>
+      </div>
+      <ol class="visit-steps">
+        <li>
+          <h3>Tell us what is going on</h3>
+          <p>Message WhatsApp with the condition, your city, and a preferred time. Home visits and online sessions are
+            available nationwide.</p>
+        </li>
+        <li>
+          <h3>We match a physiotherapist</h3>
+          <p>We assign an MRTB-verified clinician who covers your area and treats your condition.</p>
+        </li>
+        <li>
+          <h3>Treatment at home or online</h3>
+          <p>Your physiotherapist comes to you, or joins you on a video call, on the time you agreed.</p>
+        </li>
+        <li>
+          <h3>We stay with you</h3>
+          <p>After the session we check in, collect feedback, and book the next visit if you need one.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section" id="team">
+      <div class="section-head">
+        <h2>Meet our team</h2>
+      </div>
+      <ul class="team">
+        <li>
+          <img src="assets/team_abatan_2.jpg" alt="PT. Abatan T.D." />
+          <h3>PT. Abatan T.D.</h3>
+        </li>
+        <li>
+          <img src="assets/team_abatan.jpg" alt="PT. Abatan K.D." />
+          <h3>PT. Abatan K.D.</h3>
+        </li>
+        <li>
+          <img src="assets/lanre.png" alt="PT. Ifelowo O.O." />
+          <h3>PT. Ifelowo O.O.</h3>
+        </li>
+        <li>
+          <img src="assets/fola.png" alt="PT. Esho F.A." class="team-photo-high" />
+          <h3>PT. Esho F.A.</h3>
+        </li>
+        <li>
+          <img src="assets/team_adebayo.jpg" alt="PT. Adebayo" />
+          <h3>PT. Adebayo</h3>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section navy" id="why">
+      <div class="section-head">
+        <h2>Why Relief Motion</h2>
+      </div>
+      <ul class="why">
+        <li>
+          <h3>Verified against the MRTB register</h3>
+          <p>Every physiotherapist is verified before they see a single patient.</p>
+        </li>
+        <li>
+          <h3>Personalised care, not a one-size-fits-all approach</h3>
+          <p>Your physiotherapist is matched to your condition, goals and care needs.</p>
+        </li>
+        <li>
+          <h3>From your first booking to your follow-up</h3>
+          <p>We stay involved throughout the process, helping keep your care organised and consistent.</p>
+        </li>
+        <li>
+          <h3>Care designed around real life</h3>
+          <p>Home visits and online consultations make physiotherapy more accessible and convenient.</p>
+        </li>
+        <li>
+          <h3>A trusted network, wherever you are</h3>
+          <p>We are building a nationwide network that connects more people with qualified physiotherapy professionals.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section tint" id="coverage">
+      <div class="section-head">
+        <h2>Where we work</h2>
+        <p>Home visits and online consultations across Nigeria. We match you with an MRTB-verified physiotherapist in
+          your city, or online if that suits you better.</p>
+      </div>
+      <ul class="areas">
+        <li>Lagos</li>
+        <li>Abuja</li>
+        <li>Port Harcourt</li>
+        <li>Ibadan</li>
+        <li>Kano</li>
+        <li>Kaduna</li>
+        <li>Enugu</li>
+        <li>Benin City</li>
+        <li>Jos</li>
+        <li>Calabar</li>
+        <li>Ilorin</li>
+        <li>Abeokuta</li>
+      </ul>
+    </section>
+
+    <section class="section" id="stories">
+      <div class="section-head">
+        <h2>From patients across Nigeria</h2>
+      </div>
+      <div class="quote-carousel" aria-roledescription="carousel" aria-label="Patient stories">
+        <ul class="reviews" id="quote-track">
+          <li class="is-active">
+            <blockquote>
+              <p>After my stroke, I couldn't lift my arm. After 8 weeks with Relief Motion, I was feeding myself again.</p>
+              <footer>Mrs. Maryam T., Abuja, FCT</footer>
+            </blockquote>
+          </li>
+          <li>
+            <blockquote>
+              <p>I had severe sciatica for 2 years. Three weeks in, the pain halved. By week 6, I was back at work.</p>
+              <footer>Mr. Kunle A., Port Harcourt, Rivers</footer>
+            </blockquote>
+          </li>
+          <li>
+            <blockquote>
+              <p>My 74-year-old mother had knee surgery. Relief Motion came daily. Her recovery was faster than expected.</p>
+              <footer>Adaeze O., Enugu</footer>
+            </blockquote>
+          </li>
+          <li>
+            <blockquote>
+              <p>The online session was clear and practical. I could follow the exercises from home in Ibadan without travelling.</p>
+              <footer>Tunde B., Ibadan, Oyo</footer>
+            </blockquote>
+          </li>
+          <li>
+            <blockquote>
+              <p>After my knee injury I needed someone who could visit. The physiotherapist was on time and the plan was easy to stick to.</p>
+              <footer>Aisha M., Kano, Kano</footer>
+            </blockquote>
+          </li>
+        </ul>
+        <div class="quote-controls">
+          <button type="button" class="quote-arrow" id="quote-prev" aria-label="Previous testimonial">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" />
             </svg>
-            Book via WhatsApp
-          </a>
-          <a href="services.html" class="btn btn-outline-white">View All Services</a>
-        </div>
-        <div class="stats-row">
-          <div class="stat-item">
-            <div class="number" data-target="200" data-suffix="+">0+</div>
-            <div class="label">Patients Treated</div>
-          </div>
-          <div class="stat-item">
-            <div class="number" data-target="8" data-suffix="+">0+</div>
-            <div class="label">Years Experience</div>
-          </div>
-          <div class="stat-item">
-            <div class="number" data-target="5" data-suffix="">0</div>
-            <div class="label">Areas Served</div>
-          </div>
-        </div>
-      </div>
-      <div class="hero-image fade-in">
-        <img src="assets/hero.png" alt="Physiotherapist treating patient at home in Lagos" />
-        <div class="hero-image-badge">
-          <div class="bi">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </button>
+          <div class="quote-dots" id="quote-dots"></div>
+          <button type="button" class="quote-arrow" id="quote-next" aria-label="Next testimonial">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M9 18l6-6-6-6" />
             </svg>
-          </div>
-          <div>
-            <strong>Certified & Licensed</strong><span>MRTM Registered</span>
-          </div>
+          </button>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TRUST BAR -->
-  <div class="trust-bar">
-    <div class="trust-bar-inner">
-      <div class="trust-item">✅ Licensed Physiotherapist</div>
-      <div class="trust-item">🏠 Home Visits Across Lagos</div>
-      <div class="trust-item">🕐 Flexible Scheduling</div>
-      <div class="trust-item">❤️ Patient-Centred Care</div>
-      <div class="trust-item">📍 Lekki · Ikoyi · Yaba · Gbagada</div>
-    </div>
-  </div>
+    <section class="cta">
+      <h2>Ready to start treatment?</h2>
+      <p>Book a home or online physiotherapy session on WhatsApp. Tell us the condition and your location.</p>
+      <a class="btn btn-light" href="https://wa.me/2349164944357">Book via WhatsApp</a>
+    </section>
+  </main>
 
-  <!-- SERVICES -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header center fade-in">
-        <div class="section-label">What We Treat</div>
-        <h2>Specialised Home Physiotherapy</h2>
-        <div class="divider center"></div>
-        <p>
-          Experience therapeutic excellence and clinical expertise in the comfort
-          of your own home. We don't just treat symptoms; we restore your quality of life.
-        </p>
+  <footer class="site-footer">
+    <div class="footer-lockup">
+      <img src="assets/logo-lockup.jpg" alt="Relief Motion Physiotherapy. Move, recover, live better." />
+    </div>
+    <div class="footer-body">
+      <p class="footer-about">Relief Motion connects patients with verified physiotherapists for convenient home and
+        online physiotherapy care.</p>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="https://wa.me/2349164944357">WhatsApp: +234 916 494 4357</a></li>
+          <li><a href="mailto:reliefmotion.co@gmail.com">reliefmotion.co@gmail.com</a></li>
+          <li><a
+              href="https://wa.me/2349164944357?text=Hello%20Relief%20Motion%2C%20I%20am%20a%20physiotherapist%20and%20would%20like%20to%20join%20the%20network.">Physiotherapists:
+              join the network</a></li>
+        </ul>
       </div>
-      <div class="services-grid">
-        <div class="card service-card fade-in fade-in-delay-1">
-          <div class="sc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path
-                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-            </svg>
-          </div>
-          <h3>Stroke Rehabilitation</h3>
-          <p>
-            Specialised recovery programmes to restore movement, balance, and
-            independence after a stroke.
-          </p>
-          <a href="services.html" class="service-link">Learn more →</a>
-        </div>
-        <div class="card service-card fade-in fade-in-delay-2">
-          <div class="sc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <h3>Back Pain & Sciatica</h3>
-          <p>
-            Evidence-based treatment to relieve chronic back pain, herniated
-            discs, and sciatic nerve pain.
-          </p>
-          <a href="services.html" class="service-link">Learn more →</a>
-        </div>
-        <div class="card service-card fade-in fade-in-delay-3">
-          <div class="sc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M4.5 12.75l6 6 9-13.5" />
-            </svg>
-          </div>
-          <h3>Post-Surgery Recovery</h3>
-          <p>
-            Structured rehabilitation to speed healing, rebuild strength, and
-            prevent complications after surgery.
-          </p>
-          <a href="services.html" class="service-link">Learn more →</a>
-        </div>
-      </div>
-      <div class="text-center" style="margin-top: 40px">
-        <a href="services.html" class="btn btn-primary">Explore All Services — Get Started</a>
+      <div>
+        <h3>On this page</h3>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#team">Our team</a></li>
+          <li><a href="#coverage">Coverage</a></li>
+        </ul>
       </div>
     </div>
-  </section>
-
-  <!-- WHY US -->
-  <section class="section" style="background: var(--off-white)">
-    <div class="container">
-      <div class="why-grid">
-        <div class="why-image fade-in">
-          <img src="assets/home-physio-care.png" alt="Physiotherapist providing hands-on care to a patient at home"
-            style="width: 100%; height: 100%; object-fit: cover" />
-        </div>
-        <div>
-          <div class="section-label fade-in">Why Relief Motion</div>
-          <h2 class="fade-in">
-            The Care You Deserve,<br />Delivered at Home
-          </h2>
-          <div class="divider fade-in"></div>
-          <div class="why-feat fade-in fade-in-delay-1">
-            <div class="why-feat-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path
-                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <div>
-              <h4>Fully Licensed & Certified</h4>
-              <p>
-                Registered with the Medical Rehabilitation Therapists (MRTM)
-                Board of Nigeria.
-              </p>
-            </div>
-          </div>
-          <div class="why-feat fade-in fade-in-delay-2">
-            <div class="why-feat-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-            </div>
-            <div>
-              <h4>We Come to You</h4>
-              <p>
-                No travel, no waiting rooms. Clinical-grade treatment in your
-                home.
-              </p>
-            </div>
-          </div>
-          <div class="why-feat fade-in fade-in-delay-3">
-            <div class="why-feat-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-            </div>
-            <div>
-              <h4>Personalised Treatment Plans</h4>
-              <p>
-                Every patient receives a tailored programme built around their
-                specific condition and goals.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header center fade-in">
-        <div class="section-label">Patient Stories</div>
-        <h2>Real Recoveries, Real Results</h2>
-        <div class="divider center"></div>
-      </div>
-      <div class="test-strip">
-        <div class="testimonial-card fade-in fade-in-delay-1">
-          <div class="testimonial-quote">"</div>
-          <p class="testimonial-text">
-            After my stroke, I couldn't lift my arm. After 8 weeks with Relief
-            Motion, I was feeding myself again. This service changed my life.
-          </p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">M</div>
-            <div>
-              <div class="stars">⭐⭐⭐⭐⭐</div>
-              <div class="testimonial-name">Mrs. Maryam T.</div>
-              <div class="testimonial-location">Gbagada, Lagos</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card fade-in fade-in-delay-2">
-          <div class="testimonial-quote">"</div>
-          <p class="testimonial-text">
-            I had severe sciatica for 2 years. Three weeks in, the pain
-            halved. By week 6, I was back at work. Incredibly professional.
-          </p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">K</div>
-            <div>
-              <div class="stars">⭐⭐⭐⭐⭐</div>
-              <div class="testimonial-name">Mr. Kunle A.</div>
-              <div class="testimonial-location">Surulere, Lagos</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card fade-in fade-in-delay-3">
-          <div class="testimonial-quote">"</div>
-          <p class="testimonial-text">
-            My 74-year-old mother had knee surgery. Relief Motion came daily.
-            Her recovery was faster than the surgeon expected.
-          </p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">A</div>
-            <div>
-              <div class="stars">⭐⭐⭐⭐⭐</div>
-              <div class="testimonial-name">Adaeze O.</div>
-              <div class="testimonial-location">Lekki, Lagos</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="text-center" style="margin-top: 40px">
-        <a href="testimonials.html" class="btn btn-secondary">Read More Stories</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- AREAS -->
-  <section class="section" style="background: var(--gray-50)">
-    <div class="container">
-      <div class="section-header center fade-in">
-        <div class="section-label">Coverage</div>
-        <h2>Areas We Serve in Lagos</h2>
-        <div class="divider center"></div>
-        <p>
-          Serving patients across Lagos. Don't see your area? Contact us —
-          we'll do our best to reach you.
-        </p>
-      </div>
-      <div class="areas-container fade-in">
-        <div class="areas-visual">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-            <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-        </div>
-        <div class="areas-grid">
-          <div class="area-chip">📍 Lekki</div>
-          <div class="area-chip">📍 Ikoyi</div>
-          <div class="area-chip">📍 Surulere</div>
-          <div class="area-chip">📍 Yaba</div>
-          <div class="area-chip">📍 Gbagada</div>
-          <div class="area-chip">📍 Victoria Island</div>
-          <div class="area-chip">📍 Maryland</div>
-          <div class="area-chip">📍 Ikeja</div>
-          <div class="area-chip">📍 Ajah</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="container">
-      <div class="section-label" style="color: var(--gold)">
-        Get Started Today
-      </div>
-      <h2 class="fade-in">Ready to Start Your Recovery?</h2>
-      <p class="fade-in">
-        Book a home physiotherapy session directly via WhatsApp. Fast
-        responses guaranteed.
-      </p>
-      <span class="cta-urgency fade-in">Limited home-visit slots available this week. Restore your movement
-        today.</span>
-      <div class="cta-btn-group fade-in">
-        <a href="https://wa.me/2349164944357?text=Hello%20Relief%20Motion%2C%20I%20would%20like%20to%20book%20a%20home%20physiotherapy%20session."
-          target="_blank" class="btn btn-whatsapp">
-          <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px">
-            <path
-              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-          </svg>
-          Book via WhatsApp
-        </a>
-        <a href="about.html" class="btn btn-outline-white">Meet the Physiotherapist</a>
-      </div>
-      <span class="cta-trust fade-in">Trusted by 200+ patients across Lagos.</span>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <span class="footer-logo-name">Relief Motion</span>
-          <p>
-            Relief Motion provides expert home physiotherapy across Lagos, specializing in stroke rehab, back pain, and
-            post-surgery recovery. We bring clinical excellence to your doorstep.
-          </p>
-        </div>
-        <div class="footer-col">
-          <h4>Pages</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="online-consultation.html">Online Consultation</a></li>
-            <li><a href="about.html">About</a> <a href="team.html">Our Team</a> <a href="blog.html">Blog</a></li>
-            <li><a href="testimonials.html">Testimonials</a></li>
-            <li><a href="booking.html">Book a Session</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Services</h4>
-          <ul>
-            <li><a href="services.html#stroke">Stroke Rehab</a></li>
-            <li><a href="services.html#back">Back Pain</a></li>
-            <li><a href="services.html#knee">Knee & Arthritis</a></li>
-            <li><a href="services.html#surgery">Post-Surgery</a></li>
-            <li><a href="services.html#elderly">Elderly Mobility</a></li>
-            <li><a href="online-consultation.html">Online Consultation</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="https://wa.me/2349164944357" target="_blank">WhatsApp: +234 800 000 0000</a></li>
-            <li><a href="tel:+2348000000000">Call: +234 800 000 0000</a></li>
-            <li><a href="mailto:hello@reliefmotionphysio.com">hello@reliefmotionphysio.com</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Relief Motion. All rights reserved.</span>
-        <span>Made with care in Lagos, Nigeria 🇳🇬</span>
-      </div>
-    </div>
+    <p class="footer-base">©2026 Relief Motion.</p>
   </footer>
-  <script src="scripts/main.js"></script>
+
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const drawer = document.getElementById("nav-drawer");
+    toggle?.addEventListener("click", () => {
+      const open = drawer.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+    drawer?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        drawer.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    const setupCarousel = ({ track, dots, prev, next, interval, auto }) => {
+      const slides = [...track.children];
+      let index = 0;
+      let timer;
+
+      const renderDots = () => {
+        dots.innerHTML = "";
+        slides.forEach((_, i) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.setAttribute("aria-label", `Show slide ${i + 1}`);
+          button.addEventListener("click", () => go(i));
+          dots.appendChild(button);
+        });
+      };
+
+      const go = (nextIndex) => {
+        index = (nextIndex + slides.length) % slides.length;
+        slides.forEach((slide, i) => slide.classList.toggle("is-active", i === index));
+        [...dots.children].forEach((dot, i) =>
+          dot.setAttribute("aria-current", i === index ? "true" : "false")
+        );
+      };
+
+      const play = () => {
+        if (!auto) return;
+        stop();
+        timer = setInterval(() => go(index + 1), interval);
+      };
+
+      const stop = () => clearInterval(timer);
+
+      renderDots();
+      go(0);
+      prev?.addEventListener("click", () => go(index - 1));
+      next?.addEventListener("click", () => go(index + 1));
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) stop();
+        else play();
+      });
+      play();
+    };
+
+    setupCarousel({
+      track: document.getElementById("quote-track"),
+      dots: document.getElementById("quote-dots"),
+      prev: document.getElementById("quote-prev"),
+      next: document.getElementById("quote-next"),
+      interval: 7000,
+      auto: true,
+    });
+  </script>
 </body>
 
 </html>
