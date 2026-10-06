@@ -1,0 +1,8 @@
+.DS_Store
+.next/
+emr/node_modules/
+emr/.next/
+emr/.env.local
+emr/.env
+emr/npm-debug.log*
+
