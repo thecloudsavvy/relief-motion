@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { requireStaff } from "@/lib/auth";
-import { formatDate, visitTypeLabel } from "@/lib/format";
+import { clinicianLabel, formatDate, visitTypeLabel } from "@/lib/format";
 
 export default async function SessionsPage({
   searchParams
@@ -12,13 +12,13 @@ export default async function SessionsPage({
   let request = supabase
     .from("visits")
     .select(
-      "id, visit_at, visit_time, visit_type, status, patient_id, patients(rm_id, first_name, last_name), profiles!visits_clinician_id_fkey(full_name)"
+      "id, visit_at, visit_time, visit_type, status, patient_id, clinician_name, patients!inner(rm_id, first_name, last_name, assigned_to), profiles!visits_clinician_id_fkey(full_name)"
     )
     .order("visit_at", { ascending: false })
     .order("created_at", { ascending: false })
     .limit(80);
 
-  if (!isAdmin) request = request.eq("clinician_id", user.id);
+  if (!isAdmin) request = request.eq("patients.assigned_to", user.id);
   if (status === "draft" || status === "signed") request = request.eq("status", status);
 
   const { data: visits } = await request;
@@ -35,7 +35,9 @@ export default async function SessionsPage({
       <div className="page-head">
         <div>
           <h1>Sessions</h1>
-          <p className="muted">{isAdmin ? "All visit notes across the network" : "Your visit notes"}</p>
+          <p className="muted">
+            {isAdmin ? "All visit notes across the network" : "Visit notes for your assigned patients"}
+          </p>
         </div>
       </div>
       <form className="filters" action="/sessions">
@@ -65,7 +67,6 @@ export default async function SessionsPage({
             {rows.length ? (
               rows.map((row) => {
                 const patient = Array.isArray(row.patients) ? row.patients[0] : row.patients;
-                const clinician = Array.isArray(row.profiles) ? row.profiles[0] : row.profiles;
                 return (
                   <tr key={row.id}>
                     <td>
@@ -85,7 +86,7 @@ export default async function SessionsPage({
                         {visitTypeLabel(row.visit_type)}
                       </span>
                     </td>
-                    <td>{clinician?.full_name || "Staff"}</td>
+                    <td>{clinicianLabel(row.profiles, row.clinician_name)}</td>
                     <td>
                       <span className={`pill ${row.status === "draft" ? "pill-draft" : "pill-ok"}`}>
                         {row.status === "draft" ? "Draft" : "Signed"}
@@ -100,7 +101,9 @@ export default async function SessionsPage({
             ) : (
               <tr>
                 <td colSpan={6} className="empty">
-                  No sessions yet.
+                  {term || status
+                    ? "No sessions match that search."
+                    : "No sessions yet. Document a visit from a patient record."}
                 </td>
               </tr>
             )}

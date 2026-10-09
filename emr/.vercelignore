@@ -1,0 +1,7 @@
+app/(app)/bookings
+app/(app)/care-plans
+app/(app)/payments
+lib/care.ts
+tsconfig.tsbuildinfo
+.env*
+!.env.local.example

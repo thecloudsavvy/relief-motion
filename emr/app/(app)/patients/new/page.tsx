@@ -14,10 +14,12 @@ export default async function NewPatientPage({
   const { data: profiles } = isAdmin
     ? await supabase
         .from("profiles")
-        .select("id, full_name")
+        .select("id, full_name, status")
         .order("full_name")
-        .returns<Pick<Profile, "id" | "full_name">[]>()
-    : { data: [] as Pick<Profile, "id" | "full_name">[] };
+        .returns<Pick<Profile, "id" | "full_name" | "status">[]>()
+    : { data: [] as Pick<Profile, "id" | "full_name" | "status">[] };
+
+  const assignable = (profiles || []).filter((row) => row.status !== "disabled");
 
   return (
     <>
@@ -36,7 +38,7 @@ export default async function NewPatientPage({
       </div>
       <PatientForm
         action={createPatient}
-        profiles={profiles || []}
+        profiles={assignable}
         error={error}
         submitLabel="Save patient"
         includeAssignment={isAdmin}

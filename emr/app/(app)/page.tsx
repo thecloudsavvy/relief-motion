@@ -1,18 +1,26 @@
 import Link from "next/link";
 import { IconPatients, IconProviders, IconSessions } from "@/components/ui";
 import { requireStaff } from "@/lib/auth";
-import { auditCopy, firstName, longDate, relativeTime, visitTypeLabel } from "@/lib/format";
+import { auditCopy, clinicianLabel, firstName, lagosStamp, longDate, relativeTime, titleCase, uniqueVisitSlots, visitTypeLabel } from "@/lib/format";
+
+function uniqueRecentNotes<T extends { patient_id: string; status?: string; created_at?: string }>(rows: T[]) {
+  const map = new Map<string, T>();
+  for (const row of rows) {
+    const key = `${row.patient_id}|${row.status || ""}|${(row.created_at || "").slice(0, 16)}`;
+    if (!map.has(key)) map.set(key, row);
+  }
+  return Array.from(map.values());
+}
 
 export default async function DashboardPage() {
   const { supabase, user, isAdmin, profile } = await requireStaff();
-  const today = new Date().toISOString().slice(0, 10);
+  const today = lagosStamp().visit_at;
   const monthStart = today.slice(0, 8) + "01";
 
-  const visitsToday = supabase.from("visits").select("*", { count: "exact", head: true }).eq("visit_at", today);
   const visitsTodayRows = supabase
     .from("visits")
     .select(
-      "id, visit_at, visit_time, visit_type, patient_id, clinician_id, patients(rm_id, first_name, last_name, condition), profiles!visits_clinician_id_fkey(full_name)"
+      "id, visit_at, visit_time, visit_type, patient_id, clinician_id, clinician_name, created_at, patients(rm_id, first_name, last_name, condition), profiles!visits_clinician_id_fkey(full_name)"
     )
     .eq("visit_at", today)
     .order("visit_time", { ascending: true });
@@ -20,7 +28,6 @@ export default async function DashboardPage() {
   const drafts = supabase.from("visits").select("*", { count: "exact", head: true }).eq("status", "draft");
 
   const [
-    { count: todayCount },
     { data: todayVisits },
     { count: activeCount },
     { count: monthCount },
@@ -29,7 +36,6 @@ export default async function DashboardPage() {
     { data: activity },
     { data: recentNotes }
   ] = await Promise.all([
-    isAdmin ? visitsToday : visitsToday.eq("clinician_id", user.id),
     isAdmin ? visitsTodayRows : visitsTodayRows.eq("clinician_id", user.id),
     isAdmin ? activePatients : activePatients.eq("assigned_to", user.id),
     isAdmin
@@ -42,7 +48,11 @@ export default async function DashboardPage() {
           .gte("created_at", monthStart),
     isAdmin ? drafts : drafts.eq("clinician_id", user.id),
     isAdmin
-      ? supabase.from("profiles").select("*", { count: "exact", head: true }).eq("role", "physiotherapist")
+      ? supabase
+          .from("profiles")
+          .select("*", { count: "exact", head: true })
+          .eq("role", "physiotherapist")
+          .neq("status", "disabled")
       : Promise.resolve({ count: 0 }),
     isAdmin
       ? supabase
@@ -63,8 +73,10 @@ export default async function DashboardPage() {
           .limit(6)
   ]);
 
-  const homeCount = (todayVisits || []).filter((row) => row.visit_type === "home").length;
-  const onlineCount = (todayVisits || []).length - homeCount;
+  const todayList = uniqueVisitSlots(todayVisits || []);
+  const noteList = uniqueRecentNotes(recentNotes || []);
+  const homeCount = todayList.filter((row) => row.visit_type === "home").length;
+  const onlineCount = todayList.length - homeCount;
 
   return (
     <>
@@ -81,7 +93,7 @@ export default async function DashboardPage() {
           <div className="stat-icon">
             <IconSessions />
           </div>
-          <b>{todayCount || 0}</b>
+          <b>{todayList.length}</b>
           <span>{isAdmin ? "Today’s sessions" : "My sessions today"}</span>
           <p className="muted">
             {homeCount} home · {onlineCount} online
@@ -121,28 +133,29 @@ export default async function DashboardPage() {
             <h2>{isAdmin ? "Today’s sessions" : "My sessions today"}</h2>
             <Link href="/sessions">View all</Link>
           </div>
-          {(todayVisits || []).length ? (
-            (todayVisits || []).map((row) => {
+          {(todayList || []).length ? (
+            todayList.map((row) => {
               const patient = Array.isArray(row.patients) ? row.patients[0] : row.patients;
-              const clinician = Array.isArray(row.profiles) ? row.profiles[0] : row.profiles;
+              const href = patient ? `/patients/${row.patient_id}?tab=timeline` : "/patients";
               return (
-                <div className="session-row" key={row.id}>
+                <Link className="session-row" key={row.id} href={href}>
                   <span className="time">{(row.visit_time || "09:00").slice(0, 5)}</span>
                   <div>
-                    <Link href={patient ? `/patients/${row.patient_id}` : "/patients"}>
-                      {patient?.rm_id || "Patient"}
-                    </Link>
+                    <strong className="mono">{patient?.rm_id || "Patient"}</strong>
                     <div>
-                      {patient ? `${patient.first_name} ${patient.last_name}` : "—"} · {patient?.condition || "—"}
+                      {patient ? `${patient.first_name} ${patient.last_name}` : "—"} · {titleCase(patient?.condition)}
                     </div>
                   </div>
-                  <div>
+                  <div className="session-aside">
                     <span className={`pill ${row.visit_type === "online" ? "pill-online" : "pill-home"}`}>
                       {visitTypeLabel(row.visit_type as string)}
                     </span>
-                    {isAdmin ? <div className="muted">{clinician?.full_name || "Staff"}</div> : null}
+                    {isAdmin ? (
+                      <div className="muted">{clinicianLabel(row.profiles, row.clinician_name)}</div>
+                    ) : null}
+                    <span className="row-action">Open patient →</span>
                   </div>
-                </div>
+                </Link>
               );
             })
           ) : (
@@ -179,20 +192,28 @@ export default async function DashboardPage() {
               <h2>My recent notes</h2>
               <Link href="/sessions">View all</Link>
             </div>
-            {(recentNotes || []).length ? (
-              (recentNotes || []).map((row) => {
+            {(noteList || []).length ? (
+              noteList.map((row) => {
                 const patient = Array.isArray(row.patients) ? row.patients[0] : row.patients;
                 return (
-                  <div className="activity-row" key={row.id} style={{ gridTemplateColumns: "1fr auto" }}>
+                  <Link
+                    className="activity-row"
+                    key={row.id}
+                    href={
+                      row.status === "draft"
+                        ? `/patients/${row.patient_id}/sessions/${row.id}`
+                        : `/patients/${row.patient_id}?tab=notes`
+                    }
+                    style={{ gridTemplateColumns: "1fr auto auto" }}
+                  >
                     <div>
-                      <Link href={`/patients/${row.patient_id}?tab=notes`}>
-                        {patient?.rm_id || "Patient"}
-                      </Link>
+                      <strong className="mono">{patient?.rm_id || "Patient"}</strong>
                       {patient ? ` · ${patient.first_name} ${patient.last_name}` : ""}
                       {` · ${row.status === "draft" ? "Draft" : "Signed"}`}
                     </div>
+                    <span className="row-action">{row.status === "draft" ? "Continue →" : "View session →"}</span>
                     <span className="muted">{relativeTime(row.created_at)}</span>
-                  </div>
+                  </Link>
                 );
               })
             ) : (

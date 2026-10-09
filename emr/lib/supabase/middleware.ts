@@ -34,17 +34,26 @@ export async function updateSession(request: NextRequest) {
     return response;
   }
 
-  const isLogin = path === "/login";
-
-  if (!user && !isLogin) {
-    const redirect = request.nextUrl.clone();
-    redirect.pathname = "/login";
-    return NextResponse.redirect(redirect);
+  const isPublic = path === "/login" || path.startsWith("/auth/");
+  let disabled = false;
+  if (user) {
+    const { data: profile } = await supabase.from("profiles").select("status").eq("id", user.id).maybeSingle();
+    disabled = profile?.status === "disabled";
+    if (disabled) {
+      await supabase.auth.signOut();
+      if (!isPublic) {
+        const redirect = request.nextUrl.clone();
+        redirect.pathname = "/login";
+        redirect.search = "error=" + encodeURIComponent("This staff account has been disabled.");
+        return NextResponse.redirect(redirect);
+      }
+      return response;
+    }
   }
 
-  if (user && isLogin) {
+  if (!user && !isPublic) {
     const redirect = request.nextUrl.clone();
-    redirect.pathname = "/";
+    redirect.pathname = "/login";
     return NextResponse.redirect(redirect);
   }
 

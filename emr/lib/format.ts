@@ -14,6 +14,14 @@ export function displayName(first: string, last: string) {
   return `${first} ${last}`.trim();
 }
 
+export function clinicianLabel(
+  profile: { full_name?: string } | { full_name?: string }[] | null | undefined,
+  snapshot?: string | null
+) {
+  const row = Array.isArray(profile) ? profile[0] : profile;
+  return row?.full_name || snapshot || "Staff";
+}
+
 export function patientLabel(first: string, last: string) {
   const given = first.trim();
   const family = last.trim();
@@ -96,8 +104,27 @@ export function sexLabel(sex: string | null) {
   return sex[0].toUpperCase() + sex.slice(1);
 }
 
+export function titleCase(value: string | null | undefined) {
+  if (!value) return "—";
+  const trimmed = value.trim();
+  if (!trimmed) return "—";
+  return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+}
+
 export function visitTypeLabel(type: string) {
   return type === "online" ? "Online" : "Home visit";
+}
+
+export function uniqueVisitSlots<
+  T extends { patient_id?: string; visit_at?: string | null; visit_time?: string | null; created_at?: string | null }
+>(rows: T[]) {
+  const map = new Map<string, T>();
+  for (const row of rows) {
+    const key = `${row.patient_id || ""}|${row.visit_at || ""}|${String(row.visit_time || "").slice(0, 5)}`;
+    const existing = map.get(key);
+    if (!existing || (row.created_at || "") > (existing.created_at || "")) map.set(key, row);
+  }
+  return Array.from(map.values());
 }
 
 export function relativeTime(value: string) {
@@ -129,6 +156,16 @@ export function auditCopy(action: string) {
       return "updated patient details";
     case "assigned_clinician":
       return "changed assigned physiotherapist";
+    case "updated_staff_role":
+      return "changed a staff role";
+    case "disabled_staff":
+      return "disabled a staff account";
+    case "enabled_staff":
+      return "re-enabled a staff account";
+    case "deleted_staff":
+      return "deleted a staff account";
+    case "invited_physiotherapist":
+      return "invited a physiotherapist";
     case "saved_draft":
       return "saved a draft session note";
     case "signed_note":

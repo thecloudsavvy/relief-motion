@@ -5,7 +5,20 @@ import { DocumentUpload } from "@/components/DocumentUpload";
 import { Avatar, StatusPill } from "@/components/ui";
 import { VisitNote } from "@/components/VisitNote";
 import { requirePatientAccess } from "@/lib/auth";
-import { ageFromDob, avatarTone, displayName, formatDateTime, initials, sexLabel } from "@/lib/format";
+import {
+  ageFromDob,
+  avatarTone,
+  clinicianLabel,
+  displayName,
+  formatDate,
+  formatDateTime,
+  formatTime,
+  initials,
+  sexLabel,
+  titleCase,
+  uniqueVisitSlots,
+  visitTypeLabel
+} from "@/lib/format";
 import type { Profile } from "@/lib/types";
 
 type Tab = "overview" | "timeline" | "notes" | "documents";
@@ -26,12 +39,12 @@ export default async function PatientChartPage({
     supabase
       .from("visits")
       .select(
-        "id, patient_id, clinician_id, visit_at, visit_time, visit_type, status, subjective, objective, assessment, treatment, patient_response, plan, additional_notes, findings, created_at, profiles!visits_clinician_id_fkey(full_name)"
+        "id, patient_id, clinician_id, clinician_name, visit_at, visit_time, visit_type, status, subjective, objective, assessment, treatment, patient_response, plan, additional_notes, findings, created_at, profiles!visits_clinician_id_fkey(full_name)"
       )
       .eq("patient_id", id)
       .order("visit_at", { ascending: false })
       .order("created_at", { ascending: false }),
-    supabase.from("profiles").select("id, full_name, role").order("full_name"),
+    supabase.from("profiles").select("id, full_name, role, status").order("full_name"),
     supabase
       .from("patient_documents")
       .select("id, filename, storage_path, created_at, size_bytes, uploaded_by, profiles!patient_documents_uploaded_by_fkey(full_name)")
@@ -42,8 +55,8 @@ export default async function PatientChartPage({
   const assigned = (profiles as Profile[] | null)?.find((row) => row.id === patient.assigned_to);
   const name = displayName(patient.first_name, patient.last_name);
   const age = ageFromDob(patient.date_of_birth);
-  const signed = (visits || []).filter((row) => row.status !== "draft");
-  const allVisits = visits || [];
+  const allVisits = uniqueVisitSlots(visits || []);
+  const signed = allVisits.filter((row) => row.status !== "draft");
 
   const files = await Promise.all(
     (documents || []).map(async (doc) => {
@@ -78,30 +91,38 @@ export default async function PatientChartPage({
               {patient.city ? ` · ${patient.city}` : ""}
             </p>
           </div>
-          <div className="assign">
-            <p className="muted">Assigned physiotherapist</p>
-            <strong>{assigned?.full_name || "Unassigned"}</strong>
-            {isAdmin ? (
-              <form action={assignClinician.bind(null, id)}>
-                <select name="assigned_to" defaultValue={patient.assigned_to || ""}>
-                  <option value="">Unassigned</option>
-                  {(profiles as Profile[] | null)?.map((row) => (
-                    <option key={row.id} value={row.id}>
-                      {row.full_name || "Staff"}
-                    </option>
-                  ))}
-                </select>
-                <button className="btn btn-ghost" type="submit">
-                  Change
-                </button>
-              </form>
-            ) : null}
+          <div className="chart-actions">
+            <Link className="btn" href={`/patients/${id}/sessions/new`}>
+              New session
+            </Link>
+            <div className="assign">
+              <p className="muted">Assigned physiotherapist</p>
+              <strong>{assigned?.full_name || "Unassigned"}</strong>
+              {isAdmin ? (
+                <form action={assignClinician.bind(null, id)}>
+                  <select name="assigned_to" defaultValue={patient.assigned_to || ""}>
+                    <option value="">Unassigned</option>
+                    {(profiles as Profile[] | null)
+                      ?.filter((row) => row.status !== "disabled" || row.id === patient.assigned_to)
+                      .map((row) => (
+                        <option key={row.id} value={row.id}>
+                          {row.full_name || "Staff"}
+                          {row.status === "disabled" ? " (disabled)" : ""}
+                        </option>
+                      ))}
+                  </select>
+                  <button className="btn btn-ghost" type="submit">
+                    Change
+                  </button>
+                </form>
+              ) : null}
+            </div>
           </div>
         </div>
         <div className="facts">
           <div>
             <b>Primary condition</b>
-            {patient.condition || "—"}
+            {titleCase(patient.condition)}
           </div>
           <div>
             <b>Phone</b>
@@ -170,20 +191,21 @@ export default async function PatientChartPage({
           </section>
           <section className="panel">
             <div className="page-head">
-              <h2>Clinical timeline</h2>
-              <Link className="btn" href={`/patients/${id}/sessions/new`}>
-                New session
-              </Link>
+              <h2>Previous sessions</h2>
+              <Link href={tabHref("timeline")}>View all</Link>
             </div>
             {signed.length ? (
               <div className="timeline">
-                {signed.slice(0, 6).map((visit) => {
-                  const clinician = Array.isArray(visit.profiles) ? visit.profiles[0] : visit.profiles;
-                  return <VisitNote key={visit.id} visit={visit} clinician={clinician?.full_name} />;
-                })}
+                {signed.slice(0, 6).map((visit) => (
+                  <VisitNote
+                    key={visit.id}
+                    visit={visit}
+                    clinician={clinicianLabel(visit.profiles, visit.clinician_name)}
+                  />
+                ))}
               </div>
             ) : (
-              <p className="empty">No signed sessions yet.</p>
+              <p className="empty">No signed sessions yet. Start with New session.</p>
             )}
           </section>
         </div>
@@ -191,33 +213,26 @@ export default async function PatientChartPage({
 
       {current === "timeline" ? (
         <section className="panel">
-          <div className="page-head">
-            <h2>Clinical timeline</h2>
-            <Link className="btn" href={`/patients/${id}/sessions/new`}>
-              New session
-            </Link>
-          </div>
+          <h2>Clinical timeline</h2>
           {signed.length ? (
             <div className="timeline">
-              {signed.map((visit) => {
-                const clinician = Array.isArray(visit.profiles) ? visit.profiles[0] : visit.profiles;
-                return <VisitNote key={visit.id} visit={visit} clinician={clinician?.full_name} />;
-              })}
+              {signed.map((visit) => (
+                <VisitNote
+                  key={visit.id}
+                  visit={visit}
+                  clinician={clinicianLabel(visit.profiles, visit.clinician_name)}
+                />
+              ))}
             </div>
           ) : (
-            <p className="empty">No signed sessions yet.</p>
+            <p className="empty">No signed sessions yet. Start with New session.</p>
           )}
         </section>
       ) : null}
 
       {current === "notes" ? (
         <section className="panel">
-          <div className="page-head">
-            <h2>Session notes</h2>
-            <Link className="btn" href={`/patients/${id}/sessions/new`}>
-              New session
-            </Link>
-          </div>
+          <h2>Session notes</h2>
           {allVisits.length ? (
             <table>
               <thead>
@@ -231,26 +246,27 @@ export default async function PatientChartPage({
               </thead>
               <tbody>
                 {allVisits.map((visit) => {
-                  const clinician = Array.isArray(visit.profiles) ? visit.profiles[0] : visit.profiles;
+                  const href =
+                    visit.status === "draft"
+                      ? `/patients/${id}/sessions/${visit.id}`
+                      : `/patients/${id}?tab=timeline`;
                   return (
                     <tr key={visit.id}>
                       <td>
-                        {visit.visit_at}
-                        {visit.visit_time ? ` · ${String(visit.visit_time).slice(0, 5)}` : ""}
+                        {formatDate(visit.visit_at)}
+                        {visit.visit_time ? ` · ${formatTime(visit.visit_time)}` : ""}
                       </td>
-                      <td>{visit.visit_type === "online" ? "Online" : "Home visit"}</td>
-                      <td>{clinician?.full_name || "Staff"}</td>
+                      <td>{visitTypeLabel(visit.visit_type)}</td>
+                      <td>{clinicianLabel(visit.profiles, visit.clinician_name)}</td>
                       <td>
                         <span className={`pill ${visit.status === "draft" ? "pill-draft" : "pill-ok"}`}>
                           {visit.status === "draft" ? "Draft" : "Signed"}
                         </span>
                       </td>
                       <td>
-                        {visit.status === "draft" ? (
-                          <Link href={`/patients/${id}/sessions/${visit.id}`}>Continue</Link>
-                        ) : (
-                          <Link href={`/patients/${id}?tab=timeline`}>View</Link>
-                        )}
+                        <Link className="row-action" href={href}>
+                          {visit.status === "draft" ? "Continue →" : "View session →"}
+                        </Link>
                       </td>
                     </tr>
                   );
@@ -258,7 +274,7 @@ export default async function PatientChartPage({
               </tbody>
             </table>
           ) : (
-            <p className="empty">No notes yet. Start the first session.</p>
+            <p className="empty">No notes yet. Start with New session.</p>
           )}
         </section>
       ) : null}

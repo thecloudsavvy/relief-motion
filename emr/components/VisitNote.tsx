@@ -20,7 +20,7 @@ export function VisitNote({
   };
   clinician?: string | null;
 }) {
-  const blocks = [
+  const soap = [
     ["Subjective", visit.subjective || visit.findings],
     ["Objective", visit.objective],
     ["Assessment", visit.assessment],
@@ -29,6 +29,7 @@ export function VisitNote({
     ["Plan / next session", visit.plan],
     ["Additional notes", visit.additional_notes]
   ].filter(([, value]) => Boolean(value));
+  const continuityOnly = Boolean(visit.treatment) && soap.length === 1 && soap[0][0] === "Treatment";
 
   return (
     <article className="note">
@@ -38,8 +39,10 @@ export function VisitNote({
         {visit.status === "draft" ? " · Draft" : ""}
       </h3>
       <p className="muted">{clinician || "Staff"}</p>
-      {blocks.length ? (
-        blocks.map(([label, value]) => (
+      {continuityOnly ? (
+        <p>{visit.treatment}</p>
+      ) : soap.length ? (
+        soap.map(([label, value]) => (
           <p key={label}>
             <strong>{label}.</strong> {value}
           </p>

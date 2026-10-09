@@ -19,9 +19,14 @@ export async function requireStaff(): Promise<Staff> {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("id, full_name, role")
+    .select("id, full_name, role, status, created_at")
     .eq("id", user.id)
     .single<Profile>();
+
+  if (profile?.status === "disabled") {
+    await supabase.auth.signOut();
+    redirect("/login?error=" + encodeURIComponent("This staff account has been disabled."));
+  }
 
   const role: Role = profile?.role === "admin" ? "admin" : "physiotherapist";
   return { supabase, user, profile, role, isAdmin: role === "admin" };

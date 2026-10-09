@@ -55,6 +55,7 @@ export default async function EditSessionPage({
           clinicianName={profile?.full_name || "You"}
           error={error}
           visit={visit}
+          continuity={(visits || []).some((row) => row.id !== visitId)}
         />
         <SessionRails
           visits={recent}

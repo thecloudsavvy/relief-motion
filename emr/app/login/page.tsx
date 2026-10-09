@@ -1,8 +1,11 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { authParamsFromHref, claimAuthFromHref } from "@/lib/supabase/claim-session";
+
+type Mode = "signin" | "reset" | "set-password";
 
 function LineIcon({ d }: { d: string }) {
   return (
@@ -18,7 +21,56 @@ export default function LoginPage() {
   const [info, setInfo] = useState("");
   const [pending, setPending] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [resetOpen, setResetOpen] = useState(false);
+  const [mode, setMode] = useState<Mode>("signin");
+  const [inviteEmail, setInviteEmail] = useState("");
+
+  useEffect(() => {
+    const href = window.location.href;
+    const params = authParamsFromHref(href);
+    const needsPassword = params.isPasswordFlow;
+    if (needsPassword) setMode("set-password");
+    const query = new URLSearchParams(window.location.search);
+    const fromQuery = query.get("error");
+    if (fromQuery) setError(fromQuery);
+
+    const supabase = createClient();
+    const { data } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "PASSWORD_RECOVERY") setMode("set-password");
+    });
+
+    let cancelled = false;
+    void (async () => {
+      const { error: claimError } = await claimAuthFromHref(supabase, href);
+      if (cancelled) return;
+      if (claimError) {
+        setError(claimError.message);
+        return;
+      }
+
+      const { data: sessionData } = await supabase.auth.getSession();
+      if (cancelled) return;
+      const email = sessionData.session?.user.email || "";
+
+      if (needsPassword) {
+        if (!sessionData.session) {
+          setError("This invite link is missing or has already been used. Ask an admin to send a new one.");
+          return;
+        }
+        setInviteEmail(email);
+        window.history.replaceState({}, "", "/login?set=1");
+        return;
+      }
+
+      if (sessionData.session) {
+        router.replace("/");
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+      data.subscription.unsubscribe();
+    };
+  }, [router]);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -28,12 +80,13 @@ export default function LoginPage() {
     const form = new FormData(event.currentTarget);
     const email = String(form.get("email") || "");
     const password = String(form.get("password") || "");
+    const confirm = String(form.get("confirm") || "");
     const supabase = createClient();
 
-    if (resetOpen) {
+    if (mode === "reset") {
       const origin = window.location.origin;
       const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${origin}/login`
+        redirectTo: `${origin}/auth/callback`
       });
       setPending(false);
       if (resetError) {
@@ -41,6 +94,34 @@ export default function LoginPage() {
         return;
       }
       setInfo("If that email is on the staff list, a reset link is on its way.");
+      return;
+    }
+
+    if (mode === "set-password") {
+      const { data: sessionData } = await supabase.auth.getSession();
+      if (!sessionData.session) {
+        setPending(false);
+        setError("This invite link is missing or has already been used. Ask an admin to send a new one.");
+        return;
+      }
+      if (password.length < 8) {
+        setPending(false);
+        setError("Use at least 8 characters.");
+        return;
+      }
+      if (password !== confirm) {
+        setPending(false);
+        setError("Those passwords do not match.");
+        return;
+      }
+      const { error: updateError } = await supabase.auth.updateUser({ password });
+      if (updateError) {
+        setPending(false);
+        setError(updateError.message);
+        return;
+      }
+      router.push("/");
+      router.refresh();
       return;
     }
 
@@ -118,28 +199,38 @@ export default function LoginPage() {
             Relief Motion
             <span>PHYSIOTHERAPY</span>
           </p>
-          <h1>Welcome back</h1>
-          <p className="auth-lead">Sign in to continue.</p>
+          <h1>{mode === "set-password" ? "Set your password" : "Welcome back"}</h1>
+          <p className="auth-lead">
+            {mode === "set-password"
+              ? inviteEmail
+                ? `Choose a password for ${inviteEmail}.`
+                : "Choose a password for your staff account."
+              : mode === "reset"
+                ? "We’ll email a reset link if that address is on the staff list."
+                : "Sign in to continue."}
+          </p>
           {error ? <div className="error">{error}</div> : null}
           {info ? <div className="ok">{info}</div> : null}
-          <div className="field">
-            <label htmlFor="email">Email</label>
-            <svg className="lead icon-line" viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
-              <path d="m5 8 7 5 7-5" />
-            </svg>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autoComplete="username"
-              placeholder="Enter your email address"
-              required
-            />
-          </div>
-          {resetOpen ? null : (
+          {mode === "set-password" ? null : (
             <div className="field">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="email">Email</label>
+              <svg className="lead icon-line" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
+                <path d="m5 8 7 5 7-5" />
+              </svg>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="username"
+                placeholder="Enter your email address"
+                required
+              />
+            </div>
+          )}
+          {mode === "reset" ? null : (
+            <div className="field">
+              <label htmlFor="password">{mode === "set-password" ? "New password" : "Password"}</label>
               <svg className="lead icon-line" viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="5" y="10" width="14" height="10" rx="2" />
                 <path d="M8 10V8a4 4 0 0 1 8 0v2" />
@@ -148,8 +239,8 @@ export default function LoginPage() {
                 id="password"
                 name="password"
                 type={showPassword ? "text" : "password"}
-                autoComplete="current-password"
-                placeholder="Enter your password"
+                autoComplete={mode === "set-password" ? "new-password" : "current-password"}
+                placeholder={mode === "set-password" ? "At least 8 characters" : "Enter your password"}
                 required
               />
               <button
@@ -165,11 +256,40 @@ export default function LoginPage() {
               </button>
             </div>
           )}
-          <button className="forgot" type="button" onClick={() => setResetOpen((open) => !open)}>
-            {resetOpen ? "Back to sign in" : "Forgot password?"}
-          </button>
+          {mode === "set-password" ? (
+            <div className="field">
+              <label htmlFor="confirm">Confirm password</label>
+              <svg className="lead icon-line" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="5" y="10" width="14" height="10" rx="2" />
+                <path d="M8 10V8a4 4 0 0 1 8 0v2" />
+              </svg>
+              <input
+                id="confirm"
+                name="confirm"
+                type={showPassword ? "text" : "password"}
+                autoComplete="new-password"
+                placeholder="Re-enter your password"
+                required
+              />
+            </div>
+          ) : null}
+          {mode === "set-password" ? null : (
+            <button
+              className="forgot"
+              type="button"
+              onClick={() => setMode((current) => (current === "reset" ? "signin" : "reset"))}
+            >
+              {mode === "reset" ? "Back to sign in" : "Forgot password?"}
+            </button>
+          )}
           <button className="btn btn-block" type="submit" disabled={pending}>
-            {pending ? "Please wait…" : resetOpen ? "Send reset link" : "Sign in →"}
+            {pending
+              ? "Please wait…"
+              : mode === "reset"
+                ? "Send reset link"
+                : mode === "set-password"
+                  ? "Save password →"
+                  : "Sign in →"}
           </button>
           <p className="auth-or">or</p>
           <p className="auth-protected">

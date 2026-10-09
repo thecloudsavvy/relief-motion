@@ -25,6 +25,11 @@ create table if not exists public.profiles (
   created_at timestamptz not null default now()
 );
 
+alter table public.profiles add column if not exists status text not null default 'active';
+alter table public.profiles drop constraint if exists profiles_status_check;
+alter table public.profiles add constraint profiles_status_check
+  check (status in ('active', 'disabled'));
+
 create table if not exists public.patients (
   id uuid primary key default gen_random_uuid(),
   rm_id text unique not null default public.next_rm_id(),
@@ -54,7 +59,8 @@ alter table public.patients add constraint patients_status_check
 create table if not exists public.visits (
   id uuid primary key default gen_random_uuid(),
   patient_id uuid not null references public.patients (id) on delete cascade,
-  clinician_id uuid not null references public.profiles (id),
+  clinician_id uuid references public.profiles (id) on delete set null,
+  clinician_name text,
   visit_at date not null default (timezone('utc', now()))::date,
   visit_type text not null check (visit_type in ('home', 'online')),
   findings text,
@@ -77,7 +83,7 @@ alter table public.visits add constraint visits_status_check
 
 create table if not exists public.audit_events (
   id uuid primary key default gen_random_uuid(),
-  actor_id uuid not null references public.profiles (id),
+  actor_id uuid references public.profiles (id) on delete set null,
   action text not null,
   patient_id uuid references public.patients (id) on delete set null,
   visit_id uuid references public.visits (id) on delete set null,
@@ -88,7 +94,7 @@ create table if not exists public.audit_events (
 create table if not exists public.patient_documents (
   id uuid primary key default gen_random_uuid(),
   patient_id uuid not null references public.patients (id) on delete cascade,
-  uploaded_by uuid not null references public.profiles (id),
+  uploaded_by uuid references public.profiles (id) on delete set null,
   filename text not null,
   storage_path text not null,
   mime_type text,
@@ -108,7 +114,9 @@ begin
     new.id,
     coalesce(new.raw_user_meta_data ->> 'full_name', ''),
     'physiotherapist'
-  );
+  )
+  on conflict (id) do update
+    set full_name = coalesce(nullif(excluded.full_name, ''), public.profiles.full_name);
   return new;
 end;
 $$;
@@ -133,7 +141,7 @@ set search_path = public
 as $$
   select exists (
     select 1 from public.profiles
-    where id = auth.uid() and role = 'admin'
+    where id = auth.uid() and role = 'admin' and coalesce(status, 'active') = 'active'
   );
 $$;
 
@@ -172,6 +180,13 @@ create policy "staff update own profile"
   to authenticated
   using (id = auth.uid())
   with check (id = auth.uid());
+
+drop policy if exists "admin update profiles" on public.profiles;
+create policy "admin update profiles"
+  on public.profiles for update
+  to authenticated
+  using (public.is_admin())
+  with check (public.is_admin());
 
 drop policy if exists "staff read patients" on public.patients;
 drop policy if exists "read assigned or all if admin" on public.patients;
@@ -292,3 +307,34 @@ create index if not exists audit_created_idx
 
 create index if not exists documents_patient_idx
   on public.patient_documents (patient_id, created_at desc);
+
+-- Staff delete keeps clinical rows. Re-run this file before deleting a disabled account.
+alter table public.visits add column if not exists clinician_name text;
+alter table public.visits alter column clinician_id drop not null;
+alter table public.visits drop constraint if exists visits_clinician_id_fkey;
+alter table public.visits add constraint visits_clinician_id_fkey
+  foreign key (clinician_id) references public.profiles (id) on delete set null;
+
+alter table public.patients drop constraint if exists patients_assigned_to_fkey;
+alter table public.patients add constraint patients_assigned_to_fkey
+  foreign key (assigned_to) references public.profiles (id) on delete set null;
+
+alter table public.patients drop constraint if exists patients_created_by_fkey;
+alter table public.patients add constraint patients_created_by_fkey
+  foreign key (created_by) references public.profiles (id) on delete set null;
+
+alter table public.audit_events alter column actor_id drop not null;
+alter table public.audit_events drop constraint if exists audit_events_actor_id_fkey;
+alter table public.audit_events add constraint audit_events_actor_id_fkey
+  foreign key (actor_id) references public.profiles (id) on delete set null;
+
+alter table public.patient_documents alter column uploaded_by drop not null;
+alter table public.patient_documents drop constraint if exists patient_documents_uploaded_by_fkey;
+alter table public.patient_documents add constraint patient_documents_uploaded_by_fkey
+  foreign key (uploaded_by) references public.profiles (id) on delete set null;
+
+update public.visits v
+set clinician_name = p.full_name
+from public.profiles p
+where v.clinician_id = p.id
+  and coalesce(nullif(v.clinician_name, ''), '') = '';
