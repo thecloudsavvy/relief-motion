@@ -12,11 +12,7 @@ export function TopSearch() {
       <IconSearch />
       <input
         name="q"
-        placeholder={
-          onSessions
-            ? "Search sessions by name or RM ID…"
-            : "Search patients by name, ID or phone…"
-        }
+        placeholder={onSessions ? "Search sessions" : "Search patients"}
       />
     </form>
   );

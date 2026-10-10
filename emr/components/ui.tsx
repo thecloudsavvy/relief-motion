@@ -40,6 +40,14 @@ export function IconAudit() {
   );
 }
 
+export function IconMore() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 10.5A1.5 1.5 0 1 1 5 13.5 1.5 1.5 0 0 1 5 10.5zm7 0A1.5 1.5 0 1 1 12 13.5 1.5 1.5 0 0 1 12 10.5zm7 0A1.5 1.5 0 1 1 19 13.5 1.5 1.5 0 0 1 19 10.5z" />
+    </svg>
+  );
+}
+
 export function IconSettings() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -76,6 +84,22 @@ export function IconPlus() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z" />
+    </svg>
+  );
+}
+
+export function IconNote() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 3h8l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm7 1.5V9h4.5zM8 12h8v1.5H8zm0 3.5h8V17H8z" />
+    </svg>
+  );
+}
+
+export function IconUserPlus() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M10 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm8.5-3.5V11h2v1.5h-2V15h-1.5v-2.5h-2V11h2V8.5zM10 14c-4.2 0-8 2-8 5.2V21h12v-1.8C14 16 12.1 14.4 10 14z" />
     </svg>
   );
 }

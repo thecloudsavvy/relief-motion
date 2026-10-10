@@ -153,16 +153,11 @@ export default function LoginPage() {
         </div>
         <div className="auth-copy">
           <h2>
-            MOVE • RECOVER •
+            Every home visit,
             <br />
-            <em>LIVE BETTER.</em>
+            documented.
           </h2>
-          <span className="auth-rule" />
-          <p>
-            Care documentation,
-            <br />
-            securely connected.
-          </p>
+          <p>Patient records for the Relief Motion team.</p>
         </div>
         <ul className="auth-points">
           <li>
@@ -194,12 +189,9 @@ export default function LoginPage() {
 
       <section className="auth-panel">
         <form className="auth-card" onSubmit={onSubmit} autoComplete="off">
-          <img className="auth-mark" src="/logo-mark.png" alt="" />
-          <p className="kicker">
-            Relief Motion
-            <span>PHYSIOTHERAPY</span>
-          </p>
-          <h1>{mode === "set-password" ? "Set your password" : "Welcome back"}</h1>
+          <h1>
+            {mode === "set-password" ? "Set your password" : mode === "reset" ? "Reset password" : "Sign in"}
+          </h1>
           <p className="auth-lead">
             {mode === "set-password"
               ? inviteEmail
@@ -207,7 +199,7 @@ export default function LoginPage() {
                 : "Choose a password for your staff account."
               : mode === "reset"
                 ? "We’ll email a reset link if that address is on the staff list."
-                : "Sign in to continue."}
+                : "Use your staff email."}
           </p>
           {error ? <div className="error">{error}</div> : null}
           {info ? <div className="ok">{info}</div> : null}
@@ -223,14 +215,25 @@ export default function LoginPage() {
                 name="email"
                 type="email"
                 autoComplete="username"
-                placeholder="Enter your email address"
+                placeholder="you@reliefmotionphysio.com"
                 required
               />
             </div>
           )}
           {mode === "reset" ? null : (
             <div className="field">
-              <label htmlFor="password">{mode === "set-password" ? "New password" : "Password"}</label>
+              <div className="field-head">
+                <label htmlFor="password">{mode === "set-password" ? "New password" : "Password"}</label>
+                {mode === "set-password" ? null : (
+                  <button
+                    className="forgot"
+                    type="button"
+                    onClick={() => setMode((current) => (current === "reset" ? "signin" : "reset"))}
+                  >
+                    Forgot password?
+                  </button>
+                )}
+              </div>
               <svg className="lead icon-line" viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="5" y="10" width="14" height="10" rx="2" />
                 <path d="M8 10V8a4 4 0 0 1 8 0v2" />
@@ -240,7 +243,7 @@ export default function LoginPage() {
                 name="password"
                 type={showPassword ? "text" : "password"}
                 autoComplete={mode === "set-password" ? "new-password" : "current-password"}
-                placeholder={mode === "set-password" ? "At least 8 characters" : "Enter your password"}
+                placeholder={mode === "set-password" ? "At least 8 characters" : "Enter password"}
                 required
               />
               <button
@@ -273,35 +276,33 @@ export default function LoginPage() {
               />
             </div>
           ) : null}
-          {mode === "set-password" ? null : (
+          {mode === "reset" ? (
             <button
-              className="forgot"
+              className="forgot forgot-block"
               type="button"
-              onClick={() => setMode((current) => (current === "reset" ? "signin" : "reset"))}
+              onClick={() => setMode("signin")}
             >
-              {mode === "reset" ? "Back to sign in" : "Forgot password?"}
+              Back to sign in
             </button>
-          )}
+          ) : null}
           <button className="btn btn-block" type="submit" disabled={pending}>
             {pending
               ? "Please wait…"
               : mode === "reset"
                 ? "Send reset link"
                 : mode === "set-password"
-                  ? "Save password →"
-                  : "Sign in →"}
+                  ? "Save password"
+                  : "Sign in"}
           </button>
-          <p className="auth-or">or</p>
-          <p className="auth-protected">
-            <span>
-              <svg className="icon-line" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="5" y="10" width="14" height="10" rx="2" />
-                <path d="M8 10V8a4 4 0 0 1 8 0v2" />
-              </svg>
-            </span>
-            Protected staff access
+          <p className="auth-staff-note">
+            <svg className="icon-line" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="5" y="10" width="14" height="10" rx="2" />
+              <path d="M8 10V8a4 4 0 0 1 8 0v2" />
+            </svg>
+            Staff only. Every sign-in is logged.
           </p>
         </form>
+        <p className="auth-invite-hint">No account yet? Ask your admin to add you.</p>
       </section>
     </div>
   );

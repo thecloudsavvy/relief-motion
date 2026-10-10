@@ -46,11 +46,11 @@ export default async function NewSessionPage({
     <>
       <p className="crumb">
         <Link href="/patients">Patients</Link> ·{" "}
-        <Link href={`/patients/${id}`}>{patient.rm_id}</Link> · {continuity ? "Follow-up session" : "New session note"}
+        <Link href={`/patients/${id}`}>{patient.rm_id}</Link> · {continuity ? "Follow-up visit" : "Log visit"}
       </p>
       <div className="page-head">
         <div>
-          <h1>{continuity ? "Follow-up session" : "New session note"}</h1>
+          <h1>{continuity ? "Follow-up visit" : "Log visit"}</h1>
           <p className="muted">
             {patient.first_name} {patient.last_name} · {titleCase(patient.condition)}
           </p>

@@ -93,7 +93,7 @@ export default async function PatientChartPage({
           </div>
           <div className="chart-actions">
             <Link className="btn" href={`/patients/${id}/sessions/new`}>
-              New session
+              Log visit
             </Link>
             <div className="assign">
               <p className="muted">Assigned physiotherapist</p>
@@ -205,7 +205,7 @@ export default async function PatientChartPage({
                 ))}
               </div>
             ) : (
-              <p className="empty">No signed sessions yet. Start with New session.</p>
+              <p className="empty">No signed sessions yet. Start with Log visit.</p>
             )}
           </section>
         </div>
@@ -225,7 +225,7 @@ export default async function PatientChartPage({
               ))}
             </div>
           ) : (
-            <p className="empty">No signed sessions yet. Start with New session.</p>
+            <p className="empty">No signed sessions yet. Start with Log visit.</p>
           )}
         </section>
       ) : null}
@@ -274,7 +274,7 @@ export default async function PatientChartPage({
               </tbody>
             </table>
           ) : (
-            <p className="empty">No notes yet. Start with New session.</p>
+            <p className="empty">No notes yet. Start with Log visit.</p>
           )}
         </section>
       ) : null}

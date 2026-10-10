@@ -99,6 +99,22 @@ export function longDate(value = new Date()) {
   });
 }
 
+export function lagosLongDate() {
+  return new Date().toLocaleDateString("en-GB", {
+    timeZone: "Africa/Lagos",
+    weekday: "long",
+    day: "numeric",
+    month: "long"
+  });
+}
+
+export function greetingLabel() {
+  const hour = Number(lagosStamp().visit_time.slice(0, 2));
+  if (hour < 12) return "Good morning";
+  if (hour < 17) return "Good afternoon";
+  return "Good evening";
+}
+
 export function sexLabel(sex: string | null) {
   if (!sex) return "";
   return sex[0].toUpperCase() + sex.slice(1);

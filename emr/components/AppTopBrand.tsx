@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 function titleFromPath(pathname: string) {
   if (pathname === "/") return "Dashboard";
   if (pathname.startsWith("/patients/new")) return "New patient";
-  if (pathname.includes("/sessions/new")) return "New session";
+  if (pathname.includes("/sessions/new")) return "Log visit";
   if (pathname.includes("/sessions/")) return "Session note";
   if (pathname.includes("/patients/") && pathname.endsWith("/edit")) return "Edit patient";
   if (pathname.startsWith("/patients/")) return "Patient";
@@ -23,7 +23,7 @@ export function AppTopBrand() {
   return (
     <div className="app-top-brand">
       <img className="app-top-mark" src="/logo-mark.png" alt="" width={32} height={32} />
-      <span className="app-top-title">{titleFromPath(pathname)}</span>
+      {pathname === "/" ? null : <span className="app-top-title">{titleFromPath(pathname)}</span>}
     </div>
   );
 }

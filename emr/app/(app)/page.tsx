@@ -1,7 +1,18 @@
 import Link from "next/link";
-import { IconPatients, IconProviders, IconSessions } from "@/components/ui";
+import { IconNote, IconPatients, IconProviders, IconSessions, IconUserPlus } from "@/components/ui";
 import { requireStaff } from "@/lib/auth";
-import { auditCopy, clinicianLabel, firstName, lagosStamp, longDate, relativeTime, titleCase, uniqueVisitSlots, visitTypeLabel } from "@/lib/format";
+import {
+  auditCopy,
+  clinicianLabel,
+  firstName,
+  greetingLabel,
+  lagosLongDate,
+  lagosStamp,
+  relativeTime,
+  titleCase,
+  uniqueVisitSlots,
+  visitTypeLabel
+} from "@/lib/format";
 
 function uniqueRecentNotes<T extends { patient_id: string; status?: string; created_at?: string }>(rows: T[]) {
   const map = new Map<string, T>();
@@ -15,7 +26,7 @@ function uniqueRecentNotes<T extends { patient_id: string; status?: string; crea
 export default async function DashboardPage() {
   const { supabase, user, isAdmin, profile } = await requireStaff();
   const today = lagosStamp().visit_at;
-  const monthStart = today.slice(0, 8) + "01";
+  const hello = `${greetingLabel()}, ${firstName(profile?.full_name || "there")}`;
 
   const visitsTodayRows = supabase
     .from("visits")
@@ -30,22 +41,14 @@ export default async function DashboardPage() {
   const [
     { data: todayVisits },
     { count: activeCount },
-    { count: monthCount },
     { count: draftCount },
     { count: ptCount },
     { data: activity },
-    { data: recentNotes }
+    { data: recentNotes },
+    { data: ownDrafts, count: ownDraftCount }
   ] = await Promise.all([
     isAdmin ? visitsTodayRows : visitsTodayRows.eq("clinician_id", user.id),
     isAdmin ? activePatients : activePatients.eq("assigned_to", user.id),
-    isAdmin
-      ? supabase.from("patients").select("*", { count: "exact", head: true }).eq("status", "active").gte("created_at", monthStart)
-      : supabase
-          .from("patients")
-          .select("*", { count: "exact", head: true })
-          .eq("status", "active")
-          .eq("assigned_to", user.id)
-          .gte("created_at", monthStart),
     isAdmin ? drafts : drafts.eq("clinician_id", user.id),
     isAdmin
       ? supabase
@@ -70,59 +73,93 @@ export default async function DashboardPage() {
           )
           .eq("clinician_id", user.id)
           .order("created_at", { ascending: false })
-          .limit(6)
+          .limit(6),
+    supabase
+      .from("visits")
+      .select("id, patient_id, patients(rm_id, first_name, last_name)", { count: "exact" })
+      .eq("status", "draft")
+      .eq("clinician_id", user.id)
+      .order("created_at", { ascending: false })
+      .limit(1)
   ]);
 
   const todayList = uniqueVisitSlots(todayVisits || []);
   const noteList = uniqueRecentNotes(recentNotes || []);
-  const homeCount = todayList.filter((row) => row.visit_type === "home").length;
-  const onlineCount = todayList.length - homeCount;
+  const pendingNotes = ownDraftCount || 0;
+  const firstDraft = ownDrafts?.[0];
+  const finishHref = firstDraft ? `/patients/${firstDraft.patient_id}/sessions/${firstDraft.id}` : "/sessions?status=draft";
+  const logVisitHref = "/patients";
 
   return (
     <>
-      <div className="page-head">
+      <div className="page-head dash-hello">
         <div>
-          <h1>Dashboard</h1>
-          <p className="muted">Welcome back, {firstName(profile?.full_name || "there")}. Here is what is happening today.</p>
+          <p className="dash-date">{lagosLongDate()}</p>
+          <h1 className="dash-greeting">{hello}</h1>
         </div>
-        <p className="muted">{longDate()}</p>
       </div>
 
-      <section className="stats">
-        <article className="stat">
-          <div className="stat-icon">
+      {pendingNotes ? (
+        <Link className="dash-alert" href={finishHref}>
+          <span className="dash-alert-icon">
+            <IconNote />
+          </span>
+          <span className="dash-alert-copy">
+            <strong>
+              {pendingNotes} visit note{pendingNotes === 1 ? "" : "s"} to finish
+            </strong>
+            <span>Complete {pendingNotes === 1 ? "it" : "them"} while the visit is fresh. Notes lock after sign-off.</span>
+          </span>
+          <span className="btn btn-navy">Finish</span>
+        </Link>
+      ) : null}
+
+      <div className="dash-actions">
+        <Link className="dash-action" href="/patients/new">
+          <IconUserPlus />
+          New patient
+        </Link>
+        <Link className="dash-action" href={logVisitHref}>
+          <IconSessions />
+          Log visit
+        </Link>
+        {isAdmin ? (
+          <Link className="dash-action" href="/settings?tab=invite">
+            <IconProviders />
+            Invite staff
+          </Link>
+        ) : null}
+      </div>
+
+      <section className="dash-metrics">
+        <article className="metric-card">
+          <span className="metric-icon">
             <IconSessions />
-          </div>
+          </span>
           <b>{todayList.length}</b>
-          <span>{isAdmin ? "Today’s sessions" : "My sessions today"}</span>
-          <p className="muted">
-            {homeCount} home · {onlineCount} online
-          </p>
+          <span>Visits today</span>
         </article>
-        <article className="stat">
-          <div className="stat-icon">
+        <article className="metric-card">
+          <span className="metric-icon">
             <IconPatients />
-          </div>
+          </span>
           <b>{activeCount || 0}</b>
-          <span>{isAdmin ? "Active patients" : "My patients"}</span>
-          <p className="muted">{isAdmin ? `${monthCount || 0} this month` : "Assigned to you"}</p>
+          <span>Active patients</span>
         </article>
-        <article className="stat">
-          <div className="stat-icon">
-            <IconSessions />
-          </div>
+        <article className="metric-card">
+          <span className="metric-icon metric-icon-note">
+            <IconNote />
+          </span>
           <b>{draftCount || 0}</b>
-          <span>{isAdmin ? "Notes pending" : "My drafts"}</span>
-          <p className="muted">Draft notes to complete</p>
+          <span>Notes pending</span>
         </article>
         {isAdmin ? (
-          <article className="stat">
-            <div className="stat-icon">
+          <article className="metric-card">
+            <span className="metric-icon">
               <IconProviders />
-            </div>
+            </span>
             <b>{ptCount || 0}</b>
-            <span>Active physiotherapists</span>
-            <p className="muted">Invite-only staff</p>
+            <span>Physios on duty</span>
           </article>
         ) : null}
       </section>
@@ -130,7 +167,7 @@ export default async function DashboardPage() {
       <div className="split">
         <section className="panel">
           <div className="page-head" style={{ marginBottom: "0.4rem" }}>
-            <h2>{isAdmin ? "Today’s sessions" : "My sessions today"}</h2>
+            <h2>Today’s visits</h2>
             <Link href="/sessions">View all</Link>
           </div>
           {(todayList || []).length ? (
@@ -159,7 +196,15 @@ export default async function DashboardPage() {
               );
             })
           ) : (
-            <p className="empty">No sessions dated today. Create a note from a patient record.</p>
+            <div className="dash-empty">
+              <span className="metric-icon">
+                <IconSessions />
+              </span>
+              <p>Nothing logged today. Log a visit from a patient record so it is on the chart.</p>
+              <Link className="btn btn-block" href={logVisitHref}>
+                Log visit
+              </Link>
+            </div>
           )}
         </section>
         {isAdmin ? (
