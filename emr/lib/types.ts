@@ -1,4 +1,9 @@
-export type Role = "admin" | "physiotherapist";
+export type Role = "admin" | "physiotherapist" | "support";
+
+export function asRole(value: string | null | undefined): Role {
+  if (value === "admin" || value === "support") return value;
+  return "physiotherapist";
+}
 export type StaffStatus = "active" | "disabled";
 export type PatientStatus = "active" | "inactive";
 export type VisitType = "home" | "online";
@@ -9,6 +14,7 @@ export type Profile = {
   full_name: string;
   role: Role;
   status?: StaffStatus;
+  last_seen_at?: string | null;
   created_at?: string;
 };
 

@@ -671,6 +671,7 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 5;
+  overflow: visible;
 }
 
 .app-top-brand {
@@ -754,10 +755,12 @@ textarea {
   display: flex;
   align-items: center;
   gap: 1rem;
+  overflow: visible;
 }
 
 .menu {
   position: relative;
+  overflow: visible;
 }
 
 .bell-dot {
@@ -781,6 +784,7 @@ textarea {
   right: 0;
   top: calc(100% + 0.55rem);
   width: 16.5rem;
+  min-width: 14.5rem;
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -1017,6 +1021,10 @@ textarea {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.dash-actions:has(> :only-child) {
+  grid-template-columns: 1fr;
+}
+
 .dash-action {
   display: flex;
   flex-direction: column;
@@ -1054,12 +1062,21 @@ textarea {
 }
 
 .metric-card {
+  display: block;
   min-width: 0;
   overflow: hidden;
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: 14px;
   padding: 0.9rem 0.85rem 0.85rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.metric-card:hover {
+  text-decoration: none;
+  border-color: var(--teal);
+  background: var(--teal-tint);
 }
 
 .metric-icon {
@@ -1726,6 +1743,7 @@ textarea.continuity {
     min-width: 0;
     height: 3.7rem;
     max-height: 3.7rem;
+    overflow: visible;
   }
 
   .nav-more-wrap {
@@ -1734,6 +1752,7 @@ textarea.continuity {
     min-width: 0;
     display: flex;
     height: 3.7rem;
+    overflow: visible;
   }
 
   .nav-more-wrap > .nav-item {
@@ -1742,12 +1761,13 @@ textarea.continuity {
   }
 
   .nav-more {
-    position: absolute;
+    position: fixed;
     left: auto;
-    right: 0.2rem;
-    bottom: calc(100% + 0.45rem);
-    width: 11.5rem;
-    max-width: calc(100% - 1rem);
+    right: 0.7rem;
+    bottom: calc(4.15rem + env(safe-area-inset-bottom, 0px));
+    width: min(15rem, calc(100vw - 1.4rem));
+    min-width: 12.5rem;
+    max-width: none;
     background: var(--navy);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
@@ -1755,7 +1775,8 @@ textarea.continuity {
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
-    z-index: 50;
+    z-index: 60;
+    box-shadow: 0 10px 28px rgba(0, 12, 28, 0.35);
   }
 
   .app-shell > aside.sidebar > nav.nav-mobile > .nav-item {
@@ -1786,6 +1807,8 @@ textarea.continuity {
     font-size: 0.85rem;
     gap: 0.55rem;
     text-align: left;
+    overflow: visible;
+    white-space: nowrap;
   }
 
   .nav-mobile .nav-item svg {
@@ -1811,6 +1834,8 @@ textarea.continuity {
     grid-template-rows: auto auto;
     padding: 0.7rem 0.85rem 0.75rem;
     gap: 0.65rem 0.55rem;
+    z-index: 45;
+    overflow: visible;
   }
 
   .app-top-brand {
@@ -1847,8 +1872,14 @@ textarea.continuity {
     margin-bottom: 0.85rem;
   }
 
-  .menu-panel {
-    width: min(18rem, calc(100% - 1.2rem));
+  .header-tools .menu-panel {
+    position: fixed;
+    top: 3.55rem;
+    right: 0.7rem;
+    left: auto;
+    width: min(17.5rem, calc(100vw - 1.4rem));
+    min-width: 13.5rem;
+    z-index: 80;
   }
 
   .app-content {
@@ -1877,6 +1908,10 @@ textarea.continuity {
   .dash-actions:has(> :nth-child(3)) {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     width: 100%;
+  }
+
+  .dash-actions:has(> :only-child) {
+    grid-template-columns: 1fr !important;
   }
 
   .dash-greeting {

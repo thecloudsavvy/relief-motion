@@ -4,8 +4,9 @@ import { revalidatePath } from "next/cache";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { writeAudit } from "@/lib/audit";
-import { requireAdmin, requirePatientAccess, requireStaff } from "@/lib/auth";
+import { requireAdmin, requireCreatePatient, requirePatientAccess, requireStaff } from "@/lib/auth";
 import { lagosStamp } from "@/lib/format";
+import { asRole } from "@/lib/types";
 import { sendStaffInviteEmail } from "@/lib/email";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
@@ -82,7 +83,7 @@ export async function requestPasswordReset() {
 export async function updateStaffRole(formData: FormData) {
   const { supabase, user } = await requireAdmin();
   const staffId = str(formData, "staff_id");
-  const role = str(formData, "role") === "admin" ? "admin" : "physiotherapist";
+  const role = asRole(str(formData, "role"));
   const status = str(formData, "status") === "disabled" ? "disabled" : "active";
   if (!staffId) redirect("/settings?tab=roles&error=Choose a staff member");
   if (staffId === user.id) redirect("/settings?tab=roles&error=You cannot change your own access");
@@ -223,12 +224,14 @@ export async function invitePhysiotherapist(formData: FormData) {
     );
   }
 
+  const role = asRole(str(formData, "role"));
+  const inviteRole = role === "admin" ? "physiotherapist" : role;
   const userId = link.data.user?.id;
   if (userId) {
     await admin.from("profiles").upsert({
       id: userId,
       full_name,
-      role: "physiotherapist",
+      role: inviteRole,
       status: "active"
     });
   }
@@ -253,7 +256,7 @@ export async function invitePhysiotherapist(formData: FormData) {
 }
 
 export async function createPatient(formData: FormData) {
-  const { supabase, user, isAdmin } = await requireStaff();
+  const { supabase, user } = await requireCreatePatient();
   const first_name = str(formData, "first_name");
   const last_name = str(formData, "last_name");
   if (!first_name || !last_name) {
@@ -270,7 +273,7 @@ export async function createPatient(formData: FormData) {
     date_of_birth: nullable(formData, "date_of_birth"),
     condition: nullable(formData, "condition"),
     status: str(formData, "status") === "inactive" ? "inactive" : "active",
-    assigned_to: isAdmin ? nullable(formData, "assigned_to") : user.id,
+    assigned_to: nullable(formData, "assigned_to"),
     emergency_name: nullable(formData, "emergency_name"),
     emergency_phone: nullable(formData, "emergency_phone"),
     referral_source: nullable(formData, "referral_source"),

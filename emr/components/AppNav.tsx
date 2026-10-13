@@ -15,7 +15,7 @@ import {
   IconSessions,
   IconSettings
 } from "@/components/ui";
-import { initials } from "@/lib/format";
+import { initials, roleLabel } from "@/lib/format";
 
 const BASE_NAV = [
   { href: "/", label: "Home", icon: IconHome },
@@ -65,7 +65,7 @@ export function AppNav({
 }) {
   const pathname = usePathname();
   const isAdmin = role === "admin";
-  const roleLabel = isAdmin ? "Admin" : "Physiotherapist";
+  const label = roleLabel(role);
   const desktopNav = [...BASE_NAV, ...(isAdmin ? ADMIN_NAV : []), ...TAIL_NAV];
   const mobilePrimary = isAdmin ? BASE_NAV : [...BASE_NAV, ...TAIL_NAV];
   const mobileMore = isAdmin ? [...ADMIN_NAV, ...TAIL_NAV] : [];
@@ -114,7 +114,7 @@ export function AppNav({
         <Avatar label={initials(name)} />
         <div>
           <strong>{name || "Staff"}</strong>
-          <span>{roleLabel}</span>
+          <span>{label}</span>
         </div>
       </div>
       <form action={logout}>

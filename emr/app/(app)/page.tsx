@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { IconNote, IconPatients, IconProviders, IconSessions, IconUserPlus } from "@/components/ui";
 import { requireStaff } from "@/lib/auth";
+import { physioDutyIds } from "@/lib/duty";
 import {
   auditCopy,
   clinicianLabel,
@@ -24,7 +25,7 @@ function uniqueRecentNotes<T extends { patient_id: string; status?: string; crea
 }
 
 export default async function DashboardPage() {
-  const { supabase, user, isAdmin, profile } = await requireStaff();
+  const { supabase, user, isAdmin, isSupport, canCreatePatients, profile } = await requireStaff();
   const today = lagosStamp().visit_at;
   const hello = `${greetingLabel()}, ${firstName(profile?.full_name || "there")}`;
 
@@ -42,21 +43,19 @@ export default async function DashboardPage() {
     { data: todayVisits },
     { count: activeCount },
     { count: draftCount },
-    { count: ptCount },
+    dutyIds,
     { data: activity },
     { data: recentNotes },
     { data: ownDrafts, count: ownDraftCount }
   ] = await Promise.all([
     isAdmin ? visitsTodayRows : visitsTodayRows.eq("clinician_id", user.id),
-    isAdmin ? activePatients : activePatients.eq("assigned_to", user.id),
-    isAdmin ? drafts : drafts.eq("clinician_id", user.id),
     isAdmin
-      ? supabase
-          .from("profiles")
-          .select("*", { count: "exact", head: true })
-          .eq("role", "physiotherapist")
-          .neq("status", "disabled")
-      : Promise.resolve({ count: 0 }),
+      ? activePatients
+      : isSupport
+        ? activePatients.or(`assigned_to.eq.${user.id},created_by.eq.${user.id}`)
+        : activePatients.eq("assigned_to", user.id),
+    isAdmin ? drafts : drafts.eq("clinician_id", user.id),
+    isAdmin ? physioDutyIds(supabase) : Promise.resolve([] as string[]),
     isAdmin
       ? supabase
           .from("audit_events")
@@ -115,10 +114,12 @@ export default async function DashboardPage() {
       ) : null}
 
       <div className="dash-actions">
-        <Link className="dash-action" href="/patients/new">
-          <IconUserPlus />
-          New patient
-        </Link>
+        {canCreatePatients ? (
+          <Link className="dash-action" href="/patients/new">
+            <IconUserPlus />
+            New patient
+          </Link>
+        ) : null}
         <Link className="dash-action" href={logVisitHref}>
           <IconSessions />
           Log visit
@@ -132,35 +133,35 @@ export default async function DashboardPage() {
       </div>
 
       <section className="dash-metrics">
-        <article className="metric-card">
+        <Link className="metric-card" href="/sessions?date=today">
           <span className="metric-icon">
             <IconSessions />
           </span>
           <b>{todayList.length}</b>
           <span>Visits today</span>
-        </article>
-        <article className="metric-card">
+        </Link>
+        <Link className="metric-card" href="/patients?status=active">
           <span className="metric-icon">
             <IconPatients />
           </span>
           <b>{activeCount || 0}</b>
           <span>Active patients</span>
-        </article>
-        <article className="metric-card">
+        </Link>
+        <Link className="metric-card" href="/sessions?status=draft">
           <span className="metric-icon metric-icon-note">
             <IconNote />
           </span>
           <b>{draftCount || 0}</b>
           <span>Notes pending</span>
-        </article>
+        </Link>
         {isAdmin ? (
-          <article className="metric-card">
+          <Link className="metric-card" href="/providers?duty=today">
             <span className="metric-icon">
               <IconProviders />
             </span>
-            <b>{ptCount || 0}</b>
+            <b>{dutyIds.length}</b>
             <span>Physios on duty</span>
-          </article>
+          </Link>
         ) : null}
       </section>
 

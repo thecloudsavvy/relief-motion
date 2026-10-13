@@ -74,6 +74,7 @@ export function HeaderTools({
         <button
           className="top-user"
           type="button"
+          aria-label="Account menu"
           aria-expanded={open === "account"}
           onClick={() => setOpen(open === "account" ? null : "account")}
         >

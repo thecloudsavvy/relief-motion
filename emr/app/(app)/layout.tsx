@@ -4,7 +4,7 @@ import { AppTopBrand } from "@/components/AppTopBrand";
 import { HeaderTools } from "@/components/HeaderTools";
 import { TopSearch } from "@/components/TopSearch";
 import { createClient } from "@/lib/supabase/server";
-import { formatDate } from "@/lib/format";
+import { formatDate, roleLabel } from "@/lib/format";
 import type { Profile } from "@/lib/types";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
@@ -25,6 +25,8 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     redirect("/login?error=" + encodeURIComponent("This staff account has been disabled."));
   }
 
+  await supabase.from("profiles").update({ last_seen_at: new Date().toISOString() }).eq("id", user.id);
+
   const { data: draftRows } = await supabase
     .from("visits")
     .select("id, visit_at, patient_id, patients(rm_id, first_name, last_name)")
@@ -34,7 +36,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     .limit(8);
 
   const name = profile?.full_name || user.email || "Staff";
-  const role = profile?.role === "admin" ? "Admin" : "Physiotherapist";
+  const role = roleLabel(profile?.role);
   const notices = (draftRows || []).map((row) => {
     const patient = Array.isArray(row.patients) ? row.patients[0] : row.patients;
     const who = patient ? `${patient.first_name} ${patient.last_name}` : "Patient";

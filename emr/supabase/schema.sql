@@ -20,15 +20,18 @@ $$;
 create table if not exists public.profiles (
   id uuid primary key references auth.users (id) on delete cascade,
   full_name text not null default '',
-  role text not null default 'physiotherapist'
-    check (role in ('admin', 'physiotherapist')),
+  role text not null default 'physiotherapist',
   created_at timestamptz not null default now()
 );
 
 alter table public.profiles add column if not exists status text not null default 'active';
+alter table public.profiles add column if not exists last_seen_at timestamptz;
 alter table public.profiles drop constraint if exists profiles_status_check;
 alter table public.profiles add constraint profiles_status_check
   check (status in ('active', 'disabled'));
+alter table public.profiles drop constraint if exists profiles_role_check;
+alter table public.profiles add constraint profiles_role_check
+  check (role in ('admin', 'physiotherapist', 'support'));
 
 create table if not exists public.patients (
   id uuid primary key default gen_random_uuid(),
@@ -145,6 +148,19 @@ as $$
   );
 $$;
 
+create or replace function public.is_support()
+returns boolean
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select exists (
+    select 1 from public.profiles
+    where id = auth.uid() and role = 'support' and coalesce(status, 'active') = 'active'
+  );
+$$;
+
 create or replace function public.can_access_patient(target uuid)
 returns boolean
 language sql
@@ -158,14 +174,20 @@ as $$
       public.is_admin()
       or exists (
         select 1 from public.patients p
-        where p.id = target and p.assigned_to = auth.uid()
+        where p.id = target
+          and (
+            p.assigned_to = auth.uid()
+            or (public.is_support() and p.created_by = auth.uid())
+          )
       )
     );
 $$;
 
 revoke all on function public.is_admin() from public;
+revoke all on function public.is_support() from public;
 revoke all on function public.can_access_patient(uuid) from public;
 grant execute on function public.is_admin() to anon, authenticated, service_role;
+grant execute on function public.is_support() to anon, authenticated, service_role;
 grant execute on function public.can_access_patient(uuid) to anon, authenticated, service_role;
 
 drop policy if exists "staff read profiles" on public.profiles;
@@ -193,15 +215,20 @@ drop policy if exists "read assigned or all if admin" on public.patients;
 create policy "read assigned or all if admin"
   on public.patients for select
   to authenticated
-  using (public.is_admin() or assigned_to = auth.uid());
+  using (
+    public.is_admin()
+    or assigned_to = auth.uid()
+    or (public.is_support() and created_by = auth.uid())
+  );
 
 drop policy if exists "staff create patients" on public.patients;
-create policy "staff create patients"
+drop policy if exists "admin create patients" on public.patients;
+create policy "admin create patients"
   on public.patients for insert
   to authenticated
   with check (
     created_by = auth.uid()
-    and (public.is_admin() or assigned_to = auth.uid())
+    and (public.is_admin() or public.is_support())
   );
 
 drop policy if exists "staff update patients" on public.patients;
@@ -209,8 +236,16 @@ drop policy if exists "update assigned or all if admin" on public.patients;
 create policy "update assigned or all if admin"
   on public.patients for update
   to authenticated
-  using (public.is_admin() or assigned_to = auth.uid())
-  with check (public.is_admin() or assigned_to = auth.uid());
+  using (
+    public.is_admin()
+    or assigned_to = auth.uid()
+    or (public.is_support() and created_by = auth.uid())
+  )
+  with check (
+    public.is_admin()
+    or assigned_to = auth.uid()
+    or (public.is_support() and created_by = auth.uid())
+  );
 
 drop policy if exists "staff read visits" on public.visits;
 drop policy if exists "read visits for accessible patients" on public.visits;

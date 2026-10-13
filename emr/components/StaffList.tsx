@@ -1,13 +1,15 @@
 import { Avatar } from "@/components/ui";
-import { avatarTone, initials } from "@/lib/format";
+import { avatarTone, initials, roleLabel } from "@/lib/format";
 import type { Profile } from "@/lib/types";
 
 export function StaffList({
   profiles,
-  counts
+  counts,
+  empty = "No staff accounts yet."
 }: {
   profiles: Profile[];
   counts: Map<string, number>;
+  empty?: string;
 }) {
   return (
     <div className="table-wrap">
@@ -30,7 +32,7 @@ export function StaffList({
                     <strong>{profile.full_name || "Unnamed staff"}</strong>
                   </div>
                 </td>
-                <td>{profile.role === "admin" ? "Admin" : "Physiotherapist"}</td>
+                <td>{roleLabel(profile.role)}</td>
                 <td>
                   <span className={`pill ${profile.status === "disabled" ? "pill-muted" : "pill-ok"}`}>
                     {profile.status === "disabled" ? "Disabled" : "Active"}
@@ -42,7 +44,7 @@ export function StaffList({
           ) : (
             <tr>
               <td colSpan={4} className="empty">
-                No staff accounts yet.
+                {empty}
               </td>
             </tr>
           )}

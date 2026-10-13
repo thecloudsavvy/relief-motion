@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { requireStaff } from "@/lib/auth";
-import { clinicianLabel, formatDate, visitTypeLabel } from "@/lib/format";
+import { clinicianLabel, formatDate, lagosStamp, visitTypeLabel } from "@/lib/format";
 
 export default async function SessionsPage({
   searchParams
 }: {
-  searchParams: Promise<{ q?: string; status?: string }>;
+  searchParams: Promise<{ q?: string; status?: string; date?: string }>;
 }) {
-  const { q = "", status = "" } = await searchParams;
-  const { supabase, user, isAdmin } = await requireStaff();
+  const { q = "", status = "", date = "" } = await searchParams;
+  const { supabase, user, isAdmin, isSupport } = await requireStaff();
   let request = supabase
     .from("visits")
     .select(
@@ -18,8 +18,17 @@ export default async function SessionsPage({
     .order("created_at", { ascending: false })
     .limit(80);
 
-  if (!isAdmin) request = request.eq("patients.assigned_to", user.id);
+  if (isAdmin) {
+    /* all notes */
+  } else if (isSupport) {
+    request = request.or(`assigned_to.eq.${user.id},created_by.eq.${user.id}`, {
+      referencedTable: "patients"
+    });
+  } else {
+    request = request.eq("patients.assigned_to", user.id);
+  }
   if (status === "draft" || status === "signed") request = request.eq("status", status);
+  if (date === "today") request = request.eq("visit_at", lagosStamp().visit_at);
 
   const { data: visits } = await request;
   const term = q.trim().toLowerCase();
@@ -36,7 +45,15 @@ export default async function SessionsPage({
         <div>
           <h1>Sessions</h1>
           <p className="muted">
-            {isAdmin ? "All visit notes across the network" : "Visit notes for your assigned patients"}
+            {date === "today"
+              ? "Visits logged today"
+              : status === "draft"
+                ? "Draft notes still to finish"
+                : isAdmin
+                  ? "All visit notes across the network"
+                  : isSupport
+                    ? "Visit notes for patients you registered or that are assigned to you"
+                    : "Visit notes for your assigned patients"}
           </p>
         </div>
       </div>
@@ -46,6 +63,10 @@ export default async function SessionsPage({
           <option value="">All notes</option>
           <option value="signed">Signed</option>
           <option value="draft">Drafts</option>
+        </select>
+        <select name="date" defaultValue={date}>
+          <option value="">All dates</option>
+          <option value="today">Today</option>
         </select>
         <button className="btn" type="submit">
           Search
@@ -101,7 +122,7 @@ export default async function SessionsPage({
             ) : (
               <tr>
                 <td colSpan={6} className="empty">
-                  {term || status
+                  {term || status || date
                     ? "No sessions match that search."
                     : "No sessions yet. Document a visit from a patient record."}
                 </td>

@@ -6,7 +6,7 @@ import { QueryFlash } from "@/components/QueryFlash";
 import { Avatar } from "@/components/ui";
 import { StaffList } from "@/components/StaffList";
 import { requireStaff } from "@/lib/auth";
-import { formatDate, formatDateTime, initials } from "@/lib/format";
+import { formatDate, formatDateTime, initials, roleLabel } from "@/lib/format";
 import type { Profile } from "@/lib/types";
 import { redirect } from "next/navigation";
 
@@ -54,7 +54,7 @@ export default async function SettingsPage({
     data: { user: authUser }
   } = await supabase.auth.getUser();
   const name = profile?.full_name || authUser?.email || "Staff";
-  const roleLabel = isAdmin ? "Admin" : "Physiotherapist";
+  const currentRole = roleLabel(profile?.role);
   const section =
     tab === "security" ||
     (isAdmin && (tab === "staff" || tab === "invite" || tab === "roles"))
@@ -125,7 +125,7 @@ export default async function SettingsPage({
                   <p className="muted">View and update your personal information.</p>
                   <div className="settings-hero-meta">
                     <strong>{name}</strong>
-                    <span className="pill pill-ok">{roleLabel}</span>
+                    <span className="pill pill-ok">{currentRole}</span>
                   </div>
                 </div>
               </div>
@@ -140,7 +140,7 @@ export default async function SettingsPage({
                 </div>
                 <div>
                   <label>Role</label>
-                  <input value={roleLabel} disabled />
+                  <input value={currentRole} disabled />
                 </div>
               </div>
               <p className="muted" style={{ marginBottom: "1rem" }}>
@@ -160,8 +160,8 @@ export default async function SettingsPage({
             <form className="panel" action={invitePhysiotherapist}>
               <h2>Add physiotherapist</h2>
               <p className="muted" style={{ marginBottom: "1rem" }}>
-                Creates their staff profile and emails an invite. They sign in as a physiotherapist. Promote them
-                under Roles &amp; Permissions if they should be an admin.
+                Creates their staff profile and emails an invite. Choose Support for intake staff who can register
+                patients. Promote someone to admin under Roles &amp; Permissions.
               </p>
               <div className="grid-2">
                 <div>
@@ -171,6 +171,13 @@ export default async function SettingsPage({
                 <div>
                   <label htmlFor="invite_email">Work email</label>
                   <input id="invite_email" name="email" type="email" required placeholder="name@reliefmotionphysio.com" />
+                </div>
+                <div>
+                  <label htmlFor="invite_role">Role</label>
+                  <select id="invite_role" name="role" defaultValue="physiotherapist">
+                    <option value="physiotherapist">Physiotherapist</option>
+                    <option value="support">Support</option>
+                  </select>
                 </div>
               </div>
               <button className="btn" type="submit">
@@ -197,42 +204,50 @@ export default async function SettingsPage({
                     <tr>
                       <th>Capability</th>
                       <th>Admin</th>
+                      <th>Support</th>
                       <th>Physiotherapist</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>Patients</td>
-                      <td>All records, including unassigned</td>
+                      <td>All records</td>
+                      <td>Registered by them, or assigned to them</td>
                       <td>Assigned to them only</td>
                     </tr>
                     <tr>
-                      <td>Assign physiotherapist</td>
+                      <td>Create patients</td>
                       <td>Yes</td>
+                      <td>Yes, and assign a PT</td>
+                      <td>No</td>
+                    </tr>
+                    <tr>
+                      <td>Assign physiotherapist</td>
+                      <td>Anytime</td>
+                      <td>At intake</td>
                       <td>No</td>
                     </tr>
                     <tr>
                       <td>Providers, audit log</td>
                       <td>Yes</td>
                       <td>No</td>
+                      <td>No</td>
                     </tr>
                     <tr>
                       <td>Staff roles</td>
                       <td>Yes</td>
                       <td>No</td>
-                    </tr>
-                    <tr>
-                      <td>Create patients</td>
-                      <td>Yes</td>
-                      <td>Yes, assigned to themselves</td>
+                      <td>No</td>
                     </tr>
                     <tr>
                       <td>Session notes</td>
                       <td>Network-wide</td>
+                      <td>Their accessible patients</td>
                       <td>Their assigned patients</td>
                     </tr>
                     <tr>
                       <td>Sign in</td>
+                      <td>Yes, unless disabled</td>
                       <td>Yes, unless disabled</td>
                       <td>Yes, unless disabled</td>
                     </tr>
@@ -260,7 +275,7 @@ export default async function SettingsPage({
                   <tbody>
                     {staff.map((member) => {
                       const self = member.id === user.id;
-                      const roleLabel = member.role === "admin" ? "Admin" : "Physiotherapist";
+                      const memberRole = roleLabel(member.role);
                       const statusLabel = member.status === "disabled" ? "Disabled" : "Active";
                       return (
                       <tr key={member.id}>
@@ -275,7 +290,7 @@ export default async function SettingsPage({
                         </td>
                         {self ? (
                           <>
-                            <td>{roleLabel}</td>
+                            <td>{memberRole}</td>
                             <td colSpan={2}>{statusLabel}</td>
                           </>
                         ) : (
@@ -285,6 +300,7 @@ export default async function SettingsPage({
                                 <input type="hidden" name="staff_id" value={member.id} />
                                 <select name="role" defaultValue={member.role} aria-label="Role">
                                   <option value="physiotherapist">Physiotherapist</option>
+                                  <option value="support">Support</option>
                                   <option value="admin">Admin</option>
                                 </select>
                                 <select
@@ -345,7 +361,7 @@ export default async function SettingsPage({
                 </div>
                 <div>
                   <dt>Role</dt>
-                  <dd>{roleLabel}</dd>
+                  <dd>{currentRole}</dd>
                 </div>
                 <div>
                   <dt>Member since</dt>

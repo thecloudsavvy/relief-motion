@@ -108,11 +108,21 @@ export function lagosLongDate() {
   });
 }
 
+export function roleLabel(role: string | null | undefined) {
+  if (role === "admin") return "Admin";
+  if (role === "support") return "Support";
+  return "Physiotherapist";
+}
+
 export function greetingLabel() {
   const hour = Number(lagosStamp().visit_time.slice(0, 2));
   if (hour < 12) return "Good morning";
   if (hour < 17) return "Good afternoon";
   return "Good evening";
+}
+
+export function lagosDayStartIso() {
+  return `${lagosStamp().visit_at}T00:00:00+01:00`;
 }
 
 export function sexLabel(sex: string | null) {

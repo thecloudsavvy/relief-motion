@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { createPatient } from "@/app/actions";
 import { PatientForm } from "@/components/PatientForm";
-import { requireStaff } from "@/lib/auth";
+import { requireCreatePatient } from "@/lib/auth";
 import type { Profile } from "@/lib/types";
 
 export default async function NewPatientPage({
@@ -10,16 +10,16 @@ export default async function NewPatientPage({
   searchParams: Promise<{ error?: string }>;
 }) {
   const { error } = await searchParams;
-  const { supabase, isAdmin } = await requireStaff();
-  const { data: profiles } = isAdmin
-    ? await supabase
-        .from("profiles")
-        .select("id, full_name, status")
-        .order("full_name")
-        .returns<Pick<Profile, "id" | "full_name" | "status">[]>()
-    : { data: [] as Pick<Profile, "id" | "full_name" | "status">[] };
+  const { supabase } = await requireCreatePatient();
+  const { data: profiles } = await supabase
+    .from("profiles")
+    .select("id, full_name, role, status")
+    .order("full_name")
+    .returns<Pick<Profile, "id" | "full_name" | "role" | "status">[]>();
 
-  const assignable = (profiles || []).filter((row) => row.status !== "disabled");
+  const assignable = (profiles || []).filter(
+    (row) => row.status !== "disabled" && row.role !== "support"
+  );
 
   return (
     <>
@@ -30,9 +30,7 @@ export default async function NewPatientPage({
         <div>
           <h1>Add Patient</h1>
           <p className="muted">
-            {isAdmin
-              ? "A Relief Motion ID is assigned automatically for handover."
-              : "New records are assigned to you. A Relief Motion ID is created automatically."}
+            Clinic intake only. Assign the physiotherapist who will own this chart.
           </p>
         </div>
       </div>
@@ -41,7 +39,7 @@ export default async function NewPatientPage({
         profiles={assignable}
         error={error}
         submitLabel="Save patient"
-        includeAssignment={isAdmin}
+        includeAssignment
       />
     </>
   );

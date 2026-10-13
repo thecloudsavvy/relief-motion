@@ -103,7 +103,11 @@ export default async function PatientChartPage({
                   <select name="assigned_to" defaultValue={patient.assigned_to || ""}>
                     <option value="">Unassigned</option>
                     {(profiles as Profile[] | null)
-                      ?.filter((row) => row.status !== "disabled" || row.id === patient.assigned_to)
+                      ?.filter(
+                        (row) =>
+                          (row.status !== "disabled" || row.id === patient.assigned_to) &&
+                          (row.role !== "support" || row.id === patient.assigned_to)
+                      )
                       .map((row) => (
                         <option key={row.id} value={row.id}>
                           {row.full_name || "Staff"}

@@ -27,7 +27,7 @@ export default async function PatientsPage({
   searchParams: Promise<{ q?: string; condition?: string; status?: string; page?: string }>;
 }) {
   const { q = "", condition = "", status = "", page = "1" } = await searchParams;
-  const { supabase, user, isAdmin } = await requireStaff();
+  const { supabase, user, isAdmin, isSupport, canCreatePatients } = await requireStaff();
   const current = Math.max(1, Number(page) || 1);
   const from = (current - 1) * PAGE_SIZE;
   const to = from + PAGE_SIZE - 1;
@@ -41,7 +41,13 @@ export default async function PatientsPage({
     .order("created_at", { ascending: false })
     .range(from, to);
 
-  if (!isAdmin) request = request.eq("assigned_to", user.id);
+  if (isAdmin) {
+    /* all records */
+  } else if (isSupport) {
+    request = request.or(`assigned_to.eq.${user.id},created_by.eq.${user.id}`);
+  } else {
+    request = request.eq("assigned_to", user.id);
+  }
 
   const term = q.trim().replace(/,/g, " ");
   if (term) {
@@ -54,7 +60,8 @@ export default async function PatientsPage({
 
   const { data: patients, count } = await request;
   let conditionQuery = supabase.from("patients").select("condition").not("condition", "is", null);
-  if (!isAdmin) conditionQuery = conditionQuery.eq("assigned_to", user.id);
+  if (isSupport) conditionQuery = conditionQuery.or(`assigned_to.eq.${user.id},created_by.eq.${user.id}`);
+  else if (!isAdmin) conditionQuery = conditionQuery.eq("assigned_to", user.id);
   const { data: conditionRows } = await conditionQuery;
   const conditions = Array.from(
     new Set((conditionRows || []).map((row) => row.condition).filter(Boolean) as string[])
@@ -77,13 +84,19 @@ export default async function PatientsPage({
         <div>
           <h1>Patients</h1>
           <p className="muted">
-            {isAdmin ? "View and manage all patient records" : "Patients assigned to you"}
+            {isAdmin
+              ? "View and manage all patient records"
+              : isSupport
+                ? "Patients you registered or that are assigned to you"
+                : "Patients assigned to you"}
           </p>
         </div>
-        <Link className="btn" href="/patients/new">
-          <IconPlus />
-          Add Patient
-        </Link>
+        {canCreatePatients ? (
+          <Link className="btn" href="/patients/new">
+            <IconPlus />
+            Add Patient
+          </Link>
+        ) : null}
       </div>
 
       <form className="filters" action="/patients">
@@ -167,9 +180,9 @@ export default async function PatientsPage({
                 <td colSpan={7} className="empty">
                   {term || condition || status
                     ? "No patients match that search."
-                    : isAdmin
+                    : canCreatePatients
                       ? "No patients yet. Create a record to start documentation."
-                      : "No patients assigned to you yet."}
+                      : "No patients assigned to you yet. Ask support or an admin to add the chart."}
                 </td>
               </tr>
             )}

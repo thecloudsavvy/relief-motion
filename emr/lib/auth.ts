@@ -1,6 +1,6 @@
 import { notFound, redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import type { Patient, Profile, Role } from "@/lib/types";
+import { asRole, type Patient, type Profile, type Role } from "@/lib/types";
 
 export type Staff = {
   supabase: Awaited<ReturnType<typeof createClient>>;
@@ -8,6 +8,8 @@ export type Staff = {
   profile: Profile | null;
   role: Role;
   isAdmin: boolean;
+  isSupport: boolean;
+  canCreatePatients: boolean;
 };
 
 export async function requireStaff(): Promise<Staff> {
@@ -28,8 +30,18 @@ export async function requireStaff(): Promise<Staff> {
     redirect("/login?error=" + encodeURIComponent("This staff account has been disabled."));
   }
 
-  const role: Role = profile?.role === "admin" ? "admin" : "physiotherapist";
-  return { supabase, user, profile, role, isAdmin: role === "admin" };
+  const role = asRole(profile?.role);
+  const isAdmin = role === "admin";
+  const isSupport = role === "support";
+  return {
+    supabase,
+    user,
+    profile,
+    role,
+    isAdmin,
+    isSupport,
+    canCreatePatients: isAdmin || isSupport
+  };
 }
 
 export async function requireAdmin() {
@@ -38,13 +50,20 @@ export async function requireAdmin() {
   return staff;
 }
 
-export function canAccessPatient(assignedTo: string | null, staff: Staff) {
-  return staff.isAdmin || assignedTo === staff.user.id;
+export async function requireCreatePatient() {
+  const staff = await requireStaff();
+  if (!staff.canCreatePatients) redirect("/patients");
+  return staff;
+}
+
+export function canAccessPatient(assignedTo: string | null, staff: Staff, createdBy?: string | null) {
+  if (staff.isAdmin || assignedTo === staff.user.id) return true;
+  return staff.isSupport && createdBy === staff.user.id;
 }
 
 export async function requirePatientAccess(patientId: string) {
   const staff = await requireStaff();
   const { data: patient } = await staff.supabase.from("patients").select("*").eq("id", patientId).single<Patient>();
-  if (!patient || !canAccessPatient(patient.assigned_to, staff)) notFound();
+  if (!patient || !canAccessPatient(patient.assigned_to, staff, patient.created_by)) notFound();
   return { ...staff, patient };
 }
