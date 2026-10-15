@@ -7,7 +7,9 @@ import { writeAudit } from "@/lib/audit";
 import { requireAdmin, requireCreatePatient, requirePatientAccess, requireStaff } from "@/lib/auth";
 import { lagosStamp } from "@/lib/format";
 import { asRole } from "@/lib/types";
+import { appOrigin } from "@/lib/app-url";
 import { sendStaffInviteEmail } from "@/lib/email";
+import { notifyClinicianAssigned } from "@/lib/notify";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
@@ -291,6 +293,14 @@ export async function createPatient(formData: FormData) {
     patientId: data.id,
     detail: data.rm_id
   });
+  await notifyClinicianAssigned({
+    clinicianId: payload.assigned_to,
+    actorId: user.id,
+    patientId: data.id,
+    rmId: data.rm_id,
+    patientName: `${first_name} ${last_name}`.trim(),
+    appUrl: await appOrigin()
+  });
   revalidatePath("/patients");
   revalidatePath("/");
   redirect(`/patients/${data.id}`);
@@ -334,17 +344,52 @@ export async function updatePatient(patientId: string, formData: FormData) {
 }
 
 export async function assignClinician(patientId: string, formData: FormData) {
-  const { supabase } = await requireAdmin();
+  const { supabase, user } = await requireAdmin();
   const assigned_to = nullable(formData, "assigned_to");
+  const { data: patient } = await supabase
+    .from("patients")
+    .select("id, rm_id, first_name, last_name, assigned_to")
+    .eq("id", patientId)
+    .single();
+  if (!patient) redirect("/patients");
+  if (patient.assigned_to === assigned_to) {
+    redirect(`/patients/${patientId}`);
+  }
   const { error } = await supabase.from("patients").update({ assigned_to }).eq("id", patientId);
   if (error) {
     redirect(`/patients/${patientId}?error=` + encodeURIComponent(error.message));
   }
   await writeAudit({ action: "assigned_clinician", patientId });
+  await notifyClinicianAssigned({
+    clinicianId: assigned_to,
+    actorId: user.id,
+    patientId,
+    rmId: patient.rm_id,
+    patientName: `${patient.first_name} ${patient.last_name}`.trim(),
+    appUrl: await appOrigin()
+  });
   revalidatePath(`/patients/${patientId}`);
   revalidatePath("/patients");
   revalidatePath("/providers");
   redirect(`/patients/${patientId}`);
+}
+
+export async function savePushSubscription(payload: string) {
+  const { supabase, user } = await requireStaff();
+  let parsed: { endpoint?: string; keys?: { p256dh?: string; auth?: string } };
+  try {
+    parsed = JSON.parse(payload) as { endpoint?: string; keys?: { p256dh?: string; auth?: string } };
+  } catch {
+    return;
+  }
+  const endpoint = parsed.endpoint || "";
+  const p256dh = parsed.keys?.p256dh || "";
+  const auth = parsed.keys?.auth || "";
+  if (!endpoint || !p256dh || !auth) return;
+  await supabase.from("push_subscriptions").upsert(
+    { user_id: user.id, endpoint, p256dh, auth },
+    { onConflict: "endpoint" }
+  );
 }
 
 function visitFields(formData: FormData) {

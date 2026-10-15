@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { AppNav } from "@/components/AppNav";
 import { AppTopBrand } from "@/components/AppTopBrand";
 import { HeaderTools } from "@/components/HeaderTools";
+import { PushEnable } from "@/components/PushEnable";
 import { TopSearch } from "@/components/TopSearch";
 import { createClient } from "@/lib/supabase/server";
 import { formatDate, roleLabel } from "@/lib/format";
@@ -58,6 +59,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
           <HeaderTools name={name} role={role} notices={notices} />
         </header>
         <main className="app-content">{children}</main>
+        <PushEnable />
       </div>
     </div>
   );

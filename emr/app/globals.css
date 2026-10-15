@@ -750,6 +750,37 @@ textarea {
   position: relative;
 }
 
+.push-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem 1rem;
+  margin: 0 1.5rem 0.85rem;
+  padding: 0.85rem 1rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  font-size: 0.88rem;
+}
+
+.push-banner p {
+  margin: 0;
+  flex: 1 1 12rem;
+}
+
+.push-banner-actions {
+  display: flex;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+.push-banner .btn {
+  margin: 0;
+  min-height: 2.3rem;
+}
+
 .header-tools {
   grid-column: 2;
   display: flex;
@@ -1884,6 +1915,16 @@ textarea.continuity {
 
   .app-content {
     padding: 1rem 0.9rem 1.4rem;
+  }
+
+  .push-banner {
+    position: fixed;
+    left: 0.7rem;
+    right: 0.7rem;
+    bottom: calc(4.6rem + env(safe-area-inset-bottom, 0px));
+    z-index: 35;
+    margin: 0;
+    box-shadow: 0 10px 28px rgba(0, 43, 80, 0.12);
   }
 
   .dash-alert {
