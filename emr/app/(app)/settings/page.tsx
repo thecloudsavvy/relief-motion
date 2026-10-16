@@ -6,6 +6,7 @@ import { QueryFlash } from "@/components/QueryFlash";
 import { Avatar } from "@/components/ui";
 import { StaffList } from "@/components/StaffList";
 import { requireStaff } from "@/lib/auth";
+import { staffAuthById, type StaffAuth } from "@/lib/staff-auth";
 import { formatDate, formatDateTime, initials, roleLabel } from "@/lib/format";
 import type { Profile } from "@/lib/types";
 import { redirect } from "next/navigation";
@@ -66,12 +67,15 @@ export default async function SettingsPage({
 
   let staff: Profile[] = [];
   const counts = new Map<string, number>();
+  let authById = new Map<string, StaffAuth>();
   if (isAdmin && (section === "invite" || section === "roles")) {
-    const [{ data: profiles }, { data: assigned }] = await Promise.all([
+    const [{ data: profiles }, { data: assigned }, auth] = await Promise.all([
       supabase.from("profiles").select("id, full_name, role, status, created_at").order("full_name").returns<Profile[]>(),
-      supabase.from("patients").select("assigned_to, status")
+      supabase.from("patients").select("assigned_to, status"),
+      staffAuthById()
     ]);
     staff = profiles || [];
+    authById = auth;
     (assigned || []).forEach((row) => {
       if (!row.assigned_to || row.status === "inactive") return;
       counts.set(row.assigned_to, (counts.get(row.assigned_to) || 0) + 1);
@@ -186,7 +190,11 @@ export default async function SettingsPage({
             </form>
             <section className="panel">
               <h2>Staff</h2>
-              <StaffList profiles={staff} counts={counts} />
+              <p className="muted" style={{ marginBottom: "1rem" }}>
+                Everyone invited stays on this list. Active means they have set a password and signed in. Invited means
+                the email went out and they have not signed in yet — you can resend.
+              </p>
+              <StaffList profiles={staff} counts={counts} authById={authById} allowResend />
             </section>
           </div>
         ) : null}

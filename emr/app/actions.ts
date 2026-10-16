@@ -257,6 +257,74 @@ export async function invitePhysiotherapist(formData: FormData) {
   redirect("/settings?tab=invite&ok=invite");
 }
 
+export async function resendStaffInvite(formData: FormData) {
+  await requireAdmin();
+  const staffId = str(formData, "staff_id");
+  if (!staffId) redirect("/settings?tab=invite&error=Choose a staff member");
+
+  const admin = createAdminClient();
+  if (!admin) {
+    redirect(
+      "/settings?tab=invite&error=" +
+        encodeURIComponent("Add SUPABASE_SERVICE_ROLE_KEY to emr/.env.local, then restart the app.")
+    );
+  }
+
+  const { data: profile } = await admin.from("profiles").select("id, full_name, status").eq("id", staffId).single();
+  if (!profile) redirect("/settings?tab=invite&error=Staff member not found");
+  if (profile.status === "disabled") {
+    redirect("/settings?tab=invite&error=Enable this account before resending the invite");
+  }
+
+  const { data: userData, error: userError } = await admin.auth.admin.getUserById(staffId);
+  const email = userData.user?.email?.toLowerCase();
+  if (userError || !email) {
+    redirect("/settings?tab=invite&error=" + encodeURIComponent("No login email on that staff account"));
+  }
+
+  const headerList = await headers();
+  const host = headerList.get("x-forwarded-host") || headerList.get("host") || "localhost:3000";
+  const proto = headerList.get("x-forwarded-proto") || "http";
+  const redirectTo = `${proto}://${host}/auth/callback`;
+
+  let link = await admin.auth.admin.generateLink({
+    type: "invite",
+    email,
+    options: { data: { full_name: profile.full_name || "" }, redirectTo }
+  });
+  if (link.error) {
+    link = await admin.auth.admin.generateLink({
+      type: "recovery",
+      email,
+      options: { redirectTo }
+    });
+  }
+  if (link.error || !link.data?.properties?.action_link) {
+    redirect(
+      "/settings?tab=invite&error=" +
+        encodeURIComponent(authErrorText(link.error, "Could not resend the invite."))
+    );
+  }
+
+  const sent = await sendStaffInviteEmail(email, link.data.properties.action_link);
+  await writeAudit({ action: "invited_physiotherapist", detail: email });
+  revalidatePath("/settings");
+  revalidatePath("/providers");
+
+  if (!sent.ok) {
+    const jar = await cookies();
+    jar.set("rm_invite_link", link.data.properties.action_link, {
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 600
+    });
+    redirect("/settings?tab=invite&ok=link&error=" + encodeURIComponent(sent.error));
+  }
+
+  redirect("/settings?tab=invite&ok=resent");
+}
+
 export async function createPatient(formData: FormData) {
   const { supabase, user } = await requireCreatePatient();
   const first_name = str(formData, "first_name");

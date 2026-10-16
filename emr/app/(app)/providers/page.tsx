@@ -1,6 +1,7 @@
 import { StaffList } from "@/components/StaffList";
 import { requireAdmin } from "@/lib/auth";
 import { physioDutyIds } from "@/lib/duty";
+import { staffAuthById } from "@/lib/staff-auth";
 import type { Profile } from "@/lib/types";
 
 export default async function ProvidersPage({
@@ -10,14 +11,15 @@ export default async function ProvidersPage({
 }) {
   const { duty = "" } = await searchParams;
   const { supabase } = await requireAdmin();
-  const [{ data: profiles }, { data: assigned }, dutyIds] = await Promise.all([
+  const [{ data: profiles }, { data: assigned }, dutyIds, authById] = await Promise.all([
     supabase
       .from("profiles")
       .select("id, full_name, role, status, created_at")
       .order("full_name")
       .returns<Profile[]>(),
     supabase.from("patients").select("assigned_to, status"),
-    duty === "today" ? physioDutyIds(supabase) : Promise.resolve([] as string[])
+    duty === "today" ? physioDutyIds(supabase) : Promise.resolve([] as string[]),
+    staffAuthById()
   ]);
 
   const counts = new Map<string, number>();
@@ -45,6 +47,7 @@ export default async function ProvidersPage({
       <StaffList
         profiles={rows}
         counts={counts}
+        authById={authById}
         empty={
           duty === "today"
             ? "No physiotherapist has opened the EMR or documented today."

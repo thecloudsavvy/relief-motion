@@ -1289,6 +1289,11 @@ th {
   color: var(--navy);
 }
 
+.person .muted {
+  display: block;
+  font-size: 0.78rem;
+}
+
 .mono {
   font-variant-numeric: tabular-nums;
   color: var(--teal);

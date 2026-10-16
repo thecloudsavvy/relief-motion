@@ -25,8 +25,10 @@ export function QueryFlash({ inviteLink = "" }: { inviteLink?: string }) {
   return (
     <div style={{ marginBottom: "1rem" }}>
       {error ? <div className="error">{error}</div> : null}
-      {ok === "invite" ? (
-        <div className="ok">Invite sent. They will get an email to set a password and sign in.</div>
+      {ok === "invite" || ok === "resent" ? (
+        <div className="ok">
+          {ok === "resent" ? "Invite resent." : "Invite sent."} They will get an email to set a password and sign in.
+        </div>
       ) : null}
       {ok === "link" && inviteLink ? <InviteLinkCopy link={inviteLink} /> : null}
       {ok === "name" ? <div className="ok">Name saved.</div> : null}
