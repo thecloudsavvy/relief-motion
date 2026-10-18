@@ -1,11 +1,12 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { writeAudit } from "@/lib/audit";
 import { requireAdmin, requireCreatePatient, requirePatientAccess, requireStaff } from "@/lib/auth";
-import { lagosStamp } from "@/lib/format";
+import { dobFromAge, lagosStamp, parseAgeYears } from "@/lib/format";
 import { asRole } from "@/lib/types";
 import { appOrigin } from "@/lib/app-url";
 import { sendStaffInviteEmail } from "@/lib/email";
@@ -19,6 +20,12 @@ function str(form: FormData, key: string) {
 
 function nullable(form: FormData, key: string) {
   return str(form, key) || null;
+}
+
+function dateOfBirthFromAge(form: FormData) {
+  const parsed = parseAgeYears(str(form, "age"));
+  if (!parsed.ok) return { error: "Age must be a whole number between 0 and 120" };
+  return { dob: parsed.age == null ? null : dobFromAge(parsed.age) };
 }
 
 function authErrorText(error: unknown, fallback: string) {
@@ -333,6 +340,11 @@ export async function createPatient(formData: FormData) {
     redirect("/patients/new?error=Name is required");
   }
 
+  const age = dateOfBirthFromAge(formData);
+  if ("error" in age) {
+    redirect("/patients/new?error=" + encodeURIComponent(age.error));
+  }
+
   const payload = {
     first_name,
     last_name,
@@ -340,7 +352,7 @@ export async function createPatient(formData: FormData) {
     city: nullable(formData, "city"),
     address: nullable(formData, "address"),
     sex: nullable(formData, "sex"),
-    date_of_birth: nullable(formData, "date_of_birth"),
+    date_of_birth: age.dob,
     condition: nullable(formData, "condition"),
     status: str(formData, "status") === "inactive" ? "inactive" : "active",
     assigned_to: nullable(formData, "assigned_to"),
@@ -350,6 +362,22 @@ export async function createPatient(formData: FormData) {
     medical_history: nullable(formData, "medical_history"),
     created_by: user.id
   };
+
+  const since = new Date(Date.now() - 30_000).toISOString();
+  const { data: duplicate } = await supabase
+    .from("patients")
+    .select("id, rm_id")
+    .eq("created_by", user.id)
+    .ilike("first_name", first_name)
+    .ilike("last_name", last_name)
+    .gte("created_at", since)
+    .order("created_at", { ascending: true })
+    .limit(1)
+    .maybeSingle();
+  if (duplicate) {
+    revalidatePath("/patients");
+    redirect(`/patients/${duplicate.id}`);
+  }
 
   const { data, error } = await supabase.from("patients").insert(payload).select("id, rm_id").single();
   if (error || !data) {
@@ -361,14 +389,19 @@ export async function createPatient(formData: FormData) {
     patientId: data.id,
     detail: data.rm_id
   });
-  await notifyClinicianAssigned({
-    clinicianId: payload.assigned_to,
-    actorId: user.id,
-    patientId: data.id,
-    rmId: data.rm_id,
-    patientName: `${first_name} ${last_name}`.trim(),
-    appUrl: await appOrigin()
-  });
+  const assignedTo = payload.assigned_to;
+  const patientName = `${first_name} ${last_name}`.trim();
+  const origin = await appOrigin();
+  after(() =>
+    notifyClinicianAssigned({
+      clinicianId: assignedTo,
+      actorId: user.id,
+      patientId: data.id,
+      rmId: data.rm_id,
+      patientName,
+      appUrl: origin
+    })
+  );
   revalidatePath("/patients");
   revalidatePath("/");
   redirect(`/patients/${data.id}`);
@@ -382,6 +415,11 @@ export async function updatePatient(patientId: string, formData: FormData) {
     redirect(`/patients/${patientId}/edit?error=Name is required`);
   }
 
+  const age = dateOfBirthFromAge(formData);
+  if ("error" in age) {
+    redirect(`/patients/${patientId}/edit?error=` + encodeURIComponent(age.error));
+  }
+
   const { error } = await supabase
     .from("patients")
     .update({
@@ -391,7 +429,7 @@ export async function updatePatient(patientId: string, formData: FormData) {
       city: nullable(formData, "city"),
       address: nullable(formData, "address"),
       sex: nullable(formData, "sex"),
-      date_of_birth: nullable(formData, "date_of_birth"),
+      date_of_birth: age.dob,
       condition: nullable(formData, "condition"),
       status: str(formData, "status") === "inactive" ? "inactive" : "active",
       emergency_name: nullable(formData, "emergency_name"),

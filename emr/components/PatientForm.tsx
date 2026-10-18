@@ -1,4 +1,17 @@
+"use client";
+
+import { useFormStatus } from "react-dom";
+import { ageFromDob } from "@/lib/format";
 import type { Profile } from "@/lib/types";
+
+function SubmitButton({ label }: { label: string }) {
+  const { pending } = useFormStatus();
+  return (
+    <button className="btn" type="submit" disabled={pending}>
+      {pending ? "Saving…" : label}
+    </button>
+  );
+}
 
 export function PatientForm({
   action,
@@ -30,7 +43,7 @@ export function PatientForm({
   submitLabel: string;
   includeAssignment?: boolean;
 }) {
-  const today = new Date().toISOString().slice(0, 10);
+  const age = patient ? ageFromDob(patient.date_of_birth) : null;
   return (
     <form className="panel" action={action}>
       {error ? <div className="error">{error}</div> : null}
@@ -48,13 +61,17 @@ export function PatientForm({
           <input id="phone" name="phone" defaultValue={patient?.phone || ""} />
         </div>
         <div>
-          <label htmlFor="date_of_birth">Date of birth</label>
+          <label htmlFor="age">Age</label>
           <input
-            id="date_of_birth"
-            name="date_of_birth"
-            type="date"
-            max={today}
-            defaultValue={patient?.date_of_birth || ""}
+            id="age"
+            name="age"
+            type="number"
+            inputMode="numeric"
+            min={0}
+            max={120}
+            step={1}
+            placeholder="Years"
+            defaultValue={age ?? ""}
           />
         </div>
         <div>
@@ -113,9 +130,7 @@ export function PatientForm({
       </div>
       <label htmlFor="medical_history">Medical history</label>
       <textarea id="medical_history" name="medical_history" defaultValue={patient?.medical_history || ""} />
-      <button className="btn" type="submit">
-        {submitLabel}
-      </button>
+      <SubmitButton label={submitLabel} />
     </form>
   );
 }

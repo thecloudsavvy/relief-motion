@@ -34,11 +34,26 @@ export function ageFromDob(dob: string | null) {
   if (!dob) return null;
   const d = new Date(`${dob}T00:00:00`);
   if (Number.isNaN(d.getTime())) return null;
-  const now = new Date();
+  const [year, month, day] = lagosStamp().visit_at.split("-").map(Number);
+  const now = new Date(year, month - 1, day);
   let age = now.getFullYear() - d.getFullYear();
   const m = now.getMonth() - d.getMonth();
   if (m < 0 || (m === 0 && now.getDate() < d.getDate())) age -= 1;
   return age;
+}
+
+export function dobFromAge(age: number) {
+  const [year, month, day] = lagosStamp().visit_at.split("-").map(Number);
+  return `${String(year - age).padStart(4, "0")}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+}
+
+export function parseAgeYears(value: string) {
+  const raw = value.trim();
+  if (!raw) return { ok: true as const, age: null };
+  if (!/^\d{1,3}$/.test(raw)) return { ok: false as const };
+  const age = Number(raw);
+  if (age > 120) return { ok: false as const };
+  return { ok: true as const, age };
 }
 
 export function formatDate(value: string | null) {

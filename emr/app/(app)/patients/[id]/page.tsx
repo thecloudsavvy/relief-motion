@@ -167,11 +167,8 @@ export default async function PatientChartPage({
               <dd>{name}</dd>
               <dt>Relief Motion ID</dt>
               <dd>{patient.rm_id}</dd>
-              <dt>Date of birth</dt>
-              <dd>
-                {patient.date_of_birth || "—"}
-                {age ? ` (${age} yrs)` : ""}
-              </dd>
+              <dt>Age</dt>
+              <dd>{age != null ? `${age} yrs` : "—"}</dd>
               <dt>Sex</dt>
               <dd>{sexLabel(patient.sex) || "—"}</dd>
               <dt>Phone</dt>
