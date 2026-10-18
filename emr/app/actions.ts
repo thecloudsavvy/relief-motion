@@ -24,8 +24,10 @@ function nullable(form: FormData, key: string) {
 
 function dateOfBirthFromAge(form: FormData) {
   const parsed = parseAgeYears(str(form, "age"));
-  if (!parsed.ok) return { error: "Age must be a whole number between 0 and 120" };
-  return { dob: parsed.age == null ? null : dobFromAge(parsed.age) };
+  if (!parsed.ok) {
+    return { ok: false as const, error: "Age must be a whole number between 0 and 120" };
+  }
+  return { ok: true as const, dob: parsed.age == null ? null : dobFromAge(parsed.age) };
 }
 
 function authErrorText(error: unknown, fallback: string) {
@@ -341,7 +343,7 @@ export async function createPatient(formData: FormData) {
   }
 
   const age = dateOfBirthFromAge(formData);
-  if ("error" in age) {
+  if (!age.ok) {
     redirect("/patients/new?error=" + encodeURIComponent(age.error));
   }
 
@@ -416,7 +418,7 @@ export async function updatePatient(patientId: string, formData: FormData) {
   }
 
   const age = dateOfBirthFromAge(formData);
-  if ("error" in age) {
+  if (!age.ok) {
     redirect(`/patients/${patientId}/edit?error=` + encodeURIComponent(age.error));
   }
 
