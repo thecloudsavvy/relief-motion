@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { requireStaff } from "@/lib/auth";
-import { clinicianLabel, formatDate, lagosStamp, visitTypeLabel } from "@/lib/format";
+import { clinicianLabel, formatDate, lagosStamp, noteEditable, visitTypeLabel } from "@/lib/format";
 
 export default async function SessionsPage({
   searchParams
@@ -12,7 +12,7 @@ export default async function SessionsPage({
   let request = supabase
     .from("visits")
     .select(
-      "id, visit_at, visit_time, visit_type, status, patient_id, clinician_name, patients!inner(rm_id, first_name, last_name, assigned_to), profiles!visits_clinician_id_fkey(full_name)"
+      "id, visit_at, visit_time, visit_type, status, patient_id, clinician_name, created_at, patients!inner(rm_id, first_name, last_name, assigned_to), profiles!visits_clinician_id_fkey(full_name)"
     )
     .order("visit_at", { ascending: false })
     .order("created_at", { ascending: false })
@@ -114,7 +114,15 @@ export default async function SessionsPage({
                       </span>
                     </td>
                     <td>
-                      <Link href={`/patients/${row.patient_id}?tab=notes`}>Open</Link>
+                      <Link
+                        href={
+                          noteEditable(row)
+                            ? `/patients/${row.patient_id}/sessions/${row.id}`
+                            : `/patients/${row.patient_id}?tab=notes`
+                        }
+                      >
+                        {noteEditable(row) ? (row.status === "draft" ? "Continue" : "Edit") : "Open"}
+                      </Link>
                     </td>
                   </tr>
                 );

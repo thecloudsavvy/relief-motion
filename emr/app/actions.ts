@@ -6,7 +6,7 @@ import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { writeAudit } from "@/lib/audit";
 import { requireAdmin, requireCreatePatient, requirePatientAccess, requireStaff } from "@/lib/auth";
-import { dobFromAge, lagosStamp, parseAgeYears } from "@/lib/format";
+import { dobFromAge, lagosStamp, noteEditable, parseAgeYears } from "@/lib/format";
 import { asRole } from "@/lib/types";
 import { appOrigin } from "@/lib/app-url";
 import { sendStaffInviteEmail } from "@/lib/email";
@@ -451,6 +451,49 @@ export async function updatePatient(patientId: string, formData: FormData) {
   redirect(`/patients/${patientId}`);
 }
 
+export async function deleteInactivePatient(formData: FormData) {
+  await requireAdmin();
+  const patientId = str(formData, "patient_id");
+  if (!patientId) redirect("/patients?error=" + encodeURIComponent("Choose a patient"));
+
+  const admin = createAdminClient();
+  if (!admin) {
+    redirect("/patients?error=" + encodeURIComponent("Missing server key. Add SUPABASE_SERVICE_ROLE_KEY and restart."));
+  }
+
+  const { data: patient } = await admin
+    .from("patients")
+    .select("id, rm_id, first_name, last_name, status")
+    .eq("id", patientId)
+    .single();
+  if (!patient) redirect("/patients?error=" + encodeURIComponent("Patient not found"));
+  if (patient.status !== "inactive") {
+    redirect(`/patients/${patientId}?error=` + encodeURIComponent("Mark this patient inactive before deleting the chart."));
+  }
+
+  const { data: files } = await admin.storage.from("patient-documents").list(patientId, { limit: 1000 });
+  const paths = (files || [])
+    .map((file) => file.name)
+    .filter(Boolean)
+    .map((name) => `${patientId}/${name}`);
+  if (paths.length) {
+    await admin.storage.from("patient-documents").remove(paths);
+  }
+
+  const { error } = await admin.from("patients").delete().eq("id", patientId).eq("status", "inactive");
+  if (error) {
+    redirect(`/patients/${patientId}?error=` + encodeURIComponent(error.message));
+  }
+
+  await writeAudit({
+    action: "deleted_patient",
+    detail: `${patient.rm_id} ${patient.first_name} ${patient.last_name}`.trim()
+  });
+  revalidatePath("/patients");
+  revalidatePath("/");
+  redirect("/patients?ok=removed");
+}
+
 export async function assignClinician(patientId: string, formData: FormData) {
   const { supabase, user } = await requireAdmin();
   const assigned_to = nullable(formData, "assigned_to");
@@ -551,8 +594,23 @@ export async function addVisit(patientId: string, formData: FormData) {
 
 export async function updateVisit(patientId: string, visitId: string, formData: FormData) {
   const { supabase } = await requirePatientAccess(patientId);
+  const { data: visit } = await supabase
+    .from("visits")
+    .select("id, status, created_at")
+    .eq("id", visitId)
+    .eq("patient_id", patientId)
+    .single();
+  if (!visit) {
+    redirect(`/patients/${patientId}?tab=notes&error=` + encodeURIComponent("Session note not found"));
+  }
+  if (!noteEditable(visit)) {
+    redirect(
+      `/patients/${patientId}?tab=notes&error=` +
+        encodeURIComponent("Signed notes can only be edited within 24 hours.")
+    );
+  }
   const fields = visitFields(formData);
-  const { error } = await supabase.from("visits").update(fields).eq("id", visitId).eq("status", "draft");
+  const { error } = await supabase.from("visits").update(fields).eq("id", visitId);
   if (error) {
     redirect(`/patients/${patientId}/sessions/${visitId}?error=` + encodeURIComponent(error.message));
   }

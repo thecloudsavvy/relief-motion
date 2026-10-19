@@ -247,6 +247,12 @@ create policy "update assigned or all if admin"
     or (public.is_support() and created_by = auth.uid())
   );
 
+drop policy if exists "admin delete inactive patients" on public.patients;
+create policy "admin delete inactive patients"
+  on public.patients for delete
+  to authenticated
+  using (public.is_admin() and status = 'inactive');
+
 drop policy if exists "staff read visits" on public.visits;
 drop policy if exists "read visits for accessible patients" on public.visits;
 create policy "read visits for accessible patients"

@@ -3,7 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { updateVisit } from "@/app/actions";
 import { SessionForm, SessionRails } from "@/components/SessionForm";
 import { requirePatientAccess } from "@/lib/auth";
-import { auditCopy, formatDateTime } from "@/lib/format";
+import { auditCopy, formatDateTime, noteEditable } from "@/lib/format";
 import type { Profile, Visit } from "@/lib/types";
 
 export default async function EditSessionPage({
@@ -18,7 +18,12 @@ export default async function EditSessionPage({
   const { supabase, user } = await requirePatientAccess(id);
   const { data: visit } = await supabase.from("visits").select("*").eq("id", visitId).eq("patient_id", id).single<Visit>();
   if (!visit) notFound();
-  if (visit.status !== "draft") redirect(`/patients/${id}?tab=notes`);
+  if (!noteEditable(visit)) {
+    redirect(
+      `/patients/${id}?tab=notes&error=` +
+        encodeURIComponent("Signed notes can only be edited within 24 hours.")
+    );
+  }
 
   const [{ data: profile }, { data: visits }, { data: events }] = await Promise.all([
     supabase.from("profiles").select("full_name").eq("id", user.id).single<Pick<Profile, "full_name">>(),
@@ -48,7 +53,7 @@ export default async function EditSessionPage({
       <p className="crumb">
         <Link href={`/patients/${id}?tab=notes`}>Back to notes</Link>
       </p>
-      <h1>Continue draft</h1>
+      <h1>{visit.status === "draft" ? "Continue draft" : "Edit signed note"}</h1>
       <div className="soap-layout">
         <SessionForm
           action={updateVisit.bind(null, id, visitId)}
@@ -56,6 +61,7 @@ export default async function EditSessionPage({
           error={error}
           visit={visit}
           continuity={(visits || []).some((row) => row.id !== visitId)}
+          signedGrace={visit.status === "signed"}
         />
         <SessionRails
           visits={recent}

@@ -156,6 +156,15 @@ export function visitTypeLabel(type: string) {
   return type === "online" ? "Online" : "Home visit";
 }
 
+export const NOTE_GRACE_MS = 24 * 60 * 60 * 1000;
+
+export function noteEditable(visit: { status?: string | null; created_at?: string | null }) {
+  if (visit.status !== "signed") return true;
+  const at = Date.parse(visit.created_at || "");
+  if (Number.isNaN(at)) return false;
+  return Date.now() - at < NOTE_GRACE_MS;
+}
+
 export function uniqueVisitSlots<
   T extends { patient_id?: string; visit_at?: string | null; visit_time?: string | null; created_at?: string | null }
 >(rows: T[]) {
@@ -205,6 +214,8 @@ export function auditCopy(action: string) {
       return "re-enabled a staff account";
     case "deleted_staff":
       return "deleted a staff account";
+    case "deleted_patient":
+      return "deleted a patient record";
     case "invited_physiotherapist":
       return "invited a physiotherapist";
     case "saved_draft":

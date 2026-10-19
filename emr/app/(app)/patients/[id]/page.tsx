@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { assignClinician } from "@/app/actions";
 import { AuditBeacon } from "@/components/AuditBeacon";
+import { DeletePatientButton } from "@/components/DeletePatientButton";
 import { DocumentUpload } from "@/components/DocumentUpload";
 import { Avatar, StatusPill } from "@/components/ui";
 import { VisitNote } from "@/components/VisitNote";
@@ -14,6 +15,7 @@ import {
   formatDateTime,
   formatTime,
   initials,
+  noteEditable,
   sexLabel,
   titleCase,
   uniqueVisitSlots,
@@ -158,9 +160,14 @@ export default async function PatientChartPage({
           <section className="panel">
             <div className="page-head">
               <h2>Patient information</h2>
-              <Link className="btn btn-ghost" href={`/patients/${id}/edit`}>
-                Edit
-              </Link>
+              <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap" }}>
+                <Link className="btn btn-ghost" href={`/patients/${id}/edit`}>
+                  Edit
+                </Link>
+                {isAdmin && patient.status === "inactive" ? (
+                  <DeletePatientButton patientId={id} name={name} rmId={patient.rm_id} />
+                ) : null}
+              </div>
             </div>
             <dl className="dl">
               <dt>Full name</dt>
@@ -247,10 +254,10 @@ export default async function PatientChartPage({
               </thead>
               <tbody>
                 {allVisits.map((visit) => {
-                  const href =
-                    visit.status === "draft"
-                      ? `/patients/${id}/sessions/${visit.id}`
-                      : `/patients/${id}?tab=timeline`;
+                  const canEdit = noteEditable(visit);
+                  const href = canEdit
+                    ? `/patients/${id}/sessions/${visit.id}`
+                    : `/patients/${id}?tab=timeline`;
                   return (
                     <tr key={visit.id}>
                       <td>
@@ -266,7 +273,7 @@ export default async function PatientChartPage({
                       </td>
                       <td>
                         <Link className="row-action" href={href}>
-                          {visit.status === "draft" ? "Continue →" : "View session →"}
+                          {visit.status === "draft" ? "Continue →" : canEdit ? "Edit note →" : "View session →"}
                         </Link>
                       </td>
                     </tr>

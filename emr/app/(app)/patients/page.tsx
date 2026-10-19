@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { DeletePatientButton } from "@/components/DeletePatientButton";
+import { QueryFlash } from "@/components/QueryFlash";
 import { Avatar, IconPlus, StatusPill } from "@/components/ui";
 import { requireStaff } from "@/lib/auth";
 import { ageFromDob, avatarTone, formatDate, initials, sexLabel } from "@/lib/format";
@@ -80,6 +82,7 @@ export default async function PatientsPage({
 
   return (
     <>
+      <QueryFlash />
       <div className="page-head">
         <div>
           <h1>Patients</h1>
@@ -171,6 +174,13 @@ export default async function PatientsPage({
                       <Link className="link-btn" href={`/patients/${patient.id}`}>
                         View
                       </Link>
+                      {isAdmin && patient.status === "inactive" ? (
+                        <DeletePatientButton
+                          patientId={patient.id}
+                          name={`${patient.first_name} ${patient.last_name}`.trim()}
+                          rmId={patient.rm_id}
+                        />
+                      ) : null}
                     </td>
                   </tr>
                 );

@@ -34,6 +34,7 @@ export function QueryFlash({ inviteLink = "" }: { inviteLink?: string }) {
       {ok === "name" ? <div className="ok">Name saved.</div> : null}
       {ok === "role" ? <div className="ok">Staff access updated.</div> : null}
       {ok === "deleted" ? <div className="ok">Staff account deleted. Session notes were kept.</div> : null}
+      {ok === "removed" ? <div className="ok">Inactive patient chart deleted.</div> : null}
       {ok === "reset" ? (
         <div className="ok">If that email is on the staff list, a reset link is on its way.</div>
       ) : null}

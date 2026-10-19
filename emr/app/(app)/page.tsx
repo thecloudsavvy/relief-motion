@@ -12,7 +12,8 @@ import {
   relativeTime,
   titleCase,
   uniqueVisitSlots,
-  visitTypeLabel
+  visitTypeLabel,
+  noteEditable
 } from "@/lib/format";
 
 function uniqueRecentNotes<T extends { patient_id: string; status?: string; created_at?: string }>(rows: T[]) {
@@ -107,7 +108,10 @@ export default async function DashboardPage() {
             <strong>
               {pendingNotes} visit note{pendingNotes === 1 ? "" : "s"} to finish
             </strong>
-            <span>Complete {pendingNotes === 1 ? "it" : "them"} while the visit is fresh. Notes lock after sign-off.</span>
+            <span>
+              Complete {pendingNotes === 1 ? "it" : "them"} while the visit is fresh. Signed notes can still be edited
+              for 24 hours.
+            </span>
           </span>
           <span className="btn btn-navy">Finish</span>
         </Link>
@@ -246,7 +250,7 @@ export default async function DashboardPage() {
                     className="activity-row"
                     key={row.id}
                     href={
-                      row.status === "draft"
+                      noteEditable(row)
                         ? `/patients/${row.patient_id}/sessions/${row.id}`
                         : `/patients/${row.patient_id}?tab=notes`
                     }
@@ -257,7 +261,9 @@ export default async function DashboardPage() {
                       {patient ? ` · ${patient.first_name} ${patient.last_name}` : ""}
                       {` · ${row.status === "draft" ? "Draft" : "Signed"}`}
                     </div>
-                    <span className="row-action">{row.status === "draft" ? "Continue →" : "View session →"}</span>
+                    <span className="row-action">
+                      {row.status === "draft" ? "Continue →" : noteEditable(row) ? "Edit note →" : "View session →"}
+                    </span>
                     <span className="muted">{relativeTime(row.created_at)}</span>
                   </Link>
                 );

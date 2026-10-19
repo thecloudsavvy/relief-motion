@@ -40,13 +40,15 @@ export function SessionForm({
   clinicianName,
   error,
   visit,
-  continuity = false
+  continuity = false,
+  signedGrace = false
 }: {
   action: (formData: FormData) => void | Promise<void>;
   clinicianName: string;
   error?: string;
   visit?: Fields;
   continuity?: boolean;
+  signedGrace?: boolean;
 }) {
   const recorded = visit?.visit_at
     ? `${formatDate(visit.visit_at)}${visit.visit_time ? ` · ${formatTime(visit.visit_time)}` : ""}`
@@ -134,20 +136,25 @@ export function SessionForm({
           </div>
         </>
       )}
-      <SaveActions />
+      {signedGrace ? (
+        <p className="muted" style={{ marginBottom: "0.75rem" }}>
+          This note is signed. You can still edit it for 24 hours, or revert it to a draft.
+        </p>
+      ) : null}
+      <SaveActions signedGrace={signedGrace} />
     </form>
   );
 }
 
-function SaveActions() {
+function SaveActions({ signedGrace }: { signedGrace: boolean }) {
   const { pending } = useFormStatus();
   return (
     <div className="actions-row">
       <button className="btn btn-ghost" name="intent" value="draft" type="submit" disabled={pending}>
-        {pending ? "Saving…" : "Save as Draft"}
+        {pending ? "Saving…" : signedGrace ? "Revert to draft" : "Save as Draft"}
       </button>
       <button className="btn btn-navy" name="intent" value="signed" type="submit" disabled={pending}>
-        {pending ? "Saving…" : "Sign & Note"}
+        {pending ? "Saving…" : signedGrace ? "Save changes" : "Sign & Note"}
       </button>
     </div>
   );
