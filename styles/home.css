@@ -29,6 +29,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -49,6 +50,7 @@ body {
   font-size: 1.05rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 img {
@@ -89,6 +91,7 @@ a:hover {
 .topbar {
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
   gap: 1.5rem;
   padding: 0.45rem var(--pad);
   background: var(--navy-deep);
@@ -667,6 +670,16 @@ a:hover {
   font-size: 1.08rem;
 }
 
+.cta .btn-ghost {
+  border-color: var(--white);
+  color: var(--white);
+}
+
+.cta .btn-ghost:hover {
+  background: var(--white);
+  color: var(--navy);
+}
+
 .site-footer {
   background: var(--navy-deep);
   color: #c2ced4;
@@ -722,7 +735,166 @@ a:hover {
   color: #8b9ba3;
 }
 
-@media (max-width: 900px) {
+.nav-links a[aria-current="page"] {
+  color: var(--teal);
+}
+
+.line-cards,
+.path-grid,
+.prose-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.15rem;
+}
+
+.line-cards article,
+.path-grid article,
+.panel-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 1.35rem 1.25rem 1.2rem;
+}
+
+.path-grid .visit-steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 1rem;
+}
+
+.line-cards h3,
+.path-grid h3,
+.panel-card h3 {
+  color: var(--navy);
+  font-size: 1.12rem;
+  margin: 0.35rem 0 0.5rem;
+}
+
+.line-cards p,
+.path-grid p,
+.panel-card p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.line-cards .btn,
+.path-grid .btn,
+.panel-card .btn {
+  margin-top: 1rem;
+}
+
+.flag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.5rem;
+}
+
+.flag-live {
+  background: var(--teal-tint);
+  color: var(--teal);
+}
+
+.flag-talk {
+  background: #eef2f4;
+  color: var(--ink-soft);
+}
+
+.page-lead {
+  padding: clamp(2.2rem, 5vw, 3.4rem) var(--pad) 0;
+  max-width: calc(var(--max) + 2 * var(--pad));
+  margin: 0 auto;
+}
+
+.page-lead .crumb {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.85rem;
+}
+
+.page-lead .crumb a {
+  color: var(--ink-soft);
+}
+
+.page-lead h1 {
+  font-size: clamp(1.85rem, 3vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--navy);
+}
+
+.page-lead .lede {
+  margin-top: 0.85rem;
+}
+
+.prose {
+  max-width: 40rem;
+}
+
+.prose p + p,
+.prose ul + p,
+.prose h2 + p {
+  margin-top: 0.9rem;
+}
+
+.prose h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.55rem;
+}
+
+.prose ul {
+  margin: 0.7rem 0 0 1.15rem;
+  color: var(--ink-soft);
+}
+
+.prose li + li {
+  margin-top: 0.35rem;
+}
+
+.enquire {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.enquire label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.3rem;
+}
+
+.enquire input,
+.enquire select,
+.enquire textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+  padding: 0.7rem 0.8rem;
+}
+
+.enquire textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.enquire .btn {
+  justify-self: start;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 1100px) {
   .nav-links,
   .nav-cta {
     display: none;
@@ -745,10 +917,6 @@ a:hover {
     padding: 0.4rem var(--pad) 1.1rem;
   }
 
-  .site-nav {
-    position: sticky;
-  }
-
   .nav-drawer.open {
     display: block;
   }
@@ -766,7 +934,9 @@ a:hover {
     margin-top: 0.8rem;
     width: 100%;
   }
+}
 
+@media (max-width: 900px) {
   .hero-inner {
     grid-template-columns: 1fr;
     height: auto;
@@ -785,6 +955,9 @@ a:hover {
   .treat-cards,
   .visit-steps,
   .why,
+  .line-cards,
+  .path-grid,
+  .prose-grid,
   .footer-body {
     grid-template-columns: 1fr 1fr;
   }
@@ -805,6 +978,9 @@ a:hover {
   .treat-cards,
   .visit-steps,
   .why,
+  .line-cards,
+  .path-grid,
+  .prose-grid,
   .footer-body {
     grid-template-columns: 1fr;
   }
