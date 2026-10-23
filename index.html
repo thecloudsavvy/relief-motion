@@ -6,18 +6,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Relief Motion | Physiotherapy care, connected</title>
   <meta name="description"
-    content="Relief Motion connects people and healthcare organisations with professional physiotherapy. Book a home or online session across Nigeria, or discuss a clinical partnership." />
+    content="Relief Motion connects people with physiotherapy through home visits, online care and a growing clinician network. Book a session or discuss a partnership." />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="stylesheet" href="styles/home.css?v=8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" />
+  <link rel="preload" as="image" href="assets/hero-treatment.jpg" fetchpriority="high" />
+  <link rel="stylesheet" href="styles/home.css?v=16" />
 </head>
 
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <div class="topbar">
-    <a href="https://wa.me/2349164944357">WhatsApp +234 916 494 4357</a>
-    <a href="mailto:info@reliefmotionphysio.com">info@reliefmotionphysio.com</a>
+    <div class="topbar-marquee">
+      <div class="topbar-track">
+        <span>Home &amp; Online Physiotherapy</span>
+        <span>Growing Our Physiotherapist Network</span>
+        <span>Patient Bookings: <a href="https://wa.me/2349164944357">WhatsApp</a></span>
+        <span>Partnerships: <a href="mailto:info@reliefmotionphysio.com">info@reliefmotionphysio.com</a></span>
+        <span>Home &amp; Online Physiotherapy</span>
+        <span>Growing Our Physiotherapist Network</span>
+        <span>Patient Bookings: <a href="https://wa.me/2349164944357">WhatsApp</a></span>
+        <span>Partnerships: <a href="mailto:info@reliefmotionphysio.com">info@reliefmotionphysio.com</a></span>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <a class="topbar-icon" href="https://wa.me/2349164944357" aria-label="WhatsApp +234 916 494 4357">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+      <a class="topbar-icon" href="tel:+2348127307919" aria-label="Call +234 812 730 7919">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
+      <a class="topbar-icon" href="mailto:info@reliefmotionphysio.com" aria-label="Email info@reliefmotionphysio.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
+    </div>
   </div>
 
   <header class="site-nav">
@@ -26,10 +51,12 @@
       <span>Relief Motion</span>
     </a>
     <nav class="nav-links" aria-label="Primary">
+      <a href="index.html" aria-current="page">Home</a>
       <a href="services.html">Services</a>
-      <a href="clinics.html">Clinics</a>
-      <a href="network.html">Network</a>
-      <a href="about.html">About</a>
+      <a href="clinics.html">Clinics &amp; Hospitals</a>
+      <a href="network.html">Our Network</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
     </nav>
     <a class="btn nav-cta" href="https://wa.me/2349164944357">Book physiotherapy</a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" id="menu-toggle"
@@ -37,11 +64,12 @@
       <span></span>
     </button>
     <div class="nav-drawer" id="nav-drawer">
+      <a href="index.html">Home</a>
       <a href="services.html">Services</a>
-      <a href="clinics.html">Clinics</a>
-      <a href="network.html">Network</a>
-      <a href="about.html">About</a>
-      <a href="booking.html">How to book</a>
+      <a href="clinics.html">Clinics &amp; Hospitals</a>
+      <a href="network.html">Our Network</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
       <a class="btn" href="https://wa.me/2349164944357">Book physiotherapy</a>
       <a class="btn btn-ghost" href="clinics.html">Partner with us</a>
     </div>
@@ -53,9 +81,9 @@
         <div class="hero-copy">
           <p class="hero-kicker">Relief Motion Physiotherapy</p>
           <h1>Physiotherapy care, connected.</h1>
-          <p class="lede">Relief Motion connects people and healthcare organisations with professional physiotherapy
-            across home and remote care. From individual rehabilitation to clinical partnerships, we are working to make
-            quality physiotherapy more accessible.</p>
+          <p class="lede">Relief Motion connects individuals with physiotherapy services through home visits, online
+            consultations, and a growing network of physiotherapists. We are expanding access to rehabilitation through
+            collaboration with healthcare providers, clinics, hospitals, and organisations.</p>
           <div class="hero-actions">
             <a class="btn" href="https://wa.me/2349164944357">Book physiotherapy</a>
             <a class="btn btn-ghost" href="clinics.html">Partner with us</a>
@@ -63,7 +91,7 @@
           <p class="hero-points">Home physiotherapy <span aria-hidden="true">·</span> Online care <span aria-hidden="true">·</span> Clinical partnerships by discussion <span aria-hidden="true">·</span> Across Nigeria</p>
         </div>
         <figure class="hero-photo">
-          <img src="assets/hero-treatment.jpg"
+          <img src="assets/hero-treatment.jpg" width="1024" height="682" fetchpriority="high" decoding="async"
             alt="Physiotherapist helping an older patient with a home exercise" />
         </figure>
       </div>
@@ -77,28 +105,59 @@
       </div>
       <div class="line-cards">
         <article>
+          <span class="path-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+              <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            </svg>
+          </span>
           <span class="flag flag-live">Available now</span>
           <h3>Home physiotherapy</h3>
           <p>An MRTB-verified physiotherapist visits you. Matched to your condition, city and care needs.</p>
           <a class="btn" href="https://wa.me/2349164944357">Book a home visit</a>
         </article>
         <article>
+          <span class="path-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5" />
+              <rect x="2" y="6" width="14" height="12" rx="2" />
+            </svg>
+          </span>
           <span class="flag flag-live">Available now</span>
           <h3>Online &amp; tele-rehabilitation</h3>
           <p>Video sessions, follow-up and exercise support when travel is hard or you are outside a home-visit area.</p>
           <a class="btn" href="online-consultation.html">Online care</a>
         </article>
         <article>
+          <span class="path-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 6v4" />
+              <path d="M14 14h-4" />
+              <path d="M14 8h-4" />
+              <path d="M16 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2" />
+              <path d="M18 22V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v18" />
+            </svg>
+          </span>
           <span class="flag flag-talk">By discussion</span>
           <h3>Clinical partnerships</h3>
           <p>For clinics and hospitals exploring extra physiotherapy capacity, discharge follow-up or a limited pilot.</p>
           <a class="btn btn-ghost" href="clinics.html">Discuss a partnership</a>
         </article>
         <article>
+          <span class="path-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 12h4" />
+              <path d="M10 8h4" />
+              <path d="M14 21v-3a2 2 0 0 0-4 0v3" />
+              <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2" />
+              <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" />
+            </svg>
+          </span>
           <span class="flag flag-talk">By discussion</span>
-          <h3>Organisational programmes</h3>
-          <p>HMO and employer rehabilitation programmes are not live yet. Write to us if you want to explore later work.</p>
-          <a class="btn btn-ghost" href="mailto:info@reliefmotionphysio.com">Email info@</a>
+          <h3>HMO and organisations</h3>
+          <p>HMO, employer and organisational programmes are partnership opportunities, not live contracts. Start a
+            conversation if this is a fit.</p>
+          <a class="btn btn-ghost" href="organisations.html">Explore partnerships</a>
         </article>
       </div>
     </section>
@@ -111,19 +170,19 @@
       </div>
       <ul class="treat-cards">
         <li>
-          <img src="assets/carousel-shoulder.jpg" alt="Physiotherapist helping an older patient with an arm exercise" />
+          <img src="assets/carousel-shoulder.jpg" width="956" height="536" loading="lazy" decoding="async" alt="Physiotherapist helping an older patient with an arm exercise" />
           <h3>Stroke &amp; neurological rehabilitation</h3>
         </li>
         <li>
-          <img src="assets/carousel-knee.jpg" alt="Physiotherapist treating a patient for knee and joint pain" />
+          <img src="assets/carousel-knee.jpg" width="964" height="536" loading="lazy" decoding="async" alt="Physiotherapist treating a patient for knee and joint pain" />
           <h3>Back, neck &amp; joint pain</h3>
         </li>
         <li>
-          <img src="assets/carousel-core.jpg" alt="Physiotherapist coaching an athlete through agility training" />
+          <img src="assets/carousel-core.jpg" width="956" height="544" loading="lazy" decoding="async" alt="Physiotherapist coaching an athlete through agility training" />
           <h3>Sports &amp; injury rehabilitation</h3>
         </li>
         <li>
-          <img src="assets/carousel-gait.jpg" alt="Physiotherapist supporting a patient walking down stairs" />
+          <img src="assets/carousel-gait.jpg" width="964" height="544" loading="lazy" decoding="async" alt="Physiotherapist supporting a patient walking down stairs" />
           <h3>Post-surgery &amp; mobility rehabilitation</h3>
         </li>
       </ul>
@@ -131,55 +190,105 @@
 
     <section class="section" id="how-it-works">
       <div class="section-head">
-        <h2>Two clear routes</h2>
-        <p>Patients book on WhatsApp. Organisations write to info@. Relief Motion stays the point of contact.</p>
+        <h2>Physiotherapy care for people and healthcare organisations</h2>
+        <p>We connect individuals with physiotherapy care and work with healthcare organisations to explore practical
+          ways to make rehabilitation more accessible.</p>
       </div>
       <div class="path-grid">
         <article>
-          <p class="hero-kicker">Patients &amp; caregivers</p>
-          <h3>Book care</h3>
-          <ol class="visit-steps">
-            <li>
-              <h3>Message WhatsApp</h3>
-              <p>Tell us the condition, your city and a preferred time.</p>
-            </li>
-            <li>
-              <h3>We match a physiotherapist</h3>
-              <p>An MRTB-verified clinician who covers your area, or online if that fits better.</p>
-            </li>
-            <li>
-              <h3>Treatment at home or on video</h3>
-              <p>Your physiotherapist comes to you, or joins you on a call, at the time you agreed.</p>
-            </li>
-            <li>
-              <h3>We stay with you</h3>
-              <p>We check in after the session and book the next visit if you need one.</p>
-            </li>
-          </ol>
-          <a class="btn" href="https://wa.me/2349164944357">Book via WhatsApp</a>
+          <span class="path-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="5" />
+              <path d="M20 21a8 8 0 0 0-16 0" />
+            </svg>
+          </span>
+          <p class="hero-kicker">For patients &amp; caregivers</p>
+          <h3>Find the right physiotherapy care</h3>
+          <p>Access physiotherapy through home visits or online consultations, depending on your needs and location.</p>
+          <ul class="path-list">
+            <li>Tell us about your condition and location.</li>
+            <li>We help connect you with a suitable physiotherapist.</li>
+            <li>Receive care and follow-up support based on your needs.</li>
+          </ul>
+          <a class="btn" href="https://wa.me/2349164944357">Book physiotherapy</a>
         </article>
         <article>
-          <p class="hero-kicker">Clinics &amp; hospitals</p>
-          <h3>Discuss a partnership</h3>
-          <ol class="visit-steps">
-            <li>
-              <h3>Send an enquiry</h3>
-              <p>Email info@reliefmotionphysio.com with the organisation, location and what you need.</p>
-            </li>
-            <li>
-              <h3>Discovery conversation</h3>
-              <p>We listen first. No hospital staffing, inpatient or HMO cover is offered as a live product today.</p>
-            </li>
-            <li>
-              <h3>Scope, if it fits</h3>
-              <p>If we can help, we agree a limited pilot, not a nationwide contract by default.</p>
-            </li>
-            <li>
-              <h3>Review</h3>
-              <p>We review together before anything is extended.</p>
-            </li>
-          </ol>
-          <a class="btn btn-ghost" href="clinics.html">Partner with us</a>
+          <span class="path-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 6v4" />
+              <path d="M14 14h-4" />
+              <path d="M14 8h-4" />
+              <path d="M16 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2" />
+              <path d="M18 22V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v18" />
+            </svg>
+          </span>
+          <p class="hero-kicker">For healthcare &amp; organisation partners</p>
+          <h3>Let&rsquo;s make rehabilitation more accessible</h3>
+          <p>We welcome conversations with clinics, hospitals, HMOs, employers and other organisations interested in
+            improving access to physiotherapy services.</p>
+          <ul class="path-list">
+            <li>Explore clinical and referral partnerships.</li>
+            <li>Discuss community and corporate rehabilitation initiatives.</li>
+            <li>Explore opportunities to work with our physiotherapist network.</li>
+          </ul>
+          <a class="btn" href="organisations.html">Explore partnerships</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section navy" id="why">
+      <div class="section-head">
+        <h2>A more connected approach to physiotherapy</h2>
+        <p>Relief Motion brings together professional care, convenient access and a growing network to help make
+          rehabilitation easier to find and access.</p>
+      </div>
+      <ul class="why">
+        <li>
+          <h3>Patient-centred care</h3>
+          <p>We help individuals access physiotherapy suited to their conditions, goals and circumstances.</p>
+        </li>
+        <li>
+          <h3>Care beyond the clinic</h3>
+          <p>Home visits and online consultations offer flexible ways to access physiotherapy where appropriate.</p>
+        </li>
+        <li>
+          <h3>A growing physiotherapist network</h3>
+          <p>We are building connections with qualified physiotherapists to expand access to care across Nigeria.</p>
+        </li>
+        <li>
+          <h3>Clinical and healthcare partnerships</h3>
+          <p>We welcome opportunities to collaborate with clinics, hospitals and other healthcare providers to explore
+            practical rehabilitation services.</p>
+        </li>
+        <li>
+          <h3>Community and corporate outreach</h3>
+          <p>We aim to support initiatives that bring physiotherapy education, prevention and rehabilitation closer to
+            the communities and organisations that need them.</p>
+        </li>
+        <li>
+          <h3>Quality, trust and continuity</h3>
+          <p>We prioritise professional standards, appropriate clinician verification, patient privacy and coordinated
+            care.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" id="next-steps">
+      <div class="path-grid invite-grid">
+        <article>
+          <p class="hero-kicker">Clinics and hospitals</p>
+          <h3>Discuss a clinical partnership</h3>
+          <p>If your facility needs extra physiotherapy capacity, discharge follow-up or a limited pilot, we can start
+            with a discovery conversation. These are partnership opportunities, not live inpatient or staffing
+            contracts.</p>
+          <a class="btn" href="clinics.html">Discuss a partnership</a>
+        </article>
+        <article>
+          <p class="hero-kicker">Physiotherapists</p>
+          <h3>Join our physiotherapist network</h3>
+          <p>Qualified, MRTB-registered physiotherapists can register interest in being considered for home and online
+            work. Expressing interest is not a job offer and not a guarantee of assignments.</p>
+          <a class="btn btn-ghost" href="network.html">Express interest</a>
         </article>
       </div>
     </section>
@@ -190,57 +299,28 @@
       </div>
       <ul class="team">
         <li>
-          <img src="assets/team_abatan_2.jpg" alt="PT. Abatan T.D." />
+          <img src="assets/team_abatan_2.jpg" width="900" height="1125" loading="lazy" decoding="async" alt="PT. Abatan T.D." />
           <h3>PT. Abatan T.D.</h3>
         </li>
         <li>
-          <img src="assets/team_abatan.jpg" alt="PT. Abatan K.D." />
+          <img src="assets/team_abatan.jpg" width="1024" height="1280" loading="lazy" decoding="async" alt="PT. Abatan K.D." />
           <h3>PT. Abatan K.D.</h3>
         </li>
         <li>
-          <img src="assets/lanre.png" alt="PT. Ifelowo O.O." />
+          <img src="assets/lanre.png" width="1028" height="1280" loading="lazy" decoding="async" alt="PT. Ifelowo O.O." />
           <h3>PT. Ifelowo O.O.</h3>
         </li>
         <li>
-          <img src="assets/fola.png" alt="PT. Esho F.A." class="team-photo-high" />
+          <img src="assets/fola.png" width="906" height="1081" loading="lazy" decoding="async" alt="PT. Esho F.A." class="team-photo-high" />
           <h3>PT. Esho F.A.</h3>
         </li>
         <li>
-          <img src="assets/team_adebayo.jpg" alt="PT. Adebayo A.A." />
+          <img src="assets/team_adebayo.jpg" width="819" height="1024" loading="lazy" decoding="async" alt="PT. Adebayo A.A." />
           <h3>PT. Adebayo A.A.</h3>
         </li>
         <li>
-          <img src="assets/team_obisesan.jpg" alt="PT. Obisesan E.O." />
+          <img src="assets/team_obisesan.jpg" width="800" height="1024" loading="lazy" decoding="async" alt="PT. Obisesan E.O." />
           <h3>PT. Obisesan E.O.</h3>
-        </li>
-      </ul>
-    </section>
-
-    <section class="section navy" id="why">
-      <div class="section-head">
-        <h2>Why Relief Motion</h2>
-      </div>
-      <ul class="why">
-        <li>
-          <h3>Verified against the MRTB register</h3>
-          <p>Every physiotherapist is verified before they see a patient.</p>
-        </li>
-        <li>
-          <h3>Personalised care</h3>
-          <p>Matched to your condition, goals and care needs, not a one-size-fits-all plan.</p>
-        </li>
-        <li>
-          <h3>From first booking to follow-up</h3>
-          <p>We stay involved so care stays organised and consistent.</p>
-        </li>
-        <li>
-          <h3>Care around real life</h3>
-          <p>Home visits and online consultations make physiotherapy easier to keep.</p>
-        </li>
-        <li>
-          <h3>A network we are still building</h3>
-          <p>We match patients with qualified physiotherapists across Nigeria. Joining the network is not a guarantee of
-            work.</p>
         </li>
       </ul>
     </section>
@@ -321,11 +401,12 @@
     </section>
 
     <section class="cta">
-      <h2>Ready to start, or to talk?</h2>
-      <p>Patients book a home or online session on WhatsApp. Clinics and hospitals write to info@.</p>
+      <h2>Book physiotherapy, or discuss a partnership</h2>
+      <p>Patients book a home or online session on WhatsApp. Clinics, hospitals and organisations write to
+        info@reliefmotionphysio.com.</p>
       <div class="cta-row">
-        <a class="btn btn-light" href="https://wa.me/2349164944357">Book via WhatsApp</a>
-        <a class="btn btn-ghost" href="clinics.html" style="border-color: #fff; color: #fff;">Partner with us</a>
+        <a class="btn btn-light" href="https://wa.me/2349164944357">Book physiotherapy</a>
+        <a class="btn btn-ghost" href="organisations.html" style="border-color: #fff; color: #fff;">Explore partnerships</a>
       </div>
     </section>
   </main>
@@ -340,18 +421,26 @@
       <div>
         <h3>Contact</h3>
         <ul>
-          <li><a href="https://wa.me/2349164944357">Patients: WhatsApp +234 916 494 4357</a></li>
-          <li><a href="mailto:info@reliefmotionphysio.com">Partners: info@reliefmotionphysio.com</a></li>
+          <li><a href="https://wa.me/2349164944357">Patient bookings: WhatsApp</a></li>
+          <li><a href="tel:+2348127307919">Phone: +234 812 730 7919</a></li>
+          <li><a href="mailto:info@reliefmotionphysio.com">Partnerships: info@reliefmotionphysio.com</a></li>
         </ul>
       </div>
       <div>
         <h3>Explore</h3>
         <ul>
           <li><a href="services.html">Services</a></li>
-          <li><a href="clinics.html">Clinics &amp; hospitals</a></li>
-          <li><a href="network.html">Join the network</a></li>
-          <li><a href="booking.html">Book physiotherapy</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a href="clinics.html">Clinics &amp; Hospitals</a></li>
+          <li><a href="network.html">Join the Network</a></li>
+          <li><a href="organisations.html">HMO &amp; Corporate Partnerships</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Policies</h3>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
         </ul>
       </div>
       <div>
@@ -359,6 +448,8 @@
         <ul>
           <li><a href="https://www.instagram.com/reliefmotionphysiotherapy/" target="_blank"
               rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61583842515822" target="_blank"
+              rel="noopener noreferrer">Facebook</a></li>
           <li><a href="https://www.linkedin.com/company/relief-motion-physio/" target="_blank"
               rel="noopener noreferrer">LinkedIn</a></li>
           <li><a href="https://www.youtube.com/@ReliefMotion" target="_blank" rel="noopener noreferrer">YouTube</a></li>
