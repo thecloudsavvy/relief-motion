@@ -400,3 +400,67 @@ create policy "own push subscriptions"
   to authenticated
   using (user_id = auth.uid())
   with check (user_id = auth.uid());
+
+create table if not exists public.wa_conversations (
+  id uuid primary key default gen_random_uuid(),
+  wa_id text not null unique,
+  profile_name text,
+  location text,
+  service text,
+  preferred_date text,
+  notes text,
+  status text not null default 'open',
+  handed_over_at timestamptz,
+  handover_reason text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+alter table public.wa_conversations drop constraint if exists wa_conversations_status_check;
+alter table public.wa_conversations add constraint wa_conversations_status_check
+  check (status in ('open', 'handed_over', 'closed'));
+
+create table if not exists public.wa_messages (
+  id uuid primary key default gen_random_uuid(),
+  conversation_id uuid not null references public.wa_conversations (id) on delete cascade,
+  wamid text unique,
+  direction text not null,
+  body text,
+  created_at timestamptz not null default now()
+);
+
+alter table public.wa_messages drop constraint if exists wa_messages_direction_check;
+alter table public.wa_messages add constraint wa_messages_direction_check
+  check (direction in ('in', 'out'));
+
+create index if not exists wa_messages_conversation_idx
+  on public.wa_messages (conversation_id, created_at desc);
+create index if not exists wa_conversations_updated_idx
+  on public.wa_conversations (updated_at desc);
+
+alter table public.wa_conversations enable row level security;
+alter table public.wa_messages enable row level security;
+
+drop policy if exists "admin read wa conversations" on public.wa_conversations;
+create policy "admin read wa conversations"
+  on public.wa_conversations for select
+  to authenticated
+  using (public.is_admin());
+
+drop policy if exists "admin update wa conversations" on public.wa_conversations;
+create policy "admin update wa conversations"
+  on public.wa_conversations for update
+  to authenticated
+  using (public.is_admin())
+  with check (public.is_admin());
+
+drop policy if exists "admin read wa messages" on public.wa_messages;
+create policy "admin read wa messages"
+  on public.wa_messages for select
+  to authenticated
+  using (public.is_admin());
+
+grant select, update on public.wa_conversations to authenticated;
+grant select on public.wa_messages to authenticated;
+grant all on public.wa_conversations to service_role;
+grant all on public.wa_messages to service_role;

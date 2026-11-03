@@ -8,6 +8,7 @@ import {
   Avatar,
   IconAudit,
   IconHome,
+  IconInbox,
   IconLogout,
   IconMore,
   IconPatients,
@@ -24,6 +25,7 @@ const BASE_NAV = [
 ];
 
 const ADMIN_NAV = [
+  { href: "/inbox", label: "WhatsApp", icon: IconInbox },
   { href: "/providers", label: "Providers", icon: IconProviders },
   { href: "/audit", label: "Audit", icon: IconAudit }
 ];

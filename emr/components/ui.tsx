@@ -40,6 +40,14 @@ export function IconAudit() {
   );
 }
 
+export function IconInbox() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M3 5h18v4.2l-6.2 4.8H9.2L3 9.2zm0 6.4 5.6 4.3H3zm18 0V20H3v-4.3h5.6L12 18.2 15.4 15.7H21z" />
+    </svg>
+  );
+}
+
 export function IconMore() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
