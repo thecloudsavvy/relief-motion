@@ -2,21 +2,21 @@
    RELIEF MOTION — Design System
    ═══════════════════════════════════════════════════ */
 
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700&display=swap");
 
 /* ─── CSS Custom Properties ─── */
 :root {
-  --teal-900: #062f40;
-  --teal-800: #0b4f6c;
-  --teal-700: #0d6285;
-  --teal-600: #1077a0;
-  --teal-500: #1491c2;
-  --teal-100: #e0f4fc;
-  --teal-50: #f0fafd;
+  --teal-900: #061f4a;
+  --teal-800: #0a3478;
+  --teal-700: #0a3478;
+  --teal-600: #149d91;
+  --teal-500: #149d91;
+  --teal-100: #e7f6f4;
+  --teal-50: #f4fbfa;
 
-  --gold: #f5a623;
-  --gold-dark: #d48c1a;
-  --gold-light: rgba(245, 166, 35, 0.15);
+  --gold: #149d91;
+  --gold-dark: #0e7a72;
+  --gold-light: rgba(20, 157, 145, 0.14);
 
   --white: #ffffff;
   --off-white: #f8fafb;
@@ -24,8 +24,8 @@
   --gray-100: #e2e8f0;
   --gray-300: #94a3b8;
   --gray-500: #64748b;
-  --gray-700: #334155;
-  --gray-900: #0f172a;
+  --gray-700: #222222;
+  --gray-900: #222222;
 
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow-md:
@@ -42,7 +42,7 @@
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 
-  --font-heading: "Playfair Display", Georgia, serif;
+  --font-heading: "Manrope", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
 
   --max-width: 1180px;
@@ -183,14 +183,14 @@ p {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--gold) 0%, #e8951a 100%);
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
   color: var(--white);
-  box-shadow: 0 4px 20px rgba(245, 166, 35, 0.4);
+  box-shadow: 0 4px 20px rgba(20, 157, 145, 0.4);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(245, 166, 35, 0.55);
+  box-shadow: 0 8px 28px rgba(20, 157, 145, 0.55);
 }
 
 .btn-secondary {
@@ -291,16 +291,13 @@ p {
 }
 
 .nav-logo img {
-  height: 62px !important;
+  height: 40px !important;
   width: auto;
   transition: var(--transition);
-  mix-blend-mode: multiply;
-  filter: contrast(1.1);
 }
 
 .nav.scrolled .nav-logo img {
-  height: 54px !important;
-  mix-blend-mode: normal;
+  height: 36px !important;
 }
 
 .nav-logo-icon {
@@ -329,8 +326,12 @@ p {
   font-family: var(--font-heading);
   font-size: 1.05rem;
   font-weight: 700;
+  color: var(--teal-600);
+  letter-spacing: -0.03em;
+}
+
+.nav-logo-name span {
   color: var(--teal-800);
-  letter-spacing: -0.01em;
 }
 
 .nav-logo-tagline {
@@ -381,18 +382,18 @@ p {
 }
 
 .nav-cta {
-  background: linear-gradient(135deg, var(--gold), #e8951a);
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
   color: var(--white) !important;
   padding: 12px 24px !important;
   font-weight: 600 !important;
-  box-shadow: 0 4px 15px rgba(245, 166, 35, 0.4);
+  box-shadow: 0 4px 15px rgba(20, 157, 145, 0.4);
   margin-left: 10px;
 }
 
 .nav-cta:hover {
   transform: translateY(-2px) scale(1.02);
   filter: brightness(1.05);
-  box-shadow: 0 6px 20px rgba(245, 166, 35, 0.55) !important;
+  box-shadow: 0 6px 20px rgba(20, 157, 145, 0.55) !important;
 }
 
 /* Hamburger */
@@ -463,7 +464,7 @@ p {
 
 .nav-mobile .mobile-cta {
   margin-top: 8px;
-  background: linear-gradient(135deg, var(--gold), #e8951a);
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
   color: white !important;
   text-align: center;
 }
@@ -491,7 +492,7 @@ p {
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse 80% 60% at 80% 50%,
-      rgba(245, 166, 35, 0.12) 0%,
+      rgba(20, 157, 145, 0.12) 0%,
       transparent 70%);
 }
 
@@ -747,7 +748,7 @@ p {
   height: 300px;
   border-radius: 50%;
   background: radial-gradient(circle,
-      rgba(245, 166, 35, 0.15),
+      rgba(20, 157, 145, 0.15),
       transparent 70%);
 }
 
@@ -783,7 +784,7 @@ p {
 /* WhatsApp Pulse Effect */
 @keyframes cta-pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.4);
+    box-shadow: 0 0 0 0 rgba(20, 157, 145, 0.4);
   }
 
   70% {

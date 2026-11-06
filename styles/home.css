@@ -1,20 +1,21 @@
 /* Relief Motion — clinic homepage */
 
 :root {
-  --navy: #002b50;
-  --navy-deep: #001c35;
-  --teal: #0198a4;
-  --teal-light: #06c4be;
+  --navy: #0a3478;
+  --navy-deep: #07285e;
+  --teal: #149d91;
+  --teal-light: #3db8ae;
   --paper: #fbfcfc;
-  --teal-tint: #e6f5f5;
-  --ink: #223038;
-  --ink-soft: #57666e;
+  --teal-tint: #e7f6f4;
+  --ink: #222222;
+  --ink-soft: #5a5a5a;
   --line: #dce4e4;
   --white: #ffffff;
-  --sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --display: "Manrope", "Helvetica Neue", Arial, sans-serif;
   --pad: clamp(1.15rem, 3.5vw, 3.75rem);
   --max: 72rem;
-  --nav-h: 4.4rem;
+  --nav-h: 4.6rem;
 }
 
 *,
@@ -49,6 +50,13 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  font-weight: 700;
 }
 
 img {
@@ -202,15 +210,22 @@ a:hover {
 }
 
 .brand img {
-  width: 2.35rem;
-  height: 2.35rem;
+  width: auto;
+  height: 2.55rem;
   object-fit: contain;
 }
 
-.brand span {
-  font-weight: 600;
-  font-size: 1.02rem;
-  letter-spacing: -0.02em;
+.brand-name {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.12rem;
+  letter-spacing: -0.03em;
+  color: var(--teal);
+  line-height: 1;
+}
+
+.brand-name span {
+  color: var(--navy);
 }
 
 .nav-links {
@@ -236,15 +251,15 @@ a:hover {
   background: var(--teal);
   color: var(--white);
   border: 1px solid var(--teal);
-  font: 600 0.92rem/1 var(--sans);
+  font: 600 0.92rem/1 var(--display);
   padding: 0.85rem 1.2rem;
   cursor: pointer;
   text-decoration: none;
 }
 
 .btn:hover {
-  background: #017f89;
-  border-color: #017f89;
+  background: #0e7a72;
+  border-color: #0e7a72;
   color: var(--white);
   text-decoration: none;
 }
@@ -363,7 +378,7 @@ a:hover {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--navy);
   margin-bottom: 0.65rem;
 }
 
@@ -399,7 +414,7 @@ a:hover {
 }
 
 .hero-points span {
-  color: var(--teal);
+  color: var(--navy);
 }
 
 .treat-cards {
@@ -791,7 +806,7 @@ a:hover {
 }
 
 .footer-lockup img {
-  width: min(17rem, 100%);
+  width: min(20rem, 78%);
 }
 
 .footer-body {
@@ -1012,7 +1027,7 @@ a:hover {
 
 .tagline {
   margin-top: 1.15rem;
-  color: var(--teal);
+  color: var(--navy);
   font-weight: 600;
   letter-spacing: 0.02em;
 }
