@@ -1,22 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700&display=swap");
 
 :root {
-  --navy: #002b50;
-  --navy-deep: #001c35;
-  --teal: #0198a4;
-  --teal-dark: #017f89;
-  --teal-light: #06c4be;
-  --teal-tint: #e6f5f5;
+  --navy: #0a3478;
+  --navy-deep: #07285e;
+  --teal: #149d91;
+  --teal-dark: #0e7a72;
+  --teal-light: #3db8ae;
+  --teal-tint: #e7f6f4;
   --paper: #f4f8f8;
-  --ink: #223038;
-  --ink-soft: #57666e;
+  --ink: #222222;
+  --ink-soft: #5a5a5a;
   --line: #dce4e4;
   --white: #ffffff;
   --ok: #1a9a63;
   --ok-bg: #e7f7ef;
   --online: #c45b8c;
   --online-bg: #fdeef5;
-  --sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --display: "Manrope", "Helvetica Neue", Arial, sans-serif;
   --side: 16.5rem;
   --radius: 12px;
 }
@@ -43,6 +44,12 @@ body {
   line-height: 1.5;
 }
 
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+}
+
 a {
   color: var(--teal);
   text-decoration: none;
@@ -60,6 +67,7 @@ textarea {
 }
 
 button {
+  font-family: var(--display);
   cursor: pointer;
 }
 
@@ -74,7 +82,7 @@ svg {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  background: #eef7f8;
+  background: #e7f6f4;
   position: relative;
   overflow: hidden;
 }
@@ -87,7 +95,7 @@ svg {
   width: 22rem;
   height: 22rem;
   border-radius: 50%;
-  background: radial-gradient(circle, #d4f1f1 0%, transparent 70%);
+  background: radial-gradient(circle, #d7f3ef 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -192,18 +200,30 @@ svg {
 }
 
 .auth-brand img {
-  width: 2.6rem;
-  height: 2.6rem;
+  width: 3.4rem;
+  height: 1.9rem;
   object-fit: contain;
   background: var(--white);
   border-radius: 8px;
-  padding: 0.2rem;
+  padding: 0.22rem 0.28rem;
 }
 
-.auth-brand strong {
+.auth-brand strong,
+.brand strong {
   display: block;
+  font-family: var(--display);
+  font-weight: 700;
   font-size: 1.05rem;
   line-height: 1.1;
+  color: var(--teal-light);
+}
+
+.auth-brand strong span,
+.brand strong span {
+  display: inline;
+  font-size: inherit;
+  letter-spacing: -0.03em;
+  color: var(--white);
 }
 
 .auth-brand span {
@@ -567,18 +587,16 @@ textarea {
 }
 
 .brand img {
-  width: 2.15rem;
-  height: 2.15rem;
+  width: 2.85rem;
+  height: 1.6rem;
   object-fit: contain;
   background: var(--white);
   border-radius: 8px;
-  padding: 0.15rem;
+  padding: 0.16rem 0.22rem;
 }
 
 .brand strong {
-  display: block;
-  font-size: 0.95rem;
-  line-height: 1.15;
+  font-size: 0.98rem;
 }
 
 .brand span {
@@ -682,16 +700,17 @@ textarea {
 }
 
 .app-top-mark {
-  width: 32px;
-  height: 32px;
+  width: 46px;
+  height: 28px;
   object-fit: contain;
   background: var(--teal-tint);
   border-radius: 8px;
-  padding: 0.22rem;
+  padding: 0.16rem 0.2rem;
 }
 
 .app-top-title {
   color: var(--navy);
+  font-family: var(--display);
   font-size: 1.05rem;
   font-weight: 700;
   line-height: 1.2;

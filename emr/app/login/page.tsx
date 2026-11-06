@@ -147,7 +147,7 @@ export default function LoginPage() {
         <div className="auth-brand">
           <img src="/logo-mark.png" alt="" />
           <div>
-            <strong>Relief Motion</strong>
+            <strong><span>Relief</span> Motion</strong>
             <span>PHYSIOTHERAPY</span>
           </div>
         </div>

@@ -81,9 +81,9 @@ export function AppNav({
   return (
     <aside className="sidebar">
       <div className="brand">
-        <img src="/logo-mark.png" alt="" width={36} height={36} />
+        <img src="/logo-mark.png" alt="" />
         <div>
-          <strong>Relief Motion</strong>
+          <strong><span>Relief</span> Motion</strong>
           <span>PHYSIOTHERAPY</span>
         </div>
       </div>
